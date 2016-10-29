@@ -26,7 +26,7 @@
 \usepackage{pdfpages}%插入PDF文件
 %========================宏包和相关设置===============================
 \usepackage{endnotes}%尾注宏包
-%\usepackage{fontspec}%字体选择宏包
+\usepackage{fontspec}%字体选择宏包
 \usepackage{etoolbox}%编程宏包，用于更改chapter定义
 \usepackage{marginnote}%边注
 \usepackage{lettrine}%首字下沉宏包
@@ -55,6 +55,8 @@
 \usepackage{pgfplots}%数学绘图宏包
 \usepackage{paralist}%多功能列表宏包
 \usepackage{tikz}%绘图
+\usepackage[perpage]{footmisc}%脚注宏包
+\usepackage{pifont}%产生带圈数字
 
 %参考文献
 \usepackage[
@@ -81,24 +83,25 @@
 \renewcommand{\paradescriptionlabel}[1]{\bfseries\heiti\color{blue!40!black} #1}
 
 %======================新定义，使引用变为图1-1，式（3-2）这样的形式==========================
-%\renewcommand{\eqref}[1]{式(\ref{#1})}
+%\usepackage{xr}%文件间的交叉引用
 
 \AtBeginDocument{%
-	\def\figureautorefname{图}
-	\def\tableautorefname{表}
-	\def\partautorefname{卷}
-	\def\appendixautorefname{附录}
-	\def\equationautorefname{式}
-	\def\Itemautorefname{列表}
-	\def\chapterautorefname{章}
-	\def\sectionautorefname{节}
-	\def\subsectionautorefname{小节}
-	\def\subsubsectionautorefname{条目}
-	\def\paragraphautorefname{自然段}
-	\def\Hfootnoteautorefname{脚注}
-	\def\AMSautorefname{式}
-	\def\theoremautorefname{定理}
-	\def\pageautorefname{页}
+	\def\figureautorefname{图}%
+	\def\tableautorefname{表}%
+	\def\partautorefname{卷}%
+	\def\appendixautorefname{附录}%
+	\def\equationautorefname{式}%
+	\def\Itemautorefname{列表}%
+	\def\chapterautorefname{章}%
+	\def\sectionautorefname{节}%
+	\def\subsectionautorefname{小节}%
+	\def\subsubsectionautorefname{条目}%
+	\def\paragraphautorefname{自然段}%
+	\def\Hfootnoteautorefname{脚注}%
+	\def\AMSautorefname{式}%
+	\def\theoremautorefname{定理}%
+	\def\pageautorefname{页}%
+%	\renewcommand{\pageref}[1]{第#1页}%
 }
 
 %===========================图片设置=================================
@@ -139,6 +142,16 @@
 % 解决索引ind文件依赖问题
 \let\scan@allowedfalse\relax
 \let\pfill\dotfill
+
+% 带圈数字，不能超过10个
+\def\@circlenum#1{
+	\ding{\the\numexpr\value{#1}+171\relax}%
+}
+% 脚注使用带圈数字，注意命令的执行时机
+\AtBeginDocument{%
+	\renewcommand{\thefootnote}{\@circlenum{footnote}}
+	\renewcommand{\thempfootnote}{\@circlenum{mpfootnote}}
+}
 
 %=========================标题样式设置===============================
 \setcounter{secnumdepth}{3}%设置标题深度
@@ -232,8 +245,8 @@
 {
 	basicstyle=\small\ttfamily,%\ttfamily等宽字体
 	frame=l,
-	aboveskip=0pt,%上边距
-	belowskip=0pt,%下边距
+	aboveskip=5pt,%上边距
+	belowskip=5pt,%下边距
 	lineskip=0pt,
 	tabsize=4,%设置tab空格数
 	showtabs=false,%Tab
@@ -255,7 +268,7 @@
 	%代码颜色设置
 	backgroundcolor=\color{gray!5},
 	stringstyle=\color{green!40!black!100},
-%	keywordstyle=\bfseries\color[RGB]{0,0,255},%\color{blue!50!black}
+	keywordstyle=\bfseries\color[RGB]{0,0,255},%\color{blue!50!black}
 	commentstyle=\fangsong\slshape\color{black!60},
 	}
 
@@ -264,7 +277,7 @@
 {
 	style=CodeBase,
 	language=[LaTeX]TeX,
-	texcsstyle=*\color{red}\bfseries,
+	texcsstyle=*\color[RGB]{0,0,255}\bfseries,%反斜杠高亮
 	morekeywords={addplot, begin, end},
 	}
 %定义latex代码专用环境

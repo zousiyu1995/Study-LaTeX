@@ -86,7 +86,7 @@ bib参考文献数据格式如下所示，为分字段显示。各字段可以�
 \section{链接}
 这部分内容主要用\qd{hyperref}宏包来实现。
 
-\section{引用功能}\label{ref}
+\section{引用功能}\label{tools-ref}
 在论文写作中，章节、插图、表格、公式和文本经常要前后调整或增添删减，这些引用的位置难以一次确定，所以不能进行直接编号。\LaTeX 提供很智能的方法来解决这个问题，你不用担心引用的编号问题，只管引用就好了，\LaTeX 系统会帮你编号。
 
 在你的导言区添加如下代码，重新定义自动引用的名字。
@@ -110,15 +110,9 @@ bib参考文献数据格式如下所示，为分字段显示。各字段可以�
 }
 \end{latex}
 
-我们可以使用命令引用一个表格、公式、图片等。如使用如下命令分别引用一张表和一个带编号的公式。引用结果：如\autoref{ref}中\autoref{tools-equation}，\autoref{tools-tabular}，\autoref{tools-figure}所示。
+我们可以使用命令引用一个表格、公式、图片等。如使用如下命令分别引用一张表和一个带编号的公式。引用结果：如\pageref{tools-ref}，\autoref{tools-ref}中\autoref{tools-equation}，\autoref{tools-tabular}，\autoref{tools-figure}所示。
 
-占位
 
-占位
-
-占位
-
-占位
 
 
 \begin{latex}{}
@@ -148,7 +142,7 @@ bib参考文献数据格式如下所示，为分字段显示。各字段可以�
 
 \begin{figure}[!ht]
 	\begin{center}
-		\includegraphics[width=100mm]{tools-figure}
+		\includegraphics[width=15cm]{tools-figure}
 		\caption{Demo of bar plot on a polar axis}
 		\label{tools-figure}
 	\end{center}
