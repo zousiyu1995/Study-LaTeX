@@ -1,0 +1,356 @@
+{\let\clearpage\relax \chapter{宏包}}
+
+\LaTeX 的强大之处在于有各种各样的宏包进行扩展，这些宏包能帮助\LaTeX 完成多样的排版任务。
+
+例如，在文本中排版化学式，有两个宏包比较流行，\emph{mhchem}和\emph{chemfig}。前者功能简单，用法也简单，书写无机化学式首选；后者功能众多，用法也较为繁复，主要用来书写复杂的有机化学式。
+
+\section{mhchem}
+
+使用下面的语句调用\emph{mhchem}宏包，添加\verb|version=4|参数是为了使用宏包的一些新特性，编写的文档如果要照顾老旧的\LaTeX 版本用户，可以酌情降低版本。
+
+\begin{latex}{}
+\usepackage[version=4]{mhchem}
+\end{latex}
+
+\bz{化学方程式}
+
+\begin{codeshow}
+\ce{CO2 + C -> 2 CO}\par
+\ce{Hg^2+ ->[I-] HgI2
+	->[I-] [Hg^{II}I4]^2-}
+\end{codeshow}
+
+\bz{化学分子式}
+
+分子式可用在文本模式、数学模式和标题里面。
+
+\begin{codeshow}
+\ce{H2O}\par
+\ce{Sb2O3}
+ \end{codeshow}
+
+\bz{离子}
+
+\begin{codeshow}
+\ce{H+}\par
+\ce{CrO4^2-}\par
+\ce{[AgCl2]-}\par
+\ce{Y^99+}\par
+\ce{Y^{99+}}
+\end{codeshow}
+
+\bz{氧化价态}
+
+\begin{codeshow}
+\ce{Fe^{II}Fe^{III}2O4}
+\end{codeshow}
+
+\bz{化学计量数}
+
+\begin{codeshow}
+\ce{2H2O}\par
+\ce{2 H2O}\par
+\ce{0.5H2O}\par
+\ce{1/2H2O}\par
+\ce{(1/2)H2O}\par
+\ce{$n$H2O}
+\end{codeshow}
+
+\bz{同位素}
+
+\begin{codeshow}
+\ce{^{227}_{90}Th+}\par
+\ce{^227_90Th+}\par
+\ce{^{0}_{-1}n^{-}}\par
+\ce{^0_-1n-}
+\end{codeshow}
+
+\bz{括弧,方括号,花括号}
+
+\verb|(),[]|可以正常表示，但需要使用\verb|\{ \}|来表示花括号。大型的花括号只能在数学环境里面使用。
+
+\begin{codeshow}
+\ce{(NH4)2S}\par
+\ce{[\{(X2)3\}2]^3+}
+\end{codeshow}
+
+\bz{大花括号}
+\begin{latex}{}
+\[\ce{CH4 + 2 $\left( \ce{O2 + 79/21 N2} \right)$}\]
+\end{latex}
+
+\[\ce{CH4 + 2 $\left( \ce{O2 + 79/21 N2} \right)$}\]
+
+\bz{聚合态}
+
+\begin{codeshow}
+\ce{H2(aq)}\par
+\ce{CO3^2-{}_{(aq)}}\par
+\ce{NaOH(aq,$\infty$)}
+\end{codeshow}
+
+\bz{未成对电子，自由基}
+
+\begin{codeshow}
+\ce{OCO^{.-}}\par
+\ce{NO^{(2.)-}}
+\end{codeshow}
+
+\bz{变量}
+排版约定，变量使用斜体排版，而其他元素（如化学式）则使用直立字体排版。
+
+\begin{codeshow}
+$\ce{NO_x}$\par
+$\ce{Fe^n+}$
+\end{codeshow}
+
+\begin{latex}{}
+$\ce{x Na(NH4)HPO4 ->[\Delta] (NaPO3)_x + x NH3 ^ + x H2O}$
+\end{latex}
+
+\begin{center}
+	$\ce{x Na(NH4)HPO4 ->[\Delta] (NaPO3)_x + x NH3 ^ + x H2O}$
+\end{center}
+
+\bz{希腊字符}
+\begin{codeshow}
+\ce{\mu-Cl}\par
+\ce{[Pt(\eta^2-C2H4)Cl3]-}
+\end{codeshow}
+
+\bz{加成化合物}
+\begin{codeshow}
+\ce{KCr(SO4)2*12H2O}\par
+\ce{KCr(SO4)2.12H2O}\par
+\ce{KCr(SO4)2 * 12 H2O}
+\end{codeshow}
+
+\bz{化学键}
+\begin{codeshow}
+\ce{C6H5-CHO}\par
+\ce{A-B=C#D}\par
+\sffamily\bfseries\ce{A-B=C#D}
+\end{codeshow}
+
+\begin{codeshow}
+\ce{A\bond{-}B\bond{=}C\bond{#}D}\par
+\ce{A\bond{1}B\bond{2}C\bond{3}D}\par
+\ce{A\bond{~}B\bond{~-}C}\par
+\ce{A\bond{~--}B\bond{~=}C\bond{-~-}D}\par
+\ce{A\bond{...}B\bond{....}C}\par
+\ce{A\bond{->}B\bond{<-}C}
+\end{codeshow}
+
+\bz{反应箭头}
+\begin{codeshow}
+\ce{A -> B}\par
+\ce{A <- B}\par
+\ce{A <-> B}\par
+\ce{A <--> B}\par
+\ce{A <=>> B}\par
+\ce{A <<=> B}
+\end{codeshow}
+
+\bz{带参数的反应箭头}
+\begin{codeshow}
+\ce{A ->[H2O] B}\par
+\ce{A ->[{text above}][{text below}] B}\par
+\ce{A ->[$x$][$x_i$] B}\par
+\ce{A ->[${x}$] B}
+\end{codeshow}
+
+\bz{化学方程式计算符}
+\begin{codeshow}
+\ce{A + B}\par
+\ce{A - B}\par
+\ce{A = B}\par
+\ce{A \pm B}
+\end{codeshow}
+
+\bz{沉淀和气体}
+\begin{codeshow}
+\ce{SO4^2- + Ba^2+ -> BaSO4 v}\par
+\ce{A v B (v) -> B ^ B (^)}
+\end{codeshow}
+
+\bz{极好的示例}
+
+\begin{latex}{}
+\ce{Zn^2+
+	<=>[+ 2OH-][+ 2H+]
+	$\underset{\text{amphoteres Hydroxid}}{\ce{Zn(OH)2 v}}$
+	<=>[+ 2OH-][+ 2H+]
+	$\underset{\text{Hydroxozikat}}{\ce{[Zn(OH)4]^2-}}$
+}
+
+$K = \frac{[\ce{Hg^2+}][\ce{Hg}]}{[\ce{Hg2^2+}]}$
+
+$K = \ce{\frac{[Hg^2+][Hg]}{[Hg2^2+]}}$
+
+\ce{Hg^2+ ->[I-]
+	$\underset{\mathrm{red}}{\ce{HgI2}}$
+	->[I-]
+	$\underset{\mathrm{red}}{\ce{[Hg^{II}I4]^2-}}$
+}
+\end{latex}
+
+\begin{center}
+\ce{Zn^2+
+	<=>[+ 2OH-][+ 2H+]
+	$\underset{\text{amphoteres Hydroxid}}{\ce{Zn(OH)2 v}}$
+	<=>[+ 2OH-][+ 2H+]
+	$\underset{\text{Hydroxozikat}}{\ce{[Zn(OH)4]^2-}}$
+}
+
+$K = \frac{[\ce{Hg^2+}][\ce{Hg}]}{[\ce{Hg2^2+}]}$
+
+$K = \ce{\frac{[Hg^2+][Hg]}{[Hg2^2+]}}$
+
+\ce{Hg^2+ ->[I-]
+	$\underset{\mathrm{red}}{\ce{HgI2}}$
+	->[I-]
+	$\underset{\mathrm{red}}{\ce{[Hg^{II}I4]^2-}}$
+}
+\end{center}
+
+\section{Chemfig}
+
+\section{\CTeX zhnumber}
+
+以中文格式输出数字。这里的数字可以是整数、小数和分数。
+
+\begin{codeshow}
+\zhnumber{2012020120}\\
+\zhnumber{2 012 020 120}\\
+\zhnumber{2,012,020,120}\\
+\zhnumber{2012.020120}\\
+\zhnumber{2012.}\\
+\zhnumber{.2012}\\
+\zhnumber{20120/20120}\\
+\zhnumber{/2012}\\
+\zhnumber{2012/}\\
+\zhnumber{201;2020/120}
+\end{codeshow}
+
+\bz{带*才能映射0为零}
+
+将阿拉伯数字转换为中文字符串。
+\begin{codeshow}
+\zhdigits{2012020120}\\
+\zhdigits*{2012020120}
+\end{codeshow}
+
+将\LaTeX 计数器数值转换为中文。
+
+\begin{latex}{}
+\zhnum{section}
+\end{latex}
+
+输出当天的星期。
+
+\begin{codeshow}
+\zhweekday{2012/5/20}
+\end{codeshow}
+
+\bz{带*的可以输出星期}
+以中文格式输出日期。
+
+\begin{codeshow}
+\zhdate{2012/5/21}\\
+\zhdate*{1995/01/26}
+\end{codeshow}
+
+以中文输出当天日期。
+
+\begin{codeshow}
+\zhtoday
+\end{codeshow}
+
+以中文输出时间。
+
+\begin{codeshow}
+\zhtime{23:56}
+\end{codeshow}
+
+输出当前时间。
+
+\begin{codeshow}
+\zhcurrtime
+\end{codeshow}
+
+输出天干计数，数字范围是1--10。
+
+\begin{codeshow}
+\zhtiangan{1} \zhtiangan{2}
+\zhtiangan{3} \zhtiangan{4}
+\zhtiangan{5} \zhtiangan{10}
+\end{codeshow}
+
+输出地支计数，数字范围1--12。
+
+\begin{codeshow}
+\zhdizhi{1} \zhdizhi{2} \zhdizhi{3}
+\zhdizhi{4} \zhdizhi{5} \zhdizhi{12}
+\end{codeshow}
+
+输出干支计数，数字范围1--60。
+
+\begin{codeshow}
+\zhganzhi{1} \zhganzhi{2}
+\zhganzhi{3}\\ \zhganzhi{4}
+\zhganzhi{5} \zhganzhi{60}
+\end{codeshow}
+
+输出公元纪年对应的干支纪年，公元前用负数。
+
+\begin{codeshow}
+\zhganzhinian{1898}
+\zhganzhinian{-246} \\
+\zhganzhinian{-2697}
+\zhganzhinian{\year}
+\end{codeshow}
+
+\emph{zhnumsetup}的样式控制选项。
+
+\begin{asparadesc}
+	\item [Simplified] 以简体中文输出数字（对Big5 编码无效）
+	\item [Traditional] 以繁体中文输出数字（对Big5 编码无效）
+	\item [Normal] 以小写形式输出中文数字
+	\item [Financial] 以大写形式输出中文数字
+	\item [Ancient] 以廿输出20，以卅输出30，以卌输出40，以皕输出200
+\end{asparadesc}
+
+\begin{codeshow}
+\zhnumsetup{
+	style={Traditional,Normal}}
+\zhnumber{62012.3}\\
+\zhnumsetup{style=Ancient}
+\zhnumber{21}
+\end{codeshow}
+
+\begin{codeshow}
+\zhnumsetup{
+	style={Traditional,Financial}}
+\zhnumber{62012.3}\\
+\zhnumsetup{style=Ancient}
+\zhnumber{21}
+\end{codeshow}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

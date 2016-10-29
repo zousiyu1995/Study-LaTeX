@@ -1,0 +1,30 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass{Zousiyu}
+
+\begin{document}
+	\includepdf{body/cover.pdf}	%封面
+%	{\pagestyle{empty}\mbox{}\newpage\pagestyle{empty}}%产生一个真正的空白页
+%========序==========
+	\frontmatter
+	\pagenumbering{Roman}
+	\begin{multicols}{2}[
+		\setlength{\columnseprule}{.4pt}
+		\setlength{\columnsep}{18pt}]
+	\tableofcontents
+	\end{multicols}
+%========文==========
+	\mainmatter
+	\pagenumbering{arabic}
+	\input{body/base}
+	\input{body/draw}
+	\input{body/page}
+	\input{body/figureandtable}
+	\input{body/tools}
+	\input{body/math}
+	\input{body/tikz}
+	\input{body/package}
+%========跋========
+	\backmatter
+%	\include{reference}
+	\printbibliography%打印参考文献
+\end{document}

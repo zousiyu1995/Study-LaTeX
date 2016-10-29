@@ -1,0 +1,140 @@
+{\let\clearpage\relax \chapter{\LaTeX 基础}}
+
+\section{命令}
+
+%\begin{latexample}
+%{\songti 爆竹声中一岁除，春风送暖入屠苏。}
+%{\fangsong 家家乞巧望秋月，穿尽红丝几万条。}
+%\end{latexample}
+
+\subsection{命令形式}
+
+命令的一般形式如下。
+
+\begin{latex}{}
+\命令名[可选参数1,可选参数2,...]{必要参数1,必要参数2,...}
+\end{latex}
+
+同时，根据命令的作用范围的不同，可大致把命令分为如下四种形式。
+
+\section{文类}
+
+\CTeX 提供四个中文文类，\texttt{ctexart、ctexrep、ctexbook和ctexbeamer}
+
+\section{字体}
+
+\begin{asparadesc}
+	\item[等宽字体] Typewriter Family 英文的a和i在非等宽字体里面肯定宽度不一样，这样在大段文本里就不好辨认，等宽字体的所以字母宽度一样，笔画的起止还有装饰衬线（所以等宽字体多数属于衬线字体），易读性高
+	\item[等线字体] 无字头字脚，笔画圆润，粗细均匀，例如Windows自带的Arial、黑体和幼圆
+	\item[衬线字体] serif 在字的笔画开始、结束的地方有额外的装饰，而且笔画的粗细会有所不同,宋体就是一种最标准的serif字体
+	\item[无衬线字体] sans serif 在字的笔画开始、结束的地方没有这些额外的装饰，而且笔画的粗细差不多
+\end{asparadesc}
+
+等宽字体一般用来书写代码，特别是使用缩进控制语法的\emph{python}语言，更需要等宽字体来书写代码了。
+
+科学书写中文文档的第一步应该是调用\CTeX 宏包，其提供四种命令来调用在中文文档中常用的四种字体。
+
+\begin{latex}{}
+{\songti 爆竹声中一岁除，春风送暖入屠苏。}
+{\fangsong 家家乞巧望秋月，穿尽红丝几万条。}
+{\heiti 黄沙百战穿金甲，不破楼兰终不还。}
+{\kaishu 君不见走马川行雪海边，平沙莽莽黄入天。}
+\end{latex}
+
+效果如下：
+
+\begin{center}
+	{\zihao{3}\songti 爆竹声中一岁除，春风送暖入屠苏。}\par
+	{\zihao{3}\fangsong 家家乞巧望秋月，穿尽红丝几万条。}\par
+	{\zihao{3}\heiti 黄沙百战穿金甲，不破楼兰终不还。}\par
+	{\zihao{3}\kaishu 君不见走马川行雪海边，平沙莽莽黄入天。}
+\end{center}
+
+分全局和局部字体设置。
+\subsection{全局字体设置}
+中文的文档都要调用\emph{ctex}宏包，该宏包提供一个简单的参数可以设置全部正文的字体。
+
+\begin{latex}{}
+\setmainfont{Times New Roman}	%设置主字体，仅对西文起作用
+\setCJKmainfont{SimSun}			%设置主字体，仅对中文起作用
+\end{latex}
+
+有时候需要改变\LaTeX 默认的等宽字体，如本文档的等宽字体设置。更改等宽字体之后，将会影响\verb|\texttt{text},\ttfamily,\tt|这些命令所作用的字体，还会影响默认使用等宽字体（如脚注，抄录环境）的环境。
+
+\begin{latex}{}
+\setmonofont{Source Code Pro}	%英文等宽
+\setCJKmonofont{simfang.ttf}	%中文等宽，仿宋
+\end{latex}
+
+\subsection{局部字体设置}
+
+\begin{latex}{}
+\newfontfamily\daima{Consolas}	%使用\daima直接调用
+\end{latex}
+
+\subsection{在数学环境中使用中文}
+默认情况下，数学环境中是不允许输入汉字的。当我们需要输入汉字作为变量的标识时，可以使用\verb|\text{要输入的汉字字符}|来完成这项工作。
+
+\begin{codeshow}
+$f_{\text{高温}}$
+\end{codeshow}
+
+\subsection{汉字“斜体”}
+汉字没有加斜体。平常我们看到的加斜汉字，通常是几何变换得到的结果，非常的粗糙，并不严格满足排版要求；而真正的字形是需要精细的设计的。同时，汉字字体里面也很少有加粗体的设计。但是，有时候却又有所谓的“斜体”需求。\LaTeX 也是可以实现这种伪斜体的。虽然可以实现，但排版规范并并不推荐我们使用斜体来强调某个元素。如果想要强调某个元素，可以使用{\heiti 黑体}。
+
+\begin{center}
+	{\CJKfontspec[FakeSlant=0.4]{SimSun}\zihao{1}汉字伪斜体}
+\end{center}
+
+\begin{latex}{}
+{\CJKfontspec[FakeSlant=0.4]{SimSun}\zihao{1}汉字伪斜体}
+\end{latex}
+
+西文一般设有加斜，但是这与“斜体”并不是同一回事。加斜是指某种字族的Slant字系；而斜体，是指Italy字族。所以\verb|textit{},\itshape,\it|是斜体（Italic Shape），而\verb|textsl{},\slshape,\sl|是字体的倾斜形状。
+
+\begin{center}
+	{\zihao{1} \textit{Italy Shape} ~ \textsl{Slanted Shape}}
+\end{center}
+
+\section{长度}
+
+我一般只用如下几个：
+
+\begin{asparadesc}
+	\item[em] 当前字号下，大写字母M的宽度，用于水平间距调整
+	\item[ex] 当前字号下，小写字母x的高度，用于垂直间距调整
+	\item[mm] 毫米，都懂
+\end{asparadesc}
+
+
+
+\section{空格、换行、分段、分页与对齐}
+
+\LaTeX 将多个空格视为一个，多个换行也会被视为一个。一般习惯使用\verb|~|产生一个空格，使用\verb|\mbox{}|产生一个空白段落（空白行），使用\verb|\par|产生一个带缩进的新段，使用\verb|\\|来强制换行，但下一段的缩进会消失。
+
+段落之间的距离一般这样控制：
+
+\begin{latex}{}
+\setlength{\parskip}{0pt plus 1pt}%默认值
+\end{latex}
+
+宏包\emph{lettrine}能产生首字下沉效果：
+
+\begin{codeshow}
+	\lettrine{吾}{}生也有涯，而知也无涯。
+	以有涯随无涯，殆已！
+\end{codeshow}
+
+用\verb|\newpage|命令开始新的一页。
+用\verb|\clearpage|命令清空浮动体队列5，并开始新的一页。
+用\verb|\cleardoublepage|命令清空浮动体队列，并在偶数页上开始新的一页。
+注意：以上命令都是基于\verb|\vfill|的。如果要连续新开两页，请在中间加上一个空的箱，如\verb|\newpage\mbox{}\newpage| 。
+
+\LaTeX 默认使用两端对齐来排版，我们可以用\emph{flushleft,flushright,center}这三个环境来构造居左，居右，居中三种版式。特殊情况可以使用\verb|\centering,\raggedleft,\reggedright|来实现居中，居右，居左。
+
+
+
+
+
+
+
