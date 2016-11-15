@@ -68,7 +68,110 @@ $\frac12 \quad \frac2n
 \]
 \end{codeshow}
 
+\subsection{嵌套}
+所有的公式都可以做到嵌套，这样子就可以形成相对比较复杂的公式。
+\begin{codeshow}
+\[
+\frac{-b\pm \sqrt{b^{2}-4ac}}{2a}\\
+\lim\limits_{x\to 0}\frac
+{x\cdot \frac{\cos x -1}{\cos x}}{x^{3}}
+\]
+\end{codeshow}
+
+除了在分式中会经常用到嵌套以外，矩阵里这种情况也很常见，比如分块矩阵，举个例子。当然，我们也可以把零弄大一点，我们只需要将0修改为\emph{\textbackslash text{large{0}}}就好
+\begin{codeshow}
+\[
+A=\begin{pmatrix}
+\begin{matrix}
+1 & 0 \\
+0 & 1
+\end{matrix} & 0 \\
+\text{\large{0}} & \begin{matrix}
+1 & 0 \\
+0 & 1
+\end{matrix}
+\end{pmatrix}
+\]
+\end{codeshow}
+
+\subsection{定界符}
+嵌套多了式子会变得非常复杂，也就会变得越来越大！可是这个时候如果你使用括号你会发现，它的大小并没有什么变化，这就显得非常的low，影响美观，因此我们会在括号外加一个left或者是right进行大小的控制。举例如下。
+\begin{codeshow}
+\[
+\lim\limits_{x\to 0}\left(\frac
+{a^{x}+b^{x}+c^{x}}{3}\right)
+^{\tfrac{1}{x}}
+\]
+\end{codeshow}
+
+学了定界符之后，就可以完全实现矩阵的部分形态了，比方说排版一个增广矩阵。
+
+\begin{codeshow}
+\[
+\left(
+\begin{tabular}{ccc|c}
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 
+\end{tabular}
+\right)
+\]
+\end{codeshow}
+
+\subsection{数学字体}
+标准的\LaTeX 提供的数学字体有以下几种。简单的文档中，这些字体已经够用了，如果要使用更高级的字体，可查阅\CTeX 宏包说明。
+\begin{codeshow}
+\[
+\mathit{ABCDE}\]
+\[
+\mathrm{ABCDE}\\\]
+\[
+\mathbf{ABCDE}\\\]
+\[
+\mathsf{ABCDE}\\\]
+\[
+\mathtt{ABCDE}\\\]
+\end{codeshow}
+
+\subsection{希腊字母}
+有时间排个表在这，不着急。
+
+\subsection{函数符号}
+调用\emph{amsmath}宏包后，大多数函数能够使用反斜杠加名称直接打出，例如：
+
+\begin{codeshow}
+$ \sin \quad \ln \quad \arccos $
+\end{codeshow}
+
+像$ \arcsec \quad \arccot \quad \arccsc $这三个函数，\emph{amsmath}宏包就没有定义，这就需要我们自己定义这样一个新的函数命令。
+\begin{latex}{}
+%定义一些amsmath没有定义的函数
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\end{latex}
+
 \section{公式环境}
+
+\subsection{align}
+align环境的对齐功能。
+\begin{latex}{}
+\begin{align*}
+&\lim\limits_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)\\
+= &\lim\limits_{x\to 1}\left(\frac{x^2+x-2}{1-x^3}\right)  \\
+=& \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
+=& \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
+=& -1
+\end{align*}
+\end{latex}
+
+\begin{align*}
+&\lim\limits_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)\\
+= &\lim\limits_{x\to 1}\left(\frac{x^2+x-2}{1-x^3}\right)  \\
+=& \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
+=& \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
+=& -1
+\end{align*}
 
 \section{矩阵环境}
 矩阵的环境和表格有点相似，所以用法也和列表几乎相同，举个最简单的矩阵例子。
@@ -98,6 +201,15 @@ a_{11} & a_{12} & a_{13}\\
 	3 & 4\end{Vmatrix}
 \end{gather*}
 \end{codeshow}
+
+矩阵的元素有时候会很多，需要使用省略号去忽略，而省略号在tex中有专门的命令，列举如下。
+\begin{codeshow}
+\[
+\ldots \cdots \vdots \ddots \dotsc
+\]
+\end{codeshow}
+
+
 
 
 \section{定理环境}

@@ -48,6 +48,11 @@
 \usepackage{latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
 \usepackage{texnames,metalogo}%TeX家族标识符宏包
 
+%定义一些amsmath没有定义的函数
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+
 \usepackage{titletoc}%目录样式宏包
 \usepackage{titlesec}%标题样式宏包
 \usepackage{caption}%图表标题宏包
@@ -273,7 +278,7 @@
 	style=CodeBase,
 	language=[LaTeX]TeX,
 	texcsstyle=*\color[RGB]{0,0,255}\bfseries,%反斜杠高亮
-	morekeywords={addplot, begin, end},
+	morekeywords={addplot, begin, end, color, text},
 	}
 %定义latex代码专用环境
 \lstnewenvironment{latex}[1]{\lstset{style=LaTeX}}{}
