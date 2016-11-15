@@ -43,8 +43,9 @@
 \usepackage[version=4]{mhchem}%化学式宏包
 \usepackage{chemfig}%化学式宏包
 \usepackage{siunitx}%单位宏包
-
-\usepackage{amsmath,amssymb,amsfonts,latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
+\usepackage{mathtools}%数学宏包
+\usepackage{amsmath,amssymb,amsfonts}%数学宏包
+\usepackage{latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
 \usepackage{texnames,metalogo}%TeX家族标识符宏包
 
 \usepackage{titletoc}%目录样式宏包
@@ -111,15 +112,15 @@
 
 %===========================页眉页脚=================================
 \usepackage{fancyhdr}%页眉页脚宏包
-\pagestyle{fancy}
-%上面两行必备
-\fancyhf{}%清空当前设置
-%\fancyhead[R]{邹思宇的 \LaTeX 学习笔记}
-%\fancyfoot[C]{\thepage}
-\lhead{\heiti\leftmark}
-\rhead{\heiti\rightmark}
-\chead{\heiti 邹思宇的 \LaTeX 学习笔记}
-\cfoot{--\ \thepage\ --}
+%\pagestyle{fancy}
+%%上面两行必备
+%\fancyhf{}%清空当前设置
+%%\fancyhead[R]{邹思宇的 \LaTeX 学习笔记}
+%%\fancyfoot[C]{\thepage}
+%\lhead{\heiti\leftmark}
+%\rhead{\heiti\rightmark}
+%\chead{\heiti 邹思宇的 \LaTeX 学习笔记}
+%\cfoot{--\ \thepage\ --}
 %\headrulewidth{0.5pt} %页眉线
 %\footrulewidth{0pt} %页脚线
 
@@ -194,10 +195,10 @@
 %=================================目录===============================
 \setcounter{tocdepth}{2}%目录深度
 
-\renewcommand\contentsname{\heiti\zihao{3}
-	\hspace*{\fill}
-	目\quad 录
-	\hspace*{\fill}}
+%\renewcommand\contentsname{\heiti\zihao{3}
+%	\hspace*{\fill}
+%	目\quad 录
+%	\hspace*{\fill}}
 %\hspace*{\fill}用于生成空白
 
 \titlecontents{chapter}[0pt]{\bfseries\heiti}{\thecontentslabel}{}{\titlerule*{}\contentspage}
@@ -210,12 +211,6 @@
 \DeclareCaptionFont{heiti}{\heiti}
 \captionsetup[figure]{labelsep=space,justification=centering,font=heiti,aboveskip=1mm,belowskip=1mm}%空格分隔符，居中，黑体
 \captionsetup[table]{labelsep=space,justification=centering,font=heiti,aboveskip=1mm,belowskip=1mm}%空格分隔符，居中，黑体
-
-%在浮动体环境外使用图标标题
-%\makeatletter
-%\newcommand\figcaption{\def\@captype{figure}\caption}
-%\newcommand\tabcaption{\def\@captype{table}\caption}
-%\makeatother
 
 %自定义各列列宽，使用参数CRL+长度
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
@@ -341,9 +336,7 @@
 }
 
 %新codeshow环境
-\usepackage{fancyvrb}
-
-
+%\usepackage{fancyvrb}
 
 %====================最后放置链接宏包，避免冲突===============================
 \usepackage{hyperref}

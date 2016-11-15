@@ -13,9 +13,91 @@
 \section{数学宏包}
 
 \section{数学符号}
+\subsection{上标与下标}
+上下标一般写在数学符号的右上、右下方，如果需要将它们写在正下、正上方，可以使用\emph{\textbackslash limits}。
+\begin{codeshow}
+$A_{ij}=2^{i+j}$\par
+$\sum_{i=1}^{n}$\par
+$\sum\limits_{i=1}^{n}$\par
+\end{codeshow}
+
+如果是行间公式，上下标默认就在正下、正上方。另外，使用\emph{\textbackslash substack}命令可以加入多行的上下标，举个例子。
+\begin{codeshow}
+\[\sum_{min}^{max}\]
+\[\sum_{\substack{i=1\\j=1}}^{n}\]
+\end{codeshow}
+
+\subsection{画线补充}
+想划线，就拿\emph{\textbackslash overline}和\emph{\textbackslash underline}命令就可以了，划线的部分最好以花括号括起来。想画箭头则将line替换为arrow。想打双向箭头或其他，那么把left/right改成leftright\footnote{连写，先left后right}。举个例子。
+\begin{codeshow}
+$ \overleftarrow{abc} $\par
+$ \underline{xy} $\par
+$ a \leftrightarrow b $\par
+$ \overleftrightarrow{abc} $
+\end{codeshow}
+
+如果想在数学环境里面写中文\footnote{并不推荐这样做，只是为了符合国情才有教材在数学公式里面排版中文}，那么记住两件事，一是在开头引用\CTeX 宏包，二是在引用中文的之前使用\emph{\textbackslash text}命令，举一个例子。
+\begin{codeshow}
+$\overbrace{(a_0,a_1,\dots,a_n)}
+^{\text{共 $n+1$ 项}}$
+%\dots命令能在基线上产生三个点
+\end{codeshow}
+
+\subsection{分式}
+使用命令\emph{\textbackslash frac}写出正常的分式而不是a/b这种的，命令之后有两个参数，如果分子分母均只有一个字符，则可以不加花括号。举例如下。
+\begin{codeshow}
+%行内公式形式
+$\frac12 \quad \frac2n
+\quad \frac{2}{2+n}$
+%行间公式形式
+\[ \frac12 \quad \frac2n
+\quad \frac{2}{2+n} \]
+\end{codeshow}
+
+如果你想玩点花样，随意使用行内公式和行间公式，那么这里的\emph{\textbackslash frac}可以分支为\emph{\textbackslash dfrac}和\emph{\textbackslash tfrac}，t即text（行内，文本模式），d即display（行间，显示模式）。我们可以用这两个命令调节嵌套分式的大小，举个例子。
+\begin{codeshow}
+\[ \frac{1}{\tfrac1a+\tfrac1b+c} \]
+\[ \frac{1}{\dfrac1a+\dfrac1b+c} \]
+\end{codeshow}
+
+\subsection{根式}
+开方的次数\footnote{非数学专业，不知道用次数表达是否合理，欢迎指正}用方括号[]括起来。注意，根式的开方次数如果过大，写在左边就很影响美观，这个时候一般都改为指数形式。
+\begin{codeshow}
+\[
+\sqrt{x^2+1}\quad \sqrt[3]{x^4+1}
+\]
+\end{codeshow}
 
 \section{公式环境}
 
 \section{矩阵环境}
+矩阵的环境和表格有点相似，所以用法也和列表几乎相同，举个最简单的矩阵例子。
+\begin{codeshow}
+\[
+A=\begin{matrix}
+a_{11} & a_{12} & a_{13}\\
+0 & 0 & 0\\
+0 & 0 & 0
+\end{matrix}
+\]
+\end{codeshow}
+
+那我要写带括号的呢？没关系，不同的矩阵环境会形成不同的括号。这里的matrix就不形成括号，pmatrix形成小括号，bmatrix形成中括号，vmatrix形成竖线（行列式形式），Bmatrix形成大括号，Vmatrix形成双竖线。
+\begin{codeshow}
+\begin{gather*}
+	%居中的公式组环境，不编号
+	\begin{pmatrix}1 & 2\\
+	3 & 4\end{pmatrix}
+	\begin{bmatrix}1 & 2\\
+	3 & 4\end{bmatrix}
+	\begin{vmatrix}1 & 2\\
+	3 & 4\end{vmatrix}\\
+	\begin{Bmatrix}1 & 2\\
+	3 & 4\end{Bmatrix}
+	\begin{Vmatrix}1 & 2\\
+	3 & 4\end{Vmatrix}
+\end{gather*}
+\end{codeshow}
+
 
 \section{定理环境}
