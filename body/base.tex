@@ -1,11 +1,7 @@
 {\let\clearpage\relax \chapter{\LaTeX 基础}}
 
 \section{命令}
-
-%\begin{latexample}
-%{\songti 爆竹声中一岁除，春风送暖入屠苏。}
-%{\fangsong 家家乞巧望秋月，穿尽红丝几万条。}
-%\end{latexample}
+\note{模板的作用在于减少论文写作过程中格式调整的时间，前提是遵守模板的用法，否则即便使用了模版也难以保证输出的论文符合学校规范。}
 
 \subsection{命令形式}
 
@@ -125,10 +121,12 @@ $f_{\text{高温}}$
 	以有涯随无涯，殆已！
 \end{codeshow}
 
-用\verb|\newpage|命令开始新的一页。
-用\verb|\clearpage|命令清空浮动体队列5，并开始新的一页。
-用\verb|\cleardoublepage|命令清空浮动体队列，并在偶数页上开始新的一页。
-注意：以上命令都是基于\verb|\vfill|的。如果要连续新开两页，请在中间加上一个空的箱，如\verb|\newpage\mbox{}\newpage| 。
+用\cmd{newpage}命令开始新的一页。
+
+用\cmd{clearpage}命令清空浮动体队列5，并开始新的一页。
+
+用\cmd{cleardoublepage}命令清空浮动体队列，并在偶数页上开始新的一页。
+注意：以上命令都是基于\cmd{vfill}的。如果要连续新开两页，请在中间加上一个空的箱，如\verb|\newpage\mbox{}\newpage| 。
 
 \LaTeX 默认使用两端对齐来排版，我们可以用\emph{flushleft,flushright,center}这三个环境来构造居左，居右，居中三种版式。特殊情况可以使用\verb|\centering,\raggedleft,\reggedright|来实现居中，居右，居左。
 

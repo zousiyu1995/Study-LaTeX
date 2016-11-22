@@ -240,6 +240,7 @@
 %	keywordstyle=\color{keyword},
 %	stringstyle=\color{string},
 
+
 %提供一个代码环境的基本样式
 \lstdefinestyle{CodeBase}
 {
@@ -303,8 +304,19 @@
 
 \newcommand{\qd}[1]{{\slshape{#1}}}% 强调，斜体
 
+%说明环境
+\newcommand{\note}[1]{{%
+	\color{magenta}{\heiti 说明：}\emph{#1}}}
+
+%命令环境，\cmd{}直接输出命令加反斜杠，避免麻烦
+\DeclareRobustCommand*\cmd[1]{\texttt{\char`\\#1}}
+\def\crcmd{\cmd{\char`\\}}
+
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \usepackage{verbatim}
+% 示例环境 example
+% 环境中的代码被 verbatim 环境处理到一个临时文件中
+% 再从临时文件中读取，分别生成代码盒子和示例盒子
 \newwrite\example@out
 \newlength\savefboxrule
 \newlength\savefboxsep
@@ -330,12 +342,12 @@
 	}%
 	\hfill%
 	\fbox{%
-	\begin{minipage}[c]{0.45\textwidth}%
-		\setlength{\fboxrule}{\savefboxrule}%
-		\setlength{\fboxsep}{\savefboxsep}%
-		\setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}%
-		\normalsize\input{\example@name}%
-	\end{minipage}%
+		\begin{minipage}[c]{0.45\textwidth}%
+			\setlength{\fboxrule}{\savefboxrule}%
+			\setlength{\fboxsep}{\savefboxsep}%
+			\setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}%
+			\normalsize\input{\example@name}%
+		\end{minipage}%
 	}%
 	\endtrivlist
 }

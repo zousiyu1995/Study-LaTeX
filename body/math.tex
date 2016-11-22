@@ -173,6 +173,20 @@ align环境的对齐功能。
 =& -1
 \end{align*}
 
+\subsection{多行公式}
+
+\begin{latex}{}
+\begin{multline}
+\frac{\rho}{\epsilon_p} \left(\frac{\partial u}{\partial t}+(u \bullet \nabla)\frac{u}{\epsilon_p}\right)=\\
+\nabla \bullet \left[ -pl+\frac{\mu}{\epsilon_p}\left( \nabla u+(\nabla u)^T\right)-\frac{2\mu}{3\epsilon_p}(\nabla \bullet u)l\right]-\left( \mu \kappa^{-1} + \beta_{F}u+ \frac{Q_br}{\epsilon^{2}_{p}} \right)u+F
+\end{multline}
+\end{latex}
+
+\begin{multline}
+\frac{\rho}{\epsilon_p} \left(\frac{\partial u}{\partial t}+(u \bullet \nabla)\frac{u}{\epsilon_p}\right)=\\
+\nabla \bullet \left[ -pl+\frac{\mu}{\epsilon_p}\left( \nabla u+(\nabla u)^T\right)-\frac{2\mu}{3\epsilon_p}(\nabla \bullet u)l\right]-\left( \mu \kappa^{-1} + \beta_{F}u+ \frac{Q_br}{\epsilon^{2}_{p}} \right)u+F
+\end{multline}
+
 \section{矩阵环境}
 矩阵的环境和表格有点相似，所以用法也和列表几乎相同，举个最简单的矩阵例子。
 \begin{codeshow}
