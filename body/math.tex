@@ -144,7 +144,7 @@ $ \sin \quad \ln \quad \arccos $
 \end{codeshow}
 
 像$ \arcsec \quad \arccot \quad \arccsc $这三个函数，\emph{amsmath}宏包就没有定义，这就需要我们自己定义这样一个新的函数命令。
-\begin{latex}{}
+\begin{latex}
 %定义一些amsmath没有定义的函数
 \DeclareMathOperator{\arcsec}{arcsec}
 \DeclareMathOperator{\arccot}{arccot}
@@ -155,7 +155,7 @@ $ \sin \quad \ln \quad \arccos $
 
 \subsection{align}
 align环境的对齐功能。
-\begin{latex}{}
+\begin{latex}
 \begin{align*}
 &\lim\limits_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)\\
 = &\lim\limits_{x\to 1}\left(\frac{x^2+x-2}{1-x^3}\right)  \\
@@ -175,7 +175,7 @@ align环境的对齐功能。
 
 \subsection{多行公式}
 
-\begin{latex}{}
+\begin{latex}
 \begin{multline}
 \frac{\rho}{\epsilon_p} \left(\frac{\partial u}{\partial t}+(u \bullet \nabla)\frac{u}{\epsilon_p}\right)=\\
 \nabla \bullet \left[ -pl+\frac{\mu}{\epsilon_p}\left( \nabla u+(\nabla u)^T\right)-\frac{2\mu}{3\epsilon_p}(\nabla \bullet u)l\right]-\left( \mu \kappa^{-1} + \beta_{F}u+ \frac{Q_br}{\epsilon^{2}_{p}} \right)u+F

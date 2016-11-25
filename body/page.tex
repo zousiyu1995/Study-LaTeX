@@ -3,9 +3,9 @@
 {\let\clearpage\relax \chapter{版面和格式}}
 
 \section{页眉页脚}
-一般来说，设置页眉页脚需要调用使用比较广泛的\qd{fancyhdr}宏包。我习惯使用如下代码先清空默认定义，然后自己重新定义。页眉页脚线的粗细也可以重新定义。
+一般来说，设置页眉页脚需要调用使用比较广泛的\emph{fancyhdr}宏包。我习惯使用如下代码先清空默认定义，然后自己重新定义。页眉页脚线的粗细也可以重新定义。
 
-\begin{latex}{}
+\begin{latex}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}					%清空当前设置
@@ -24,7 +24,7 @@
 
 具体更改页眉页脚区域章节显示样式的代码如下。
 
-\begin{latex}{}
+\begin{latex}
 	\renewcommand{\chaptermark}[1]{\markleft{\thesection.\#1}}
 %两种一样，\markleft影响\leftmark，而\makeboth影响两着，需要选一
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{节样式空置表示修改章样式}}
@@ -32,28 +32,28 @@
 \end{latex}
 
 
-在book文件类别下，\qd{\leftmark}自动存录各章之章名，\qd{\rightmark}记录节标题。所以，想要在页眉上显示章节标题是很容易实现的。
+在book文件类别下，\emph{\leftmark}自动存录各章之章名，\emph{\rightmark}记录节标题。所以，想要在页眉上显示章节标题是很容易实现的。
 
 
-\begin{latex}{}
+\begin{latex}
 \lhead{\leftmark}			%左页眉显示章
 \rhead{\rightmark}			%右页眉显示节
 \end{latex}
 
 
 \section{颜色}
-一般来说，我们调用下\qd{xcolor}这个宏包。如果对内置的颜色了解，或者现有\qd{RGB}颜色值，一般使用如下代码直接调用颜色。
+一般来说，我们调用下\emph{xcolor}这个宏包。如果对内置的颜色了解，或者现有\emph{RGB}颜色值，一般使用如下代码直接调用颜色。
 
 \begin{center}
 	\color[RGB]{204, 128, 92}{Color Text中文测试}
 \end{center}
 
-\begin{latex}{}
+\begin{latex}
 \color[RGB]{204, 128, 92}{Color Text中文测试}
 \end{latex}
 
 但是每次调用颜色都写颜色代码似乎不方便，我们可以先定义，基本定义形式如下。
-\begin{latex}{}
+\begin{latex}
 \usepackage{xcolor}									%颜色宏包
 \definecolor{backcolor}{RGB}{242,242,242}			%背景色
 \definecolor{comment}{RGB}{0,128,0}					%注释
@@ -67,7 +67,7 @@
 	\color{blue}{\slshape\zihao{3} function, return, if, true, false}
 \end{center}
 
-\begin{latex}{}
+\begin{latex}
 \color{keyword}{\slshape function, return, if, true, false}
 \end{latex}
 
@@ -75,7 +75,7 @@
 
 \subsection{下画线}
 
-\LaTeX 自身提供的下划线之类的命令并不好用，我们使用\qd{ulem}或者\qd{CJKfntef}宏包来代替。对于中文排版，在\qd{ctex}宏包的调用命令中添加\qd{fntef}选项即可调用\qd{CJKfntef}宏包来画线，\qd{CJKfntef}宏包的优点是其画线命令中的中文能自动中断正确换行。本书以\qd{CJKfntef}宏包为例。
+\LaTeX 自身提供的下划线之类的命令并不好用，我们使用\emph{ulem}或者\emph{CJKfntef}宏包来代替。对于中文排版，在\emph{ctex}宏包的调用命令中添加\emph{fntef}选项即可调用\emph{CJKfntef}宏包来画线，\emph{CJKfntef}宏包的优点是其画线命令中的中文能自动中断正确换行。本书以\emph{CJKfntef}宏包为例。
 
 \begin{codeshow}
 \CJKunderdot{important 非常重要}\\
@@ -88,7 +88,7 @@
 
 对于前四种下划线，该宏包还提供了调节下划线与文本之间距离的参数。默认值都是0.2em，需要使用重新定义命令来使参数生效。
 
-\begin{latex}{}
+\begin{latex}
 \CJKunderdotbasesep
 \CJKunderlinebasesep
 \CJKunderdbllinebasesep
@@ -96,9 +96,9 @@
 \renewcommand{\CJKunderlinebasesep}{0.5em}
 \end{latex}
 
-同时，还提供了6条颜色命令。大致命令形式和调用方法如下所示，其中\qd{color}命令有多种调用模式，详见本书颜色部分。
+同时，还提供了6条颜色命令。大致命令形式和调用方法如下所示，其中\emph{color}命令有多种调用模式，详见本书颜色部分。
 
-\begin{latex}{}
+\begin{latex}
 \CJKunderlinecolor
 \renewcommand{\CJKunderline}{\color{blue}}
 \end{latex}
@@ -128,7 +128,7 @@
 
 \CTeX 宏包提供标题修改功能，所以中文文档很容易实现标题的修改。如果是直接使用\CTeX 提供的文类，标题是可以直接修改的；如果仅仅只是调用了\CTeX 宏包，需要给宏包加上调用参数才能修改标题。
 
-\begin{latex}{}
+\begin{latex}
 \usepackage[
 heading=true,%启用修改章节标题的接口
 ]{ctex}

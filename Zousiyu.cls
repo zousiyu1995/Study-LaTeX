@@ -46,12 +46,12 @@
 \usepackage{mathtools}%数学宏包
 \usepackage{amsmath,amssymb,amsfonts}%数学宏包
 \usepackage{latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
-\usepackage{texnames,metalogo}%TeX家族标识符宏包
-
 %定义一些amsmath没有定义的函数
 \DeclareMathOperator{\arcsec}{arcsec}
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\arccsc}{arccsc}
+
+\usepackage{texnames,metalogo}%TeX家族标识符宏包
 
 \usepackage{titletoc}%目录样式宏包
 \usepackage{titlesec}%标题样式宏包
@@ -78,10 +78,10 @@
 
 %===========================字体设置=================================
 \setmainfont{Times New Roman}%西文主字体
-\setCJKmainfont{SimSun}%中文主字体
+\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}%中文主字体
 
 \setmonofont{Source Code Pro}%英文等宽DejaVu Sans Mono,Inconsolata
-\setCJKmonofont{simfang.ttf}%中文等宽，仿宋
+\setCJKmonofont{FangSong}%中文等宽，仿宋
 
 \newfontfamily{\enheiti}{黑体}%适用于英文的黑体
 
@@ -240,6 +240,9 @@
 %	keywordstyle=\color{keyword},
 %	stringstyle=\color{string},
 
+%复制listings生成的代码时不复制行号
+\usepackage{accsupp}
+\newcommand{\emptyaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
 
 %提供一个代码环境的基本样式
 \lstdefinestyle{CodeBase}
@@ -255,8 +258,8 @@
 	showstringspaces=false,
 	numbers=left,
 	numbersep=5pt,%行号与代码距离
-	numberstyle=\small\ttfamily,
-	rulecolor=\color{cyan},
+	numberstyle=\small\ttfamily\emptyaccsupp,
+	rulecolor=\color{blue!50!black},
 	boxpos=c,
 	xleftmargin=1em,%左边距
 	xrightmargin=0pt,
@@ -269,8 +272,8 @@
 	%代码颜色设置
 	backgroundcolor=\color{gray!5},
 	stringstyle=\color{green!40!black!100},
-	keywordstyle=\bfseries\color[RGB]{0,0,255},%\color{blue!50!black}
-	commentstyle=\fangsong\slshape\color{black!60},
+	keywordstyle=\bfseries\color{blue!50!black},
+	commentstyle=\ttfamily\slshape\color{black!60},
 	}
 
 %LaTeX代码环境用
@@ -278,11 +281,11 @@
 {
 	style=CodeBase,
 	language=[LaTeX]TeX,
-	texcsstyle=*\color[RGB]{0,0,255}\bfseries,%反斜杠高亮
+	texcsstyle=*\color{blue!50!black}\bfseries,%反斜杠高亮
 	morekeywords={addplot, begin, end, color, text},
 	}
 %定义latex代码专用环境
-\lstnewenvironment{latex}[1]{\lstset{style=LaTeX}}{}
+\lstnewenvironment{latex}{\lstset{style=LaTeX}}{}
 
 %matlab代码展示
 \lstdefinestyle{Matlab}{
@@ -300,10 +303,6 @@
 	}
 \lstnewenvironment{python}[1]{\lstset{style=python}}{}
 
-%\newcommand{\latexline}[1]{{\lstinline[language=TeX,basicstyle=\small\ttfamily]{#1}}}
-
-\newcommand{\qd}[1]{{\slshape{#1}}}% 强调，斜体
-
 %说明环境
 \newcommand{\note}[1]{{%
 	\color{magenta}{\heiti 说明：}\emph{#1}}}
@@ -312,48 +311,43 @@
 \DeclareRobustCommand*\cmd[1]{\texttt{\char`\\#1}}
 \def\crcmd{\cmd{\char`\\}}
 
+%行内代码环境
+\newcommand{\code}[1]{{\lstinline[language=TeX,basicstyle=\small\ttfamily]{#1}}}
+
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
-\usepackage{verbatim}
-% 示例环境 example
-% 环境中的代码被 verbatim 环境处理到一个临时文件中
-% 再从临时文件中读取，分别生成代码盒子和示例盒子
-\newwrite\example@out
-\newlength\savefboxrule
-\newlength\savefboxsep
-\edef\example@name{\jobname-example.aux}
-\newenvironment{codeshow}%
-{\begingroup\@bsphack
-	\immediate\openout\example@out=\example@name
-	\let\do\@makeother\dospecials\catcode`\^^M\active
-	\def\verbatim@processline{\immediate\write\example@out{\the\verbatim@line}}%
-	\verbatim@start}%
-{\immediate\closeout\example@out\@esphack\endgroup%
-	\trivlist\item\relax
-	\setlength{\savefboxrule}{\fboxrule}%
-	\setlength{\savefboxsep}{\fboxsep}%
-	\setlength{\fboxsep}{0.015\textwidth}%
-	\setlength{\fboxrule}{0.4pt}%
-	\fcolorbox[gray]{0}{0.95}{%
-		\begin{minipage}[c]{0.45\textwidth}%
-			\setlength{\fboxrule}{\savefboxrule}%
-			\setlength{\fboxsep}{\savefboxsep}%
-			\small\verbatiminput{\example@name}%
-		\end{minipage}%
-	}%
-	\hfill%
-	\fbox{%
-		\begin{minipage}[c]{0.45\textwidth}%
-			\setlength{\fboxrule}{\savefboxrule}%
-			\setlength{\fboxsep}{\savefboxsep}%
-			\setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}%
-			\normalsize\input{\example@name}%
-		\end{minipage}%
-	}%
-	\endtrivlist
+\lstdefinestyle{codeshow}
+{
+	basicstyle=\small\ttfamily,%\ttfamily等宽字体
+	aboveskip=0pt,%上边距
+	belowskip=0pt,%下边距
+	lineskip=0pt,
+	tabsize=4,%设置tab空格数
+	showtabs=false,%Tab
+	showspaces=false,%空格标识
+	showstringspaces=false,
+	boxpos=c,
+	xleftmargin=0pt,%左边距
+	xrightmargin=0pt,
+	breaklines=true,%自动换行
+	breakindent=0pt,%换行后缩进为0
 }
 
-%新codeshow环境
-%\usepackage{fancyvrb}
+\usepackage{tcolorbox}%盒子宏包
+\tcbuselibrary{listings,skins,breakable}
+\newtcblisting{codeshow}{
+	breakable,
+	boxrule=0.5pt,%去除文本框线
+	arc=0mm,%内弧
+	outer arc=0mm,%外弧
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	listing outside text,
+	listing options={
+		style=codeshow,
+    }
+}
 
 %====================最后放置链接宏包，避免冲突===============================
 \usepackage{hyperref}
