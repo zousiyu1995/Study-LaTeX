@@ -11,12 +11,12 @@
 \end{latex}
 
 \begin{center}
-	\begin{tikzpicture}
-	\begin{axis}
-	\addplot[domain=-2*pi:2*pi,samples=200,red,/tikz/line width={1pt}]{sin(deg(x))};
-	\addplot[domain=-2*pi:2*pi]{cos(deg(x))};
-	\end{axis}
-	\end{tikzpicture}
+    \begin{tikzpicture}
+    \begin{axis}
+    \addplot[domain=-2*pi:2*pi,samples=200,red,/tikz/line width={1pt}]{sin(deg(x))};
+    \addplot[domain=-2*pi:2*pi]{cos(deg(x))};
+    \end{axis}
+    \end{tikzpicture}
 \end{center}
 
 绘图命令里面是可以直接输入函数表达式的，使用如下命令可以直接绘制函数$x^2$在定义域$[-10:10]$上的图像。
@@ -26,14 +26,14 @@
 \end{latex}
 
 \begin{center}
-	\begin{tikzpicture}
-	\begin{axis}[
-		xlabel={$x$},
-		ylabel={$y$},
-		]
-	\addplot[domain=-10:10,red,samples=50]{x^2};
-	\legend{$x^{2}$}
-	\end{axis}
+    \begin{tikzpicture}
+    \begin{axis}[
+        xlabel={$x$},
+        ylabel={$y$},
+        ]
+    \addplot[domain=-10:10,red,samples=50]{x^2};
+    \legend{$x^{2}$}
+    \end{axis}
 \end{tikzpicture}
 \end{center}
 
@@ -52,11 +52,11 @@
 
 
 \begin{center}
-	\begin{tikzpicture}
-		\begin{axis}[colorbar]
-		\addplot3[surf]{x^2+y^2};
-		\end{axis}
-	\end{tikzpicture}
+    \begin{tikzpicture}
+        \begin{axis}[colorbar]
+        \addplot3[surf]{x^2+y^2};
+        \end{axis}
+    \end{tikzpicture}
 \end{center}
 
 绘制函数$g(x,y)=\dfrac{sin(\sqrt{x^2+y^2})}{\sqrt{x^2+y^2}}$的三维函数图像。
@@ -68,17 +68,17 @@
 
 
 \begin{center}
-	\begin{tikzpicture}
-	\begin{axis}[
-		colorbar,
-%		hide axis,
-%		colormap/cool,
+    \begin{tikzpicture}
+    \begin{axis}[
+        colorbar,
+%        hide axis,
+%        colormap/cool,
 ]
-	\addplot3[surf,samples=50,domain=-10:10]{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};%可用surf,mesh
-%	\addlegendentry{$\frac{sin(r)}{r}$}         %添加图例
-%	\legend{$\frac{sin(r)}{r}$}
-	\end{axis}
-	\end{tikzpicture}
+    \addplot3[surf,samples=50,domain=-10:10]{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};%可用surf,mesh
+%    \addlegendentry{$\frac{sin(r)}{r}$}         %添加图例
+%    \legend{$\frac{sin(r)}{r}$}
+    \end{axis}
+    \end{tikzpicture}
 \end{center}
 
 \subsection{隐函数图像}
@@ -87,8 +87,8 @@
 对于折线图而言，使用sharp plot可以得到折线图，而使用smooth可以得到平滑曲线图。这些命令在addplot的设置里面添加。一些其他基础设置如下所示。
 
 \begin{latex}
-\item grid=major		%显示网格线
-\item mark=x			%设置数据点标记类型
+\item grid=major        %显示网格线
+\item mark=x            %设置数据点标记类型
 \end{latex}
 
 
@@ -104,16 +104,16 @@
 
 
 \begin{center}
-	\begin{tikzpicture}
-	\begin{axis}[
-		title=线图$u+log(x)/(2\pi)$,
-		xlabel={弧长},
-		ylabel={$u+log(x)/(2\pi)$},
-		width=12cm,
-		]
-	\addplot[blue,smooth,domain=0:1,/tikz/line width={0.4pt}] table[x=x,y=y] {body/data.txt};
-	\legend{小小的图例测试}
-	\end{axis}
+    \begin{tikzpicture}
+    \begin{axis}[
+        title=线图$u+log(x)/(2\pi)$,
+        xlabel={弧长},
+        ylabel={$u+log(x)/(2\pi)$},
+        width=12cm,
+        ]
+    \addplot[blue,smooth,domain=0:1,/tikz/line width={0.4pt}] table[x=x,y=y] {body/data.txt};
+    \legend{小小的图例测试}
+    \end{axis}
 \end{tikzpicture}
 \end{center}
 

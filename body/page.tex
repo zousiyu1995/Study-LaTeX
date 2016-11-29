@@ -8,13 +8,13 @@
 \begin{latex}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{}					%清空当前设置
-	%单页文档
-	\lhead{}				%l，r，c，左中右
-	\cfoot{}
-	%双页文档
-	\fancyhead[RO,LE]{}		%E，O，左、右页
-	\fancyfoot[LE,RO]{\thepage}
+\fancyhf{}                    %清空当前设置
+    %单页文档
+    \lhead{}                %l，r，c，左中右
+    \cfoot{}
+    %双页文档
+    \fancyhead[RO,LE]{}        %E，O，左、右页
+    \fancyfoot[LE,RO]{\thepage}
 \renewcommand{\headrulewidth}{0.4 pt}
 \renewcommand{\footrulewidth}{0.4 pt}
 \end{latex}
@@ -25,7 +25,7 @@
 具体更改页眉页脚区域章节显示样式的代码如下。
 
 \begin{latex}
-	\renewcommand{\chaptermark}[1]{\markleft{\thesection.\#1}}
+    \renewcommand{\chaptermark}[1]{\markleft{\thesection.\#1}}
 %两种一样，\markleft影响\leftmark，而\makeboth影响两着，需要选一
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{节样式空置表示修改章样式}}
 \renewcommand{\chaptermark}[1]{\markboth{章样式}{节样式}}
@@ -36,8 +36,8 @@
 
 
 \begin{latex}
-\lhead{\leftmark}			%左页眉显示章
-\rhead{\rightmark}			%右页眉显示节
+\lhead{\leftmark}            %左页眉显示章
+\rhead{\rightmark}            %右页眉显示节
 \end{latex}
 
 
@@ -45,7 +45,7 @@
 一般来说，我们调用下\emph{xcolor}这个宏包。如果对内置的颜色了解，或者现有\emph{RGB}颜色值，一般使用如下代码直接调用颜色。
 
 \begin{center}
-	\color[RGB]{204, 128, 92}{Color Text中文测试}
+    \color[RGB]{204, 128, 92}{Color Text中文测试}
 \end{center}
 
 \begin{latex}
@@ -54,17 +54,17 @@
 
 但是每次调用颜色都写颜色代码似乎不方便，我们可以先定义，基本定义形式如下。
 \begin{latex}
-\usepackage{xcolor}									%颜色宏包
-\definecolor{backcolor}{RGB}{242,242,242}			%背景色
-\definecolor{comment}{RGB}{0,128,0}					%注释
-\definecolor{keyword}{RGB}{0,0,255}					%关键词
+\usepackage{xcolor}                                    %颜色宏包
+\definecolor{backcolor}{RGB}{242,242,242}            %背景色
+\definecolor{comment}{RGB}{0,128,0}                    %注释
+\definecolor{keyword}{RGB}{0,0,255}                    %关键词
 \definecolor{name名字随意}{model色值类型}{color-spec色值范围}
 \end{latex}
 
 然后，我们就可以直接调用我们定义的颜色名称来设定颜色了。
 
 \begin{center}
-	\color{blue}{\slshape\zihao{3} function, return, if, true, false}
+    \color{blue}{\slshape\zihao{3} function, return, if, true, false}
 \end{center}
 
 \begin{latex}
@@ -110,9 +110,9 @@
 英文的短横可以产生三种符号：\par
 
 \begin{compactitem}[\textbullet]
-	\item 连字符：输入一个短横，-，效果如daughter-in-law
-	\item 数学起止符：输入两个短横，--，效果如page1--2
-	\item 英文破折号：输入三个短横：---，效果如Listen---I'm serious
+    \item 连字符：输入一个短横，-，效果如daughter-in-law
+    \item 数学起止符：输入两个短横，--，效果如page1--2
+    \item 英文破折号：输入三个短横：---，效果如Listen---I'm serious
 \end{compactitem}
 
 中文破折号，省略号一般直接用中文输入法输入，但英文的省略号值得注意，需要使用\verb|\ldots|来输入。
@@ -120,8 +120,8 @@
 \bz{角度符号,摄氏度符号}
 这两个符号需要借助数学模式\verb|$...$|来输入：
 \begin{codeshow}
-	$30\,^{\circ}$
-	$37\,^{\circ}\mathrm{C}$
+    $30\,^{\circ}$
+    $37\,^{\circ}\mathrm{C}$
 \end{codeshow}
 
 \section{标题}
