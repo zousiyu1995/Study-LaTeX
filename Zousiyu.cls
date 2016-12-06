@@ -236,6 +236,11 @@
 \usepackage{accsupp}
 \newcommand{\emptyaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
 
+%是全局设置，少量定义，给行内代码展示用
+\lstset{
+    breaklines,
+}
+
 %提供一个代码环境的基本样式
 \lstdefinestyle{CodeBase}
 {
@@ -304,7 +309,8 @@
 \def\crcmd{\cmd{\char`\\}}
 
 %行内代码环境
-\newcommand{\code}[1]{\rmfamily\lstinline|#1|}
+%\newcommand{\code}[1]{\rmfamily\lstinline|#1|}
+
 
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}
@@ -363,7 +369,7 @@
 %====================最后放置链接宏包，避免冲突===============================
 \usepackage{hyperref}
 \hypersetup{
-    bookmarksopen=false,%显示书签
+%    bookmarksopen=true,%展开书签
     bookmarksnumbered=true,%显示书签编号
     unicode=true,%使书签支持unicode字符
     breaklinks=true,%链接自动换行

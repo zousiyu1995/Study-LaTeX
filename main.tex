@@ -3,7 +3,6 @@
 
 \begin{document}
     \includepdf{body/cover.pdf}%封面
-%    {\pagestyle{empty}\mbox{}\newpage\pagestyle{empty}}%产生一个真正的空白页
 %========序==========
     \frontmatter
     \pagenumbering{Roman}
@@ -16,12 +15,11 @@
     \mainmatter
     \pagenumbering{arabic}
     \input{body/base}
-    \input{body/draw}
     \input{body/page}
-    \input{body/figureandtable}
+    \input{body/table}
+    \input{body/figure}
     \input{body/tools}
     \input{body/math}
-    \input{body/tikz}
     \input{body/package}
 %========跋========
     \backmatter
