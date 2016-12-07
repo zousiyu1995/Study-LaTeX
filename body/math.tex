@@ -5,30 +5,30 @@
 \section{数学模式}
 分行内公式和行间公式。
 
-行内公式，即：\verb|$\sum_{i=1}^{n}a_i$|，得到：$\sum_{i=1}^{n}a_i$.
+行内公式，即：\lstinline|$\sum_{i=1}^{n}a_i$|，得到：$\sum_{i=1}^{n}a_i$.
 
-行间公式，即：\verb|\[\sum_{i=1}^n{a_i}\]|，得到：
+行间公式，即：\lstinline|\[\sum_{i=1}^n{a_i}\]|，得到：
 \[\sum_{i=1}^{n}a_i\]
 
 \section{数学宏包}
 
 \section{数学符号}
 \subsection{上标与下标}
-上下标一般写在数学符号的右上、右下方，如果需要将它们写在正下、正上方，可以使用\emph{\textbackslash limits}。
+上下标一般写在数学符号的右上、右下方，如果需要将它们写在正下、正上方，可以使用\lstinline|\limits|。
 \begin{codeshow}
 $A_{ij}=2^{i+j}$\par
 $\sum_{i=1}^{n}$\par
 $\sum\limits_{i=1}^{n}$\par
 \end{codeshow}
 
-如果是行间公式，上下标默认就在正下、正上方。另外，使用\emph{\textbackslash substack}命令可以加入多行的上下标，举个例子。
+如果是行间公式，上下标默认就在正下、正上方。另外，使用\lstinline|\substack|命令可以加入多行的上下标，举个例子。
 \begin{codeshow}
 \[\sum_{min}^{max}\]
 \[\sum_{\substack{i=1\\j=1}}^{n}\]
 \end{codeshow}
 
 \subsection{画线补充}
-想划线，就拿\emph{\textbackslash overline}和\emph{\textbackslash underline}命令就可以了，划线的部分最好以花括号括起来。想画箭头则将line替换为arrow。想打双向箭头或其他，那么把left/right改成leftright\footnote{连写，先left后right}。举个例子。
+想划线，就拿\lstinline|\overline|和\lstinline|\underline|命令就可以了，划线的部分最好以花括号括起来。想画箭头则将line替换为arrow。想打双向箭头或其他，那么把left/right改成leftright\footnote{连写，先left后right}。举个例子。
 \begin{codeshow}
 $ \overleftarrow{abc} $\par
 $ \underline{xy} $\par
@@ -36,7 +36,7 @@ $ a \leftrightarrow b $\par
 $ \overleftrightarrow{abc} $
 \end{codeshow}
 
-如果想在数学环境里面写中文\footnote{并不推荐这样做，只是为了符合国情才有教材在数学公式里面排版中文}，那么记住两件事，一是在开头引用\CTeX 宏包，二是在引用中文的之前使用\emph{\textbackslash text}命令，举一个例子。
+如果想在数学环境里面写中文\footnote{并不推荐这样做，只是为了符合国情才有教材在数学公式里面排版中文}，那么记住两件事，一是在开头引用\CTeX 宏包，二是在引用中文的之前使用\lstinline|\text|命令，举一个例子。
 \begin{codeshow}
 $\overbrace{(a_0,a_1,\dots,a_n)}
 ^{\text{共 $n+1$ 项}}$
@@ -44,7 +44,7 @@ $\overbrace{(a_0,a_1,\dots,a_n)}
 \end{codeshow}
 
 \subsection{分式}
-使用命令\emph{\textbackslash frac}写出正常的分式而不是a/b这种的，命令之后有两个参数，如果分子分母均只有一个字符，则可以不加花括号。举例如下。
+使用命令\lstinline|\frac|写出正常的分式而不是a/b这种的，命令之后有两个参数，如果分子分母均只有一个字符，则可以不加花括号。举例如下。
 \begin{codeshow}
 %行内公式形式
 $\frac12 \quad \frac2n
@@ -54,7 +54,7 @@ $\frac12 \quad \frac2n
 \quad \frac{2}{2+n} \]
 \end{codeshow}
 
-如果你想玩点花样，随意使用行内公式和行间公式，那么这里的\emph{\textbackslash frac}可以分支为\emph{\textbackslash dfrac}和\emph{\textbackslash tfrac}，t即text（行内，文本模式），d即display（行间，显示模式）。我们可以用这两个命令调节嵌套分式的大小，举个例子。
+如果你想玩点花样，随意使用行内公式和行间公式，那么这里的\lstinline|\frac|可以分支为\lstinline|\dfrac|和\lstinline|\tfrac|，t即text（行内，文本模式），d即display（行间，显示模式）。我们可以用这两个命令调节嵌套分式的大小，举个例子。
 \begin{codeshow}
 \[ \frac{1}{\tfrac1a+\tfrac1b+c} \]
 \[ \frac{1}{\dfrac1a+\dfrac1b+c} \]
@@ -78,7 +78,7 @@ $\frac12 \quad \frac2n
 \]
 \end{codeshow}
 
-除了在分式中会经常用到嵌套以外，矩阵里这种情况也很常见，比如分块矩阵，举个例子。当然，我们也可以把零弄大一点，我们只需要将0修改为\emph{\textbackslash text{large{0}}}就好
+除了在分式中会经常用到嵌套以外，矩阵里这种情况也很常见，比如分块矩阵，举个例子。当然，我们也可以把零弄大一点，我们只需要将0修改为\lstinline|\text{\large{0}}|就好
 \begin{codeshow}
 \[
 A=\begin{pmatrix}
@@ -104,6 +104,10 @@ A=\begin{pmatrix}
 \]
 \end{codeshow}
 
+\begin{codeshow}
+\[ \Bigg< \bigg\{ \Big[ \big( xyz \big) \Big] \bigg\} \Bigg> \]
+\end{codeshow}
+
 学了定界符之后，就可以完全实现矩阵的部分形态了，比方说排版一个增广矩阵。
 
 \begin{codeshow}
@@ -117,6 +121,7 @@ A=\begin{pmatrix}
 \right)
 \]
 \end{codeshow}
+
 
 \subsection{数学字体}
 标准的\LaTeX 提供的数学字体有以下几种。简单的文档中，这些字体已经够用了，如果要使用更高级的字体，可查阅\CTeX 宏包说明。
@@ -137,13 +142,13 @@ A=\begin{pmatrix}
 有时间排个表在这，不着急。
 
 \subsection{函数符号}
-调用\emph{amsmath}宏包后，大多数函数能够使用反斜杠加名称直接打出，例如：
+调用amsmath宏包后，大多数函数能够使用反斜杠加名称直接打出，例如：
 
 \begin{codeshow}
 $ \sin \quad \ln \quad \arccos $
 \end{codeshow}
 
-像$ \arcsec \quad \arccot \quad \arccsc $这三个函数，\emph{amsmath}宏包就没有定义，这就需要我们自己定义这样一个新的函数命令。
+像$ \arcsec~\arccot~\arccsc $这三个函数，amsmath宏包就没有定义，这就需要我们自己定义这样一个新的函数命令。
 \begin{latex}
 %定义一些amsmath没有定义的函数
 \DeclareMathOperator{\arcsec}{arcsec}
@@ -153,39 +158,155 @@ $ \sin \quad \ln \quad \arccos $
 
 \section{公式环境}
 
-\subsection{align}
-align环境的对齐功能。
+\subsection{单行公式equation}
+
+无论公式多长，都被排版成一行，并给出一个序号。其间，换行命令无效，换段非法并会报错。
+
+\begin{codeshow}
+\begin{equation}
+\frac{\partial c_i}{\partial t}+\nabla \cdot (-D_{i} \nabla c_{i})+u \cdot \nabla c_{i}=R_i
+\end{equation}
+\end{codeshow}
+
+
+
+\subsection{公式组align和alignat}
+
+该环境可以使公式组或者多行公式关于某个字符对齐，\lstinline|\\|换行，\& 用于分列，\textbf{奇数列会右对齐，偶数列会左对齐}，公式组的每一行都会有一个编号。
+
 \begin{latex}
-\begin{align*}
+\begin{align}
 &\lim\limits_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)\\
 = &\lim\limits_{x\to 1}\left(\frac{x^2+x-2}{1-x^3}\right)  \\
-=& \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
-=& \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
-=& -1
-\end{align*}
+= & \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
+= & \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
+= & -1
+\end{align}
 \end{latex}
 
-\begin{align*}
+\begin{align}\label{align-lim}
 &\lim\limits_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)\\
 = &\lim\limits_{x\to 1}\left(\frac{x^2+x-2}{1-x^3}\right)  \\
-=& \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
-=& \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
-=& -1
-\end{align*}
+= & \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
+= & \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
+= & -1
+\end{align}
 
-\subsection{多行公式}
+\begin{latex}
+\begin{align}
+A_{1} & = B_{1}B_{2} & A_{2} & =B_{2} \\
+A_{3} & = B_{3} & A_{3}A_{4} & =B_{4}
+\end{align}
+\end{latex}
+
+\begin{align}
+A_{1} & = B_{1}B_{2} & A_{2} & =B_{2} \\
+A_{3} & = B_{3} & A_{3}A_{4} & =B_{4}
+\end{align}
+
+\note{列对之间的空白与列对两侧的空白相等，像这种公式比较短的情况下就很丑。这时可以使用alignat环境手动控制公式间的空白，该环境必须在参数中指定列队个数。}
+
+\begin{latex}
+\begin{alignat}{2}
+A_{1} & = B_{1}B_{2} \quad & A_{2} & =B_{2} \\
+A_{3} & = B_{3} & A_{3}A_{4} & =B_{4}
+\end{alignat}
+\end{latex}
+
+\begin{alignat}{2}
+A_{1} & = B_{1}B_{2} \quad & A_{2} & =B_{2} \\
+A_{3} & = B_{3} & A_{3}A_{4} & =B_{4}
+\end{alignat}
+
+\subsection{公式组gather}
+
+用于编写中心对称的公式组，以\lstinline|\\|换行以区分每个公式，每个公式都会被编号。
+
+\begin{latex}
+\begin{gather}
+\frac{\partial c_i}{\partial t}+\nabla \cdot (-D_{i} \nabla c_{i})+u \cdot \nabla c_{i}=R_i \\
+N_{i}=-D_{i}\nabla c_{i}+uc_{i}
+\end{gather}
+\end{latex}
+
+\begin{gather}
+\frac{\partial c_i}{\partial t}+\nabla \cdot (-D_{i} \nabla c_{i})+u \cdot \nabla c_{i}=R_i \\
+N_{i}=-D_{i}\nabla c_{i}+uc_{i}
+\end{gather}
+
+\subsection{多行公式multline}
+
+适用于长公式在公式中间直接换行的情况，长公式换行并无规矩，通常在关系符（如=）和二元符之后换行。
 
 \begin{latex}
 \begin{multline}
-\frac{\rho}{\epsilon_p} \left(\frac{\partial u}{\partial t}+(u \bullet \nabla)\frac{u}{\epsilon_p}\right)=\\
-\nabla \bullet \left[ -pl+\frac{\mu}{\epsilon_p}\left( \nabla u+(\nabla u)^T\right)-\frac{2\mu}{3\epsilon_p}(\nabla \bullet u)l\right]-\left( \mu \kappa^{-1} + \beta_{F}u+ \frac{Q_br}{\epsilon^{2}_{p}} \right)u+F
+\frac{\rho}{\epsilon_p} \left(\frac{\partial u}{\partial t}+(u \cdot \nabla)\frac{u}{\epsilon_p}\right)=\\
+\nabla \cdot \left[ -pl+\frac{\mu}{\epsilon_p}\left( \nabla u+(\nabla u)^T\right)-\frac{2\mu}{3\epsilon_p}(\nabla \cdot u)l\right]-\left( \mu \kappa^{-1} + \beta_{F}u+ \frac{Q_{br}}{\epsilon^{2}_{p}} \right)u+F
 \end{multline}
 \end{latex}
 
 \begin{multline}
-\frac{\rho}{\epsilon_p} \left(\frac{\partial u}{\partial t}+(u \bullet \nabla)\frac{u}{\epsilon_p}\right)=\\
-\nabla \bullet \left[ -pl+\frac{\mu}{\epsilon_p}\left( \nabla u+(\nabla u)^T\right)-\frac{2\mu}{3\epsilon_p}(\nabla \bullet u)l\right]-\left( \mu \kappa^{-1} + \beta_{F}u+ \frac{Q_br}{\epsilon^{2}_{p}} \right)u+F
+\frac{\rho}{\epsilon_p} \left(\frac{\partial u}{\partial t}+(u \cdot \nabla)\frac{u}{\epsilon_p}\right)=\\
+\nabla \cdot \left[ -pl+\frac{\mu}{\epsilon_p}\left( \nabla u+(\nabla u)^T\right)-\frac{2\mu}{3\epsilon_p}(\nabla \cdot u)l\right]-\left( \mu \kappa^{-1} + \beta_{F}u+ \frac{Q_{br}}{\epsilon^{2}_{p}} \right)u+F
 \end{multline}
+
+\subsection{多行公式split}
+
+适用于关于某个符号对齐的长公式，例如，我们将\autoref{align-lim}用split环境排版，用equation环境赋予其编号，整个公式只会得到一个编号，更符合排版规范。该环境以\&分列，至多两列，以\lstinline|\\|换行。
+
+\note{split环境不能产生编号，需要外在的公式环境提供；split环境不能与multline嵌套}
+
+\begin{latex}
+\begin{equation}
+\begin{split}
+&\lim\limits_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)\\
+= &\lim\limits_{x\to 1}\left(\frac{x^2+x-2}{1-x^3}\right)  \\
+= & \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
+= & \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
+= & -1
+\end{split}
+\end{equation}
+\end{latex}
+
+\begin{equation}
+\begin{split}
+&\lim\limits_{x\to 1}\left(\frac{1}{1-x}-\frac{3}{1-x^3}\right)\\
+= &\lim\limits_{x\to 1}\left(\frac{x^2+x-2}{1-x^3}\right)  \\
+= & \lim\limits_{x\to 1}\frac{(x+2)(x-1)}{(1-x)(x^2+x+1)}\\
+= & \lim\limits_{x\to 1}\frac{-(x+2)}{x^2+x+1}\\
+= & -1
+\end{split}
+\end{equation}
+
+\subsection{公式块}
+
+align(alignat)、gather产生的公式组只能出现在行间，无法做为一个块出现在行内，而很多情况下我们需要一个公式组做为块出现在行间。这时我们可以使用\textbf{aligned(alignedat)、gathered}公式块环境来完成，每一行可以放置多个公式块，但块环境不提供编号。
+
+\begin{codeshow}
+\begin{equation}
+\begin{aligned}
+f(x,y) & =0 \\
+z & =c
+\end{aligned}
+\quad \text{以及} \quad
+\begin{gathered}
+x=t\cos t \\
+z=at
+\end{gathered}
+\end{equation}
+\end{codeshow}
+
+我们可以用公式块做一些怪东西，比如让
+$\begin{aligned}f(x,y) & =0 \\z & =c\end{aligned}$
+~以及~
+$\begin{gathered}x=t\cos t \\z=at\end{gathered}$
+做为行间公式出现在一行。让人想起了高数书上的排版呢！！需要注意的是\textbf{公式块环境只能用在数学环境中}，实现的代码如下。
+
+\begin{latex}
+$\begin{aligned}f(x,y) & =0 \\z & =c\end{aligned}$
+~以及~
+$\begin{gathered}x=t\cos t \\z=at\end{gathered}$
+\end{latex}
 
 \section{矩阵环境}
 矩阵的环境和表格有点相似，所以用法也和列表几乎相同，举个最简单的矩阵例子。

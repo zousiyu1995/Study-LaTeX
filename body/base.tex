@@ -1,5 +1,21 @@
 {\let\clearpage\relax \chapter{\LaTeX 基础}}
 
+
+
+\section{长度}
+
+我一般只用如下几个：
+
+\begin{asparadesc}
+    \item[em] 当前字号下，大写字母M的宽度，用于水平间距调整
+    \item[ex] 当前字号下，小写字母x的高度，用于垂直间距调整
+    \item[mm] 毫米，都懂
+\end{asparadesc}
+
+\section{行距}
+
+\section{页面}
+
 \section{字体}
 
 \begin{asparadesc}
@@ -103,12 +119,47 @@ $t_{\text{高温}}$
 {\CJKfontspec[FakeSlant=0.4]{SimSun}\zihao{1}汉字伪斜体}
 \end{latex}
 
-\section{长度}
+\section{字符}
 
-我一般只用如下几个：
+在\LaTeX 的文本内容中，大部分字符都可以直接输入，但是\#，\$，\%，\&，\{，\}，\_，\^{}，\~{}，\textless，\textgreater，\textbar，\textbackslash 这几个字符由于有特殊用途不能直接输入。
 
-\begin{asparadesc}
-    \item[em] 当前字号下，大写字母M的宽度，用于水平间距调整
-    \item[ex] 当前字号下，小写字母x的高度，用于垂直间距调整
-    \item[mm] 毫米，都懂
-\end{asparadesc}
+\begin{codeshow}
+\#，\$，\%，\&，\{，\}，\_，\^{}，\~{}，\textless，\textgreater，\textbar，\textbackslash
+\end{codeshow}
+
+\bz{英文引号的标准输入法}
+
+英文的单引号并不是两个'符号，双引号也并不是两个''组成的。英文下的引号嵌套需要借助\lstinline{\thinspace}命令分隔。另外，双引号的右半边用"和''的效果是一样的。同样，还可以使用Unicode字符来输入引号，输入方法麻烦，但是更加标准。
+
+\begin{codeshow}
+`single quotation marks'\par
+``double quotation marks"\par
+``\thinspace`Max' is here.''\par
+Pumas are ``large, cat-like animals'' which are `found in America'.\par
+\textquotedblleft Unicode \textquotedblright \par
+\textquoteleft Unicode \textquoteright
+\end{codeshow}
+
+\bz{短横}
+
+英文的短横可以产生三种符号：
+
+\begin{compactitem}[\textbullet]
+    \item 连字符：输入一个短横，-，效果如daughter-in-law
+    \item 数学起止符：输入两个短横，--，效果如page1--2
+    \item 英文破折号：输入三个短横：---，效果如Listen---I'm serious
+\end{compactitem}
+
+中文破折号，省略号一般直接用中文输入法输入，英文的省略号一般使用\lstinline|\ldots|或者\lstinline|\dots|来输入。
+
+\begin{codeshow}
+hello\ldots\par
+Thanks\dots
+\end{codeshow}
+
+\bz{角度符号,摄氏度符号}
+这两个符号需要借助数学模式\lstinline|$...$|来输入：
+\begin{codeshow}
+$30\,^{\circ}$
+$37\,^{\circ}\mathrm{C}$
+\end{codeshow}

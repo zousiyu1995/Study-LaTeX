@@ -50,7 +50,7 @@
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\arccsc}{arccsc}
 
-\usepackage{texnames,metalogo}%TeX家族标识符宏包
+\usepackage{metalogo}%TeX家族标识符宏包
 
 \usepackage{titletoc}%目录样式宏包
 \usepackage{titlesec}%标题样式宏包
@@ -369,7 +369,7 @@
 %====================最后放置链接宏包，避免冲突===============================
 \usepackage{hyperref}
 \hypersetup{
-%    bookmarksopen=true,%展开书签
+    bookmarksopen=true,%展开书签
     bookmarksnumbered=true,%显示书签编号
     unicode=true,%使书签支持unicode字符
     breaklinks=true,%链接自动换行
