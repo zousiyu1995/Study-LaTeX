@@ -137,17 +137,51 @@ bib参考文献数据格式如下所示，为分字段显示。各字段可以�
 \end{center}
 \end{table}
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
     \begin{center}
-        \includegraphics[width=15cm]{tools-figure}
+        \includegraphics[width=8cm]{tools-figure}
         \caption{Demo of bar plot on a polar axis}
         \label{tools-figure}
     \end{center}
 \end{figure}
 
-
-
 \section{列表}
+\LaTeX 自带的列表环境可调整的样式很有限，调整起来也很麻烦。所以最好直接用别人写好的宏包来调整列表环境。记住一句话，要随心所欲定制\LaTeX 输出的样式，就要用自由度最高的宏包，不要嫌麻烦，否则达不到想要的定制效果。enumitem宏包在定制列表环境方面做得很不错，可调样式很多，能满足大部分需求。借用wklchris\footnote{\url{https://github.com/wklchris/Note-by-LaTeX}}绘制的enumitem列表长度参数图。
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=10cm]{enumitem-parameters}
+    \caption{列表长度参数图}
+\end{figure}
+
+enumitem提供的参数很多，想每一项都弄明白得花点时间，我不解释每一项参数，而是从例子开始入手。看第一个例子，让列表标签和正文段落一样缩进两个字符。labelindent控制缩进两个字符，当标签很长的时候，缩进的距离会很奇怪，所以需要设置leftmargin的值为自动调整。
+
+\begin{codeshowabove}
+~~四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+\begin{enumerate}[label=(\arabic*).,labelindent=\parindent]
+    \item 奇怪的缩进
+    \item 奇怪的缩进
+\end{enumerate}
+\begin{enumerate}[label=(\arabic*),labelindent=\parindent,leftmargin=*]
+    \item 第一项
+    \item 第二项
+\end{enumerate}
+\end{codeshowabove}
+
+中文文章的要求一般是，序号前缩进两个字符，列表项目之间无额外行距，列表换行后无缩进。对itemsep、topsep赋值，分别消除列表项目之间的间距、列表与上下文（正文）之间的间距；对leftmargin赋值，消除列表项目换行后的缩进，对labelindent赋值，控制序号前缩进两个字符；因为标签长度不太可控，itemindent的值不好计算，所以设置其值为自动计算比较稳妥。
+
+四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+\begin{enumerate}[label=(\arabic*),itemsep=0pt,parsep=0pt,topsep=0pt,leftmargin=0pt,labelindent=\parindent,itemindent=*]
+\item 四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+
+四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+
+\item 四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+\item 四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+\end{enumerate}
+
+四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+
 \subsection{常规列表}
 常规列表环境。
 

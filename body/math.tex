@@ -122,6 +122,27 @@ A=\begin{pmatrix}
 \]
 \end{codeshow}
 
+定界符必须成对出现，对\textbf{公式组}而言，定界符需要用在公式组环境（align、alignat、gather、aligned、alignedat、gathered）外面。另外，定界符必须成对出现，没有定界符的一侧使用\lstinline|\left.|或者\lstinline|\right.|来代替。了解定界符之后，我们就可以利用定界符和公式组环境做出如下排版，和高数书上的公式效果差不多！
+
+\begin{equation}
+\left\{
+\begin{gathered}
+\frac{\partial c_i}{\partial t}+\nabla \cdot (-D_{i} \nabla c_{i})+u \cdot \nabla c_{i}=R_i \\
+N_{i}=-D_{i}\nabla c_{i}+uc_{i}
+\end{gathered}
+\right.
+\end{equation}
+
+\begin{latex}
+\begin{equation}
+\left\{
+\begin{gathered}
+\frac{\partial c_i}{\partial t}+\nabla \cdot (-D_{i} \nabla c_{i})+u \cdot \nabla c_{i}=R_i \\
+N_{i}=-D_{i}\nabla c_{i}+uc_{i}
+\end{gathered}
+\right.
+\end{equation}
+\end{latex}
 
 \subsection{数学字体}
 标准的\LaTeX 提供的数学字体有以下几种。简单的文档中，这些字体已经够用了，如果要使用更高级的字体，可查阅\CTeX 宏包说明。
@@ -141,8 +162,15 @@ A=\begin{pmatrix}
 \subsection{希腊字母}
 有时间排个表在这，不着急。
 
-\subsection{函数符号}
-调用amsmath宏包后，大多数函数能够使用反斜杠加名称直接打出，例如：
+\subsection{符号}
+规范的函数符号输入是使用命令来输入，比如指数、对数以及简单的三角函数符号等。
+
+\begin{codeshow}
+$ \sin~\cos~\exp~\log $\\
+\[\mathcal{L}(X_i|\lambda) = \sum\limits_{j=1}^{n_i}\log p(x_{ij}|\lambda) \]
+\end{codeshow}
+
+调用amsmath宏包后，大多数函数符号能够使用反斜杠加名称直接打出，例如：
 
 \begin{codeshow}
 $ \sin \quad \ln \quad \arccos $
@@ -155,6 +183,17 @@ $ \sin \quad \ln \quad \arccos $
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\arccsc}{arccsc}
 \end{latex}
+
+\bz{关于数学环境中的省略号}
+
+\lstinline|\ldots|是\textbf{列举}中用的省略号，而\lstinline|\cdots|是\textbf{运算（连加、连乘）}中用的省略号，二者主要区别在于位置一高一低，切勿混用。
+
+\begin{codeshow}
+\begin{gather*}
+\{ (X_1,y_1), \ldots, (X_i,y_i), \ldots, (X_{N_{B}},y_{N_{B}}) \}\\
+N_I=n_1 +n_2 + \cdots +n_T
+\end{gather*}
+\end{codeshow}
 
 \section{公式环境}
 
@@ -252,9 +291,9 @@ N_{i}=-D_{i}\nabla c_{i}+uc_{i}
 
 \subsection{多行公式split}
 
-适用于关于某个符号对齐的长公式，例如，我们将\autoref{align-lim}用split环境排版，用equation环境赋予其编号，整个公式只会得到一个编号，更符合排版规范。该环境以\&分列，至多两列，以\lstinline|\\|换行。
+适用于关于某个符号对齐的长公式，例如，我们将式\eqref{align-lim}用split环境排版，用equation环境赋予其编号，整个公式只会得到一个编号，更符合排版规范。该环境以\&分列，至多两列，以\lstinline|\\|换行。
 
-\note{split环境不能产生编号，需要外在的公式环境提供；split环境不能与multline嵌套}
+\note{split环境不能产生编号，需要外在的公式环境提供；split环境不能与multline嵌套；autoref可以生成“式1.1”，eqref可以生成“(1.1)”，视情况使用，展示无法做到直接引用成“式(1.1)”}
 
 \begin{latex}
 \begin{equation}

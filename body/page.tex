@@ -23,36 +23,6 @@
 
 \LaTeX 默认使用两端对齐来排版，我们可以用\lstinline|\flushleft,\flushright,\center|这三个环境来构造居左，居右，居中三种版式。特殊情况可以使用\lstinline|\centering,\raggedleft,\raggedright|来实现居中，居右，居左。
 
-\subsection{下画线}
-
-\LaTeX 自身提供的下划线之类的命令并不好用，我们使用\emph{ulem}或者\emph{CJKfntef}宏包来代替。对于中文排版，在\emph{ctex}宏包的调用命令中添加\emph{fntef}选项即可调用\emph{CJKfntef}宏包来画线，\emph{CJKfntef}宏包的优点是其画线命令中的中文能自动中断正确换行。本书以\emph{CJKfntef}宏包为例。
-
-\begin{codeshow}
-\CJKunderdot{important 非常重要}\\
-\CJKunderline{notice 注意}\\
-\CJKunderdblline{urgent 必须}\\
-\CJKunderwave{prompt 提示}\\
-\CJKsout{wrong 错误}\\
-\CJKxout{removed 删除}
-\end{codeshow}
-
-对于前四种下划线，该宏包还提供了调节下划线与文本之间距离的参数。默认值都是0.2em，需要使用重新定义命令来使参数生效。
-
-\begin{latex}
-\CJKunderdotbasesep
-\CJKunderlinebasesep
-\CJKunderdbllinebasesep
-\CJKunderwavebasesep
-\renewcommand{\CJKunderlinebasesep}{0.5em}
-\end{latex}
-
-同时，还提供了6条颜色命令。大致命令形式和调用方法如下所示，其中\emph{color}命令有多种调用模式，详见本书颜色部分。
-
-\begin{latex}
-\CJKunderlinecolor
-\renewcommand{\CJKunderline}{\color{blue}}
-\end{latex}
-
 \section{标题}
 
 \section{页眉页脚}

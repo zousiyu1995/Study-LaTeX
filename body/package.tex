@@ -340,13 +340,168 @@ $K = \ce{\frac{[Hg^2+][Hg]}{[Hg2^2+]}}$
 \section{siunitx}
 这是一个用于书写标准国际单位制的宏包。
 
+\subsection{数字}
+
+\bz{数字输入}
+
+使用d，D代表$\times10^{x}$，使用e，E代表$10^{x}$，英文的逗号,和句号.均可以做为小数点。
+
+\begin{codeshow}
+\num{12345} \\
+\num{0.123} \\
+\num{0,1234} \\
+\num{.12345} \\
+\num{3.45d-4} \\
+\num{2.2D-9} \\
+\num{E9} \\
+\num{-e10}
+\end{codeshow}
+
+\bz{数字列表和范围}
+
+\begin{codeshow}
+\numlist{10;30;50;70}
+\numrange{10}{30}
+\end{codeshow}
+
+\bz{角度}
+
+使用英文的分号;分割角度（度分秒），英文的逗号,和句号.均可以做为小数点。
+
+\begin{codeshow}
+\ang{10} \\
+\ang{12.3} \\
+\ang{4,5} \\
+\ang{1;2;3} \\
+\ang{;;1} \\
+\ang{+10;;} \\
+\ang{-0;1;}
+\end{codeshow}
+
+\subsection{单位}
+
+当仅仅输入单位时，使用\lstinline|\si|，英文.和\~{}隔开的单位会被视为相邻单位。
+
+\begin{codeshow}
+\si{kg.m/s^2} \\
+\si{g_{polymer}~mol_{cat}.s^{-1}}
+\end{codeshow}
+
+很多时候，数字和单位是在一起的，同时输入使用\lstinline|\SI|命令。\lstinline|\SI|命令结合了\lstinline|\num|和\lstinline|\si|两者的作用。可以使用可选参数输入一个前置单位，该单位将会排版在数字之前。
+
+\note{在siunitx宏包环境外使用siunitx宏包的命令需要小心，因为如果其他宏包定义了相同的命令，就会有命名冲突。}
+
+\lstinline|\per|有多种模式，可以是分数形式。
+
+\begin{codeshow}
+\SI[mode=text]{1.23}{J.mol^{-1}.K^{-1}} \\
+\SI{.23e7}{\candela} \\
+\SI[per-mode=symbol]{1.99}[\$]{\per\kilogram} \\
+\SI[per-mode=fraction]{1,345}{\coulomb\per\mole}
+\end{codeshow}
+
+\bz{带单位的数字列表和范围}
+
+\begin{codeshow}
+\SIlist{10;30;45}{\metre}
+\SIrange{10}{30}{\metre}
+\end{codeshow}
+
+\subsection{单位命令}
+
+\subsection{在表格中使用单位命令}
+
 \section{pgfplots}
 这是一个用于2D/3D图像绘制的宏包。
 
+\section{mathtools}
+这是一个数学宏包，主要填补了\hologo{AmSTeX}宏包的不足。
 
+\subsection{单花括号环境}
 
+mathtools提供了更好的单花括号环境，用法与\hologo{AmSTeX}宏包提供的别无二致，但显示的效果更完美。\lstinline|&|用于分列，\textbf{奇数列会右对齐，偶数列会左对齐}。
 
+\begin{latex}
+\begin{dcases} & \end{dcases}
+\begin{dcases*} & \end{dcases*}
+\begin{rcases} & \end{rcases}
+\begin{rcases*} & \end{rcases*}
+\begin{drcases} & \end{drcases}
+\begin{drcases*} & \end{drcases*}
+\begin{cases*} & \end{cases*}
+\end{latex}
 
+\begin{codeshow}
+\[
+\begin{dcases}
+E = m c^2 & c \approx 3.00\times 10^{8}\,\mathrm{m}/\mathrm{s} \\
+\int x-3\, dx & \text{Integral is display style}
+\end{dcases}
+\]
+\end{codeshow}
+
+带*的环境有个细微的差别，就是第二列会默认用罗马体（直立的）显示，更加方便输入纯文字。
+
+\begin{codeshow}
+\[
+a= \begin{dcases*}
+E = m c^2 & c≈3.00×10e8~m/s \\
+\int x-3\, dx & Integral is display style
+\end{dcases*}
+\]
+\end{codeshow}
+
+\begin{codeshow}
+\[
+\begin{rcases*}
+x^2 & for $x>0$\\
+x^3 & else
+\end{rcases*} \quad \Rightarrow \cdots
+\]
+\end{codeshow}
+
+\subsection{更好的矩阵环境}
+
+\hologo{AmSTeX}宏包提供的矩阵默认是每列都居中的，mathtools宏包提供了一些带星号的矩阵环境，可以手动设置列对齐的方式。
+
+\begin{latex}
+\begin{matrix*} [position]  \end{matrix*}%无括号
+\begin{pmatrix*}[position]  \end{pmatrix*}%圆括号
+\begin{bmatrix*}[position]  \end{bmatrix*}%方括号
+\begin{Bmatrix*}[position]  \end{Bmatrix*}%花括号
+\begin{vmatrix*}[position]  \end{vmatrix*}%单竖线，行列式形式
+\begin{Vmatrix*}[position]  \end{Vmatrix*}%双竖线
+\end{latex}
+
+对比一下两者的排版效果，mathtools可按需求设置对齐方式，排版效果要更好。
+
+\begin{codeshow}
+\[\begin{pmatrix*}[r]
+-1 & 3 \\
+2 & -4
+\end{pmatrix*}\]
+\[\begin{pmatrix}
+-1 & 3 \\
+2 & -4
+\end{pmatrix}\]
+\end{codeshow}
+
+mathtools还提供小矩阵环境，做为行内公式时更加协调，例如：$ \begin{bsmallmatrix*}[r] a & -b \\ -c & d \end{bsmallmatrix*} $。其用法与行间矩阵完全一致，带*的可调整对齐方式。
+
+\begin{latex}
+\begin{smallmatrix}   \end{smallmatrix}
+\begin{smallmatrix*} [position]  \end{smallmatrix*}
+\begin{psmallmatrix}  \end{psmallmatrix}
+\begin{psmallmatrix*}[position]  \end{psmallmatrix*}
+\begin{bsmallmatrix}  \end{bsmallmatrix}
+\begin{bsmallmatrix*}[position]  \end{bsmallmatrix*}
+\begin{Bsmallmatrix}  \end{Bsmallmatrix}
+\begin{Bsmallmatrix*}[position]  \end{Bsmallmatrix*}
+\begin{vsmallmatrix}  \end{vsmallmatrix}
+\begin{vsmallmatrix*}[position]  \end{vsmallmatrix*}
+\begin{Vsmallmatrix}  \end{Vsmallmatrix}
+\begin{Vsmallmatrix*}[position]  \end{Vsmallmatrix*}
+\end{latex}
 
 
 

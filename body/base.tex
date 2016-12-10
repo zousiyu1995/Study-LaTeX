@@ -1,6 +1,24 @@
 {\let\clearpage\relax \chapter{\LaTeX 基础}}
 
+\section{\LaTeX 书写环境}
 
+\TeX 环境是\href{http://tug.org/texlive/}{TeX~Live~2016}，想要下载速度快可以到清华的镜像站下载。\url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/}
+
+IDE使用的是\href{http://texstudio.sourceforge.net/}{TeXstudio}，但是编译相当慢，所以最近都是用命令行编译的，SumatraPDF查看，但这样不能反向搜索，比较气，有时间再琢磨一下。整个笔记的目录树如下所示，配有详细的注释。
+
+\dirtree{%
+    .1 Study-LaTeX.
+    .2 fig\DTcomment{图片文件夹}.
+    .3 (name.pdf/png or other suffix)\DTcomment{插入正文的图片}.
+    .2 body\DTcomment{章节文件夹}.
+    .3 cover.pdf\DTcomment{封面}.
+    .3 (chapter name.tex)\DTcomment{章节文件}.
+    .2 main.tex\DTcomment{主编译文件}.
+    .2 Zousiyu.cls\DTcomment{样式文件}.
+    .2 Zousiyu.bib\DTcomment{参考文献数据库}.
+    .2 gb7714-2015.bbx\DTcomment{biblatex参考文献样式}.
+    .2 gb7714-2015.cbx\DTcomment{biblatex参考文献样式}.
+    }
 
 \section{长度}
 
@@ -138,6 +156,15 @@ $t_{\text{高温}}$
 Pumas are ``large, cat-like animals'' which are `found in America'.\par
 \textquotedblleft Unicode \textquotedblright \par
 \textquoteleft Unicode \textquoteright
+\end{codeshow}
+
+用一个例子解释一下为什么英文的引号需要这样输入。\textbf{能看出'打出的都是右引号！}
+
+\bz{英文引号的错误用法}
+
+\begin{codeshow}
+'wrong'\\
+`right'
 \end{codeshow}
 
 \bz{短横}

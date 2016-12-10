@@ -11,16 +11,20 @@
 \usepackage[
     UTF8,
     zihao=5,%默认字号为5号
-    fntef,
     heading=true,%启用修改章节标题的接口
     linespread=1.3,%行距
     autoindent=true,%在字体大小发生变化后，自动调整首行缩进的大小
     ]{ctex}
     
-\ctexset{
+\ctexset{%
     punct=quanjiao,%标点处理方式
     today=big,%全汉字日期格式
+    contentsname=目录,
 }
+
+%下面两个包是为了提升排版的正式程度和美观程度
+\usepackage[american]{babel}%单词换行的时候，确保单词的切割是按照音节来而不是随意切割
+\usepackage{microtype}%调整全篇文章（或局部）的字间距，使得某段落不会出现单独一个单词占一行，或文章末尾单独一行文字占一页的不美观情况
 
 \usepackage[svgnames,table]{xcolor}
 \usepackage{pdfpages}%插入PDF文件
@@ -38,7 +42,20 @@
 \usepackage{multirow}%跨行
 \usepackage{multicol}%跨列
 
-\usepackage[top=2.7truecm,bottom=2.2truecm,left=3truecm,right=3truecm,includefoot,xetex]{geometry}
+\usepackage{dirtree}%目录树
+\renewcommand*\DTstyle{\rmfamily}
+\renewcommand*\DTstylecomment{\heiti\color{blue!40!black}}
+
+\usepackage[
+    top=2.7truecm,
+    bottom=2.2truecm,
+    left=3truecm,
+    right=3truecm,
+    includefoot,
+    xetex,
+]{geometry}
+
+%数学，化学，单位
 \usepackage[version=4]{mhchem}%化学式宏包
 \usepackage{chemfig}%化学式宏包
 \usepackage{siunitx}%单位宏包
@@ -49,8 +66,10 @@
 \DeclareMathOperator{\arcsec}{arcsec}
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\arccsc}{arccsc}
+\numberwithin{equation}{section}%在公式序号中增加节序号
 
 \usepackage{metalogo}%TeX家族标识符宏包
+\usepackage{hologo}%更好的TeX家族标识符宏包，不过命令敲起来不方便，与上面的包共存吧
 
 \usepackage{titletoc}%目录样式宏包
 \usepackage{titlesec}%标题样式宏包
@@ -59,7 +78,7 @@
 \usepackage{listings}%代码展示宏包
 \usepackage{pgfplots}%数学绘图宏包
 \usepackage{paralist}%多功能列表宏包
-\usepackage{enumitem}%对列表环境进行全面设置
+\usepackage{enumitem}%对列表环境进行全面设置，可定制性很强
 \usepackage{tikz}%绘图
 \usepackage[perpage]{footmisc}%脚注宏包
 \usepackage{pifont}%产生带圈数字
@@ -106,7 +125,7 @@
     \def\AMSautorefname{式}%
     \def\theoremautorefname{定理}%
     \def\pageautorefname{页}%
-}
+}%
 
 %===========================图片设置=================================
 \graphicspath{{fig/}}%图片路径
@@ -147,7 +166,7 @@
 \let\pfill\dotfill
 
 % 带圈数字，不能超过10个
-\def\@circlenum#1{
+\def\@circlenum#1{%
     \ding{\the\numexpr\value{#1}+171\relax}%
 }
 % 脚注使用带圈数字，注意命令的执行时机
@@ -160,28 +179,28 @@
 \setcounter{secnumdepth}{3}%设置标题深度
 \colorlet{ZousiyuTitle}{blue!40!black}%标题颜色
 
-\ctexset{
-    chapter={
+\ctexset{%
+    chapter={%
         number=\chinese{chapter},
         format=\centering\heiti\zihao{2}\color{ZousiyuTitle},
         beforeskip = 36bp \@plus 1ex \@minus .2ex,
         afterskip = 16bp \@plus .2ex,
     },
-    section={
+    section={%
         format=\heiti\zihao{-3}\raggedright\color{ZousiyuTitle},
         titleformat+=\heiti,
         aftername=~,
         beforeskip=0pt,
         afterskip=0pt,
     },
-    subsection={
+    subsection={%
         format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
         titleformat+=\heiti,
         aftername=~,
         beforeskip=0pt,
         afterskip=0pt,
     },
-    subsubsection={
+    subsubsection={%
         format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
         titleformat+=\heiti,
         aftername=~,
@@ -192,27 +211,27 @@
 
 %=================================目录===============================
 \setcounter{tocdepth}{2}%目录深度
+\renewcommand{\contentsname}{目录}
 
-\titlecontents{chapter}[0pt]
-    {\bfseries\heiti}
-    {\thecontentslabel}
-    {}
-    {\titlerule*{}\contentspage}
-%\titlecontents{section}[1em]{\songti \zihao{-4}}{\thecontentslabel}{}{\titlerule*{$\cdots$}\contentspage}
-%\titlecontents{subsection}[3em]{\songti \zihao{-4}}{\thecontentslabel}{}{\titlerule*{$\cdots$}\contentspage}
-%\titlecontents{subsubsection}[3em]{\songti \zihao{-4}}{\thecontentslabel}{}{\titlerule*{$\cdots$}\contentspage}
-%\titlecontents{paragraph}[4em]{\songti \zihao{-4}}{\thecontentslabel}{}{\titlerule*{$\cdots$}\contentspage}
+%7个格式调整
+\titlecontents{chapter}%
+    [0pt]%左边距
+    {\bfseries\heiti}%格式调整
+    {\thecontentslabel}%有标签
+    {\thecontentslabel}%无标签
+    {\titlerule*[8pt]{$\cdot$}\contentspage}%填充
+    %[]%目录之后的格式
 
 %===========================图表标题样式============================
 \DeclareCaptionFont{heiti}{\heiti}
-\captionsetup[figure]{
+\captionsetup[figure]{%
     labelsep=space,
     justification=centering,
     font=heiti,
     aboveskip=1mm,
     belowskip=1mm
 }%空格分隔符，居中，黑体
-\captionsetup[table]{
+\captionsetup[table]{%
     labelsep=space,
     justification=centering,
     font=heiti,
@@ -237,13 +256,13 @@
 \newcommand{\emptyaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
 
 %是全局设置，少量定义，给行内代码展示用
-\lstset{
+\lstset{%
     breaklines,
 }
 
 %提供一个代码环境的基本样式
 \lstdefinestyle{CodeBase}
-{
+{%
     basicstyle=\small\ttfamily,%\ttfamily等宽字体
     frame=l,
     aboveskip=5pt,%上边距
@@ -275,7 +294,7 @@
 
 %LaTeX代码环境用
 \lstdefinestyle{LaTeX}
-{
+{%
     style=CodeBase,
     language=[LaTeX]TeX,
     texcsstyle=*\color{blue!50!black}\bfseries,%反斜杠高亮
@@ -285,14 +304,14 @@
 \lstnewenvironment{latex}{\lstset{style=LaTeX}}{}
 
 %matlab代码展示
-\lstdefinestyle{Matlab}{
+\lstdefinestyle{Matlab}{%
     style=CodeBase,
     language=Matlab
     }
 \lstnewenvironment{Matlab}[1]{\lstset{style=Matlab}}{}
 
 %python代码展示
-\lstdefinestyle{python}{
+\lstdefinestyle{python}{%
     style=CodeBase,
     keywordstyle=\slshape\color[RGB]{0,0,255},
     language=Python,
@@ -314,7 +333,7 @@
 
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}
-{
+{%
     basicstyle=\small\ttfamily,%\ttfamily等宽字体
     aboveskip=0pt,%上边距
     belowskip=0pt,%下边距
@@ -331,7 +350,7 @@
 }
 
 \tcbuselibrary{listings,skins,breakable}
-\newtcblisting{codeshow}{
+\newtcblisting{codeshow}{%
     breakable,
     boxrule=0.5pt,%去除文本框线
     arc=0mm,%内弧
@@ -345,8 +364,23 @@
         style=codeshow,
     }
 }
+%上下codeshow
+\newtcblisting{codeshowabove}{%
+    breakable,
+    boxrule=0.5pt,%去除文本框线
+    arc=0mm,%内弧
+    outer arc=0mm,%外弧
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    listing and text,
+    listing options={
+        style=codeshow,
+    }
+}
 
-\newtcbox{\pkg}[1][white]{
+\newtcbox{\pkg}[1][white]{%
     on line,
     arc=0mm,%内弧
     outer arc=0mm,%外弧
@@ -368,7 +402,7 @@
 
 %====================最后放置链接宏包，避免冲突===============================
 \usepackage{hyperref}
-\hypersetup{
+\hypersetup{%
     bookmarksopen=true,%展开书签
     bookmarksnumbered=true,%显示书签编号
     unicode=true,%使书签支持unicode字符
@@ -377,7 +411,7 @@
     citecolor=black,%文献序号颜色
 }
 %定制pdf属性
-\hypersetup{
+\hypersetup{%
     pdftitle={邹思宇的\LaTeXe 学习笔记},
     pdfauthor={邹思宇},
     pdfkeywords={LaTeX,PGFplot,Tikz,邹思宇},
@@ -386,3 +420,5 @@
 %    pdfproducer={},
 %    pdfcreator={}
 }
+
+\urlstyle{rm}%更改链接字体为罗马字体，hyperref宏包调用了url宏包，所以要这样设置
