@@ -19,12 +19,11 @@
 \ctexset{%
     punct=quanjiao,%标点处理方式
     today=big,%全汉字日期格式
-    contentsname=目录,
 }
 
 %下面两个包是为了提升排版的正式程度和美观程度
-\usepackage[american]{babel}%单词换行的时候，确保单词的切割是按照音节来而不是随意切割
-\usepackage{microtype}%调整全篇文章（或局部）的字间距，使得某段落不会出现单独一个单词占一行，或文章末尾单独一行文字占一页的不美观情况
+%\usepackage[american]{babel}%单词换行的时候，确保单词的切割是按照音节来而不是随意切割
+%\usepackage{microtype}%调整全篇文章（或局部）的字间距，使得某段落不会出现单独一个单词占一行，或文章末尾单独一行文字占一页的不美观情况
 
 \usepackage[svgnames,table]{xcolor}
 \usepackage{pdfpages}%插入PDF文件
