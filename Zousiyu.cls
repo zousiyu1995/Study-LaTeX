@@ -60,6 +60,7 @@
 \usepackage{siunitx}%单位宏包
 \usepackage{mathtools}%数学宏包
 \usepackage{amsmath,amssymb,amsfonts}%数学宏包
+\usepackage{autobreak}%长公式自动换行
 \usepackage{latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
 %定义一些amsmath没有定义的函数
 \DeclareMathOperator{\arcsec}{arcsec}

@@ -1,4 +1,4 @@
-{\let\clearpage\relax \chapter{数学排版}}
+{\let\clearpage\relax\chapter{数学排版}}
 
 终于到了\LaTeX 最擅长的部分，数学排版。
 
@@ -317,6 +317,38 @@ N_{i}=-D_{i}\nabla c_{i}+uc_{i}
 \end{split}
 \end{equation}
 
+\subsection{autobreak宏包}
+
+得益于\LaTeX 超强的扩展性，我们有更好的办法来解决长公式自动换行的问题。
+
+
+\begin{align}
+\begin{autobreak}
+\zeta(3) =
+1+
+\frac{1}{8}
++ \frac{1}{27}
++ \frac{1}{64}
++ \frac{1}{125}
++ \frac{1}{216}
++ \frac{1}{343}
++ \frac{1}{512}
++ \frac{1}{729}
++ \frac{1}{1000}
++ \frac{1}{1331}
++ \frac{1}{1728}
++ \frac{1}{2197}
++ \frac{1}{2744}
++ \frac{1}{3375}
++ \frac{1}{4096}
++ \frac{1}{4913}
++ \frac{1}{5832}
++ \frac{1}{6859}
++ \frac{1}{8000}
++ \dots
+\end{autobreak}
+\end{align}
+
 \subsection{公式块}
 
 align(alignat)、gather产生的公式组只能出现在行间，无法做为一个块出现在行内，而很多情况下我们需要一个公式组做为块出现在行间。这时我们可以使用\textbf{aligned(alignedat)、gathered}公式块环境来完成，每一行可以放置多个公式块，但块环境不提供编号。
@@ -383,7 +415,14 @@ a_{11} & a_{12} & a_{13}\\
 \]
 \end{codeshow}
 
-
+\begin{codeshow}
+\[\begin{bmatrix}
+ 1      & 2      & \cdots & 4      \\
+ 7      & 6      & \cdots & 5      \\
+ \vdots & \vdots & \ddots & \vdots \\
+ 8      & 9      & \cdots & 0      \\
+\end{bmatrix}\]
+\end{codeshow}
 
 
 \section{定理环境}
