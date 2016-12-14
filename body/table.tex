@@ -1,5 +1,27 @@
 {\let\clearpage\relax \chapter{表格}}
 
+\section{浮动体}
+
+在学习\LaTeX{}表格和图片的编排之前，了解一下什么是浮动体。\textbf{图片和表格有时会很大，在插入的位置不一定放得下，因此需要浮动调整，这样一个浮动调整的环境就成为浮动体。}
+
+\note{因为有浮动体的存在，图片编排的位置是不确定的，所以要避免在文中使用「下图」、「上图」的说法，而是使用ref命令生成图表的编号。}
+
+浮动体将图或表与其标题定义为整体，然后动态排版，以解决图、表卡在换页处造成的过长的垂直空白的问题。但有时它也会打乱你的排版意图，因此使用与否需要根据情况决定。图片的浮动体是figure环境，而表格的浮动体是table环境。
+
+对表格来说，输出表格内容的是tabular环境，\textbf{table}只是一个会浮动体（到处乱跑的盒子）而已。没有tabular环境，table环境一样会乱跑；没有table环境，tabular环境一样会输出表格内容。图片浮动体与表格是一样的。图片和表格的浮动体环境如下所示：
+
+\begin{latex}
+\begin{table}[!htbp]
+表格
+\end{table}
+%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!htbp]
+图片
+\end{figure}
+\end{latex}
+
+!表示忽略内部参数（比如内部参数对一页中浮动体数量的限制）；h当前位置(here)，t顶部(top)，b底部(bottom)，p单独成页(p)。\LaTeX{}的默认参数是tbp。另外需要注意的是label命令写在caption命令下方，否则交叉引用会出现问题。
+
 \section{array宏包}
 
 数组宏包\emph{array}改进和扩展了\LaTeX 的\emph{tabular、tabular*、array}环境的功能，增强了\emph{列格式}的功能和一些其他表格参数的调整功能。
@@ -37,27 +59,66 @@
 \end{center}
 \end{table}
 
-\section{浮动体}
+\section{booktabs宏包}
 
-浮动体将图或表与其标题定义为整体，然后动态排版，以解决图、表卡在换页处造成的过长的垂直空白的问题。但有时它也会打乱你的排版意图，因此使用与否需要根据情况决定。图片的浮动体是\emph{figure}环境，而表格的浮动体是\emph{table}环境。
-
-对表格来说，输出表格内容的是\emph{tabular}环境，\emph{table}只是一个会浮动体（到处乱跑的盒子）而已。没有\emph{tabular}环境，\emph{table}环境一样会乱跑；没有\emph{table}环境，\emph{tabular}环境一样会输出表格内容。
-
-下面是一个典型的浮动体例子。参数\emph{!htb}含义是：! 表示忽略内部参数（比如内部参数对一页中浮动体数量的限制）；h、t、b 分别表示插入此处、插入页面顶部、插入页面底部，故htb表示优先插入此处，再尝试插入到某页顶，最后尝试插入到页底。此外还有参数p，表示允许为浮动体单独开一页。\LaTeX 的默认参数是tbp。请不要单独使用htbp中的某个参数，以免造成不稳定。另外需要注意的是\emph{label}命令写在\emph{caption}命令下方，否则交叉引用会出现问题。
+这个宏包是用来专门排版三线表的。其形式简洁、功能分明、阅读方便，广泛用在科技论文写作中排版实验测量和计算数据。booktabs宏包就是一个非常适合用来排版三线表的宏包。用法非常简单，代码如下，\autoref{SHB}是一个三线表示例。
 
 \begin{latex}
-\begin{table}[!htb]                %浮动体环境
-    \begin{center}                    %居中环境
-        \caption{标题}
-        \label{用于交叉引用的标签}
-        \begin{tabular }{}            %表格环境
-        \end{tabular}
-    \end{center}
-\end{table}
+\begin{tabular}{lll}
+    \toprule[2pt]
+    表格内容
+    \midrule[0.5pt]
+    表格内容
+    \bottomrule[0.5pt]
+\end{tabular}
 \end{latex}
 
+其中，每个表格只有一条toprule和bottomrule，但midrule可以添加任意多。
+
+\begin{table}[!htb]
+    \caption{Ozone decomposition of SHB mechanism}
+    \label{SHB}
+    \centering
+    \begin{tabular}{lll}
+        \toprule[2pt]
+        State & Equation & Reaction rate constant\\
+        \midrule[0.5pt]
+        Chain initiation & \ce{O3 + OH- -> HO2* + O2*} & $k_1 = \SI{70}{L/\mole \cdot \second}$\\
+        Chain transfer & \ce{HO2* -> O^{-}_2 * + H+} & $k_2=\SI{7.9e5}{L/(\mole \cdot \second)^{25}}$\\
+        & \ce{O^{-}_2 * + H+ -> HO_2 *} & $k_3=\SI{5e10}{L/(\mole \cdot \second)^{25}}$\\
+        & \ce{O3 + O^{-}_2 * -> O^{-}_3 * +O2} & $k_4=\SI{1.6e9}{L/(\mole \cdot \second)}$\\
+        & \ce{O^{-}_3 + H+ -> HO3 *} & $ k_5=\SI{5.2e10}{L/(\mole \cdot \second)} $\\
+        & \ce{HO3* -> O^{-}3 + H+} & $ k_6=\SI{3.3e2}{\second^{-1}} $\\
+        & $ \cdots $ & $ \cdots $ \\
+        Chain termination & \ce{HO4 * +HO4 * -> H2O2 * +2O3} & $ k_{10}=\SI{5e9}{L/(\mole \cdot \second)^{25}} $\\
+        & \ce{HO4* + HO3* -> H2O2* + O2 +O3} & $ k_{11}=\SI{5e9}{L/(\mole \cdot \second)^{25}} $\\
+        \bottomrule[0.5pt]
+    \end{tabular}
+\end{table}
+
+\lstinline|\cmidrule|能用来画局部水平线，可以用来制作跨列表格。局部水平线可以有多条，但需要在其他cmidrule前添加\lstinline|\morecmidrules|命令，否则多条局部水平线重叠为一条。
+
+\begin{table}[!htb]
+    \centering
+    \caption{Weather statistics}
+    \begin{tabular}{cccc}
+        \toprule[2pt]
+        & \multicolumn{3}{c}{weather}\\
+        \cmidrule{2-4}
+        \morecmidrules\cmidrule{2-4}
+        months & rain & sunny & cloudy\\
+        \midrule
+        1 & 2 & 1 & 0\\
+        \midrule
+        \addlinespace[5pt]%增加某一行高度
+        2 & 3 & 2 & 1\\
+        \addlinespace[5pt]
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \section{表格}
-\LaTeX 原生的表格功能非常有限，甚至不支持单元格跨行和表格跨页，我们必须通过宏包来解决。如有需求，可在\emph{tabular}环境外定义全部表格线的粗细，例如，\verb|\setlength{\arrayrulewidth}{2pt}|或者直接写\verb|\arrayrulewidth=2pt|。
+\LaTeX 原生的表格功能非常有限，甚至不支持单元格跨行和表格跨页，我们必须通过宏包来解决。如有需求，可在\emph{tabular}环境外定义全部表格线的粗细，例如，\lstinline|\setlength{\arrayrulewidth}{2pt}|或者直接写\lstinline|\arrayrulewidth=2pt|。
 
 \begin{codeshow}
 \centering

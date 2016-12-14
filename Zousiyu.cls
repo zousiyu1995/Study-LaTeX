@@ -37,7 +37,7 @@
 \usepackage{array}%表格宏包
 \usepackage{diagbox}%对角线宏包，刘海洋
 \usepackage{colortbl}%彩色表格宏包
-\usepackage{booktabs}%表格线宏包
+\usepackage{booktabs}%三线表
 \usepackage{multirow}%跨行
 \usepackage{multicol}%跨列
 
@@ -189,21 +189,21 @@
     section={%
         format=\heiti\zihao{-3}\raggedright\color{ZousiyuTitle},
         titleformat+=\heiti,
-        aftername=~,
+        aftername=.~,
         beforeskip=0pt,
         afterskip=0pt,
     },
     subsection={%
         format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
         titleformat+=\heiti,
-        aftername=~,
+        aftername=.~,
         beforeskip=0pt,
         afterskip=0pt,
     },
     subsubsection={%
         format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
         titleformat+=\heiti,
-        aftername=~,
+        aftername=.~,
         beforeskip=0pt,
         afterskip=0pt,
     }
