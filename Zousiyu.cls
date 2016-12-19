@@ -77,7 +77,6 @@
 
 \usepackage{listings}%代码展示宏包
 \usepackage{pgfplots}%数学绘图宏包
-\usepackage{paralist}%多功能列表宏包
 \usepackage{enumitem}%对列表环境进行全面设置，可定制性很强
 \usepackage{tikz}%绘图
 \usepackage[perpage]{footmisc}%脚注宏包
@@ -103,8 +102,15 @@
 
 \newfontfamily{\enheiti}{黑体}%适用于英文的黑体
 
-%重新定义解说列表asparadesc的标签
-\renewcommand{\paradescriptionlabel}[1]{\bfseries\heiti\color{blue!40!black} #1}
+%列表环境定义
+\setlist[description]{%
+    labelindent=\parindent,
+    font=\bfseries\color{blue!40!black},
+    labelsep=1em,
+    leftmargin=0pt,
+    noitemsep,
+    nosep
+}
 
 %======================新定义，使引用变为图1-1，式（3-2）这样的形式==========================
 %\usepackage{xr}%文件间的交叉引用
@@ -185,6 +191,7 @@
         format=\centering\heiti\zihao{2}\color{ZousiyuTitle},
         beforeskip = 36bp \@plus 1ex \@minus .2ex,
         afterskip = 16bp \@plus .2ex,
+        fixskip=true,
     },
     section={%
         format=\heiti\zihao{-3}\raggedright\color{ZousiyuTitle},
@@ -192,6 +199,7 @@
         aftername=.~,
         beforeskip=0pt,
         afterskip=0pt,
+        fixskip=true,
     },
     subsection={%
         format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
@@ -199,6 +207,7 @@
         aftername=.~,
         beforeskip=0pt,
         afterskip=0pt,
+        fixskip=true,
     },
     subsubsection={%
         format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
@@ -206,6 +215,7 @@
         aftername=.~,
         beforeskip=0pt,
         afterskip=0pt,
+        fixskip=true,
     }
 }
 
@@ -252,8 +262,8 @@
 %\newfontfamily\daima{Consolas}
 
 %复制listings生成的代码时不复制行号
-\usepackage{accsupp}
-\newcommand{\emptyaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+%\usepackage{accsupp}
+%\newcommand{\emptyaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
 
 %是全局设置，少量定义，给行内代码展示用
 \lstset{%
@@ -272,12 +282,12 @@
     showtabs=false,%Tab
     showspaces=false,%空格标识
     showstringspaces=false,
-    numbers=left,
-    numbersep=5pt,%行号与代码距离
-    numberstyle=\small\ttfamily\emptyaccsupp,
+%    numbers=left,
+%    numbersep=5pt,%行号与代码距离
+%    numberstyle=\small\ttfamily\emptyaccsupp,
     rulecolor=\color{blue!50!black},
     boxpos=c,
-    xleftmargin=1em,%左边距
+    xleftmargin=5pt,%左边距
     xrightmargin=0pt,
     breaklines=true,%自动换行
     breakindent=0pt,%换行后缩进为0
@@ -405,10 +415,14 @@
 \hypersetup{%
     bookmarksopen=true,%展开书签
     bookmarksnumbered=true,%显示书签编号
+    bookmarksopenlevel=1,
     unicode=true,%使书签支持unicode字符
+    %链接、颜色
+    pagebackref=true,
     breaklinks=true,%链接自动换行
     colorlinks=true,%加颜色区分链接
     citecolor=black,%文献序号颜色
+%    linkcolor=\colorlet{blue!40!black},
 }
 %定制pdf属性
 \hypersetup{%

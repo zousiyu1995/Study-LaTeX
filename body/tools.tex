@@ -146,6 +146,11 @@ bib参考文献数据格式如下所示，为分字段显示。各字段可以�
 \end{figure}
 
 \section{列表}
+
+\subsection{常规列表}
+
+\subsection{排序列表}
+
 \LaTeX 自带的列表环境可调整的样式很有限，调整起来也很麻烦。所以最好直接用别人写好的宏包来调整列表环境。记住一句话，要随心所欲定制\LaTeX 输出的样式，就要用自由度最高的宏包，不要嫌麻烦，否则达不到想要的定制效果。enumitem宏包在定制列表环境方面做得很不错，可调样式很多，能满足大部分需求。借用wklchris\footnote{\url{https://github.com/wklchris/Note-by-LaTeX}}绘制的enumitem列表长度参数图。
 
 \begin{figure}[!htb]
@@ -164,65 +169,15 @@ enumitem提供的参数很多，想每一项都弄明白得花点时间，我不
 \end{enumerate}
 \end{latex}
 
-四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
 \begin{enumerate}[label=(\arabic*),itemsep=0pt,parsep=0pt,topsep=0pt,leftmargin=0pt,labelindent=\parindent,listparindent=\parindent,itemindent=*]
-\item 四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
-
-四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
-
-\item 四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
-\item 四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
+\item 《采桑子·辘轳金井梧桐晚》辘轳金井梧桐晚，几树惊秋。昼雨新愁，百尺虾须在玉钩。琼窗春断双蛾皱，回首边头。欲寄鳞游，九曲寒波不溯流。\par
+《采桑子·亭前春逐红英尽》亭前春逐红英尽，舞态徘徊。细雨霏微，不放双眉时暂开。绿窗冷静芳音断，香印成灰。可奈情怀，欲睡朦胧入梦来。
+\item 《长相思·一重山》一重山，两重山。山远天高烟水寒，相思枫叶丹。菊花开，菊花残。塞雁高飞人未还，一帘风月闲。 
+\item 《相见欢·无言独上西楼》无言独上西楼，月如钩。寂寞梧桐深院，锁清秋。剪不断，理还乱，是离愁。别是一般滋味，在心头。
 \end{enumerate}
 
-四十年来家国，三千里地山河。凤阁龙楼连霄汉，玉树琼枝作烟萝，几曾识干戈？一旦归为臣虏，沈腰潘鬓消磨。最是仓皇辞庙日，教坊犹奏别离歌，垂泪对宫娥。
-
-\subsection{常规列表}
-常规列表环境。
-
-\begin{codeshow}
-\begin{itemize}
-    \item[记号] 条目1
-    \item[-] description1
-    \item[*] description2
-\end{itemize}
-\end{codeshow}
-
-常规列表的条目之间间距较大，可以使用长度赋值命令将条目环境额外的垂直空白设置为0pt，达到与正文间距一致。
-
-\begin{latex}
-\itemsep=0pt
-\parskip=0pt
-\end{latex}
-
-\subsection{排序列表}
-排序列表的基本形式。
-
-\begin{codeshow}
-    \begin{enumerate}
-        \item 条目1
-        \item 条目2
-        \item 条目3
-    \end{enumerate}
-\end{codeshow}
-
-排序列表可以嵌套，各层条目序号不一，我们可对其序号、标号和前缀进行重新定义，以生成所需要的条目样式。但是重新定义命令使用起来麻烦，排序列表默认命令也复杂，不便记忆，更不便于重定义。
-
-为了方便，我们直接使用\emph{paralist}宏包，我们只需要将标号样式填入方括号中，即可对标号进行重定义。此法在后面说明。
-
 \subsection{解说列表}
-示例如下，该类型列表用于对专业术语进行解释。具体设置不做详细说明，因为使用不便，后面有更好的宏包可以对以上所提到的三类列表进行更简便地进行设置。
-
-\begin{codeshow}
-    \begin{description}
-        \item[APLL] 
-        Automatic Phase-Locked Loop
-        自动锁相环
-        \item[GPS] Global 
-        Positioning System 全球定位系统
-        \item[SPACETRACK] 
-        Space Tracking 空间跟踪
-    \end{description}
-\end{codeshow}
+该类型列表用于对专业术语进行解释。
 
 \subsection{带圈数字列表}
 
@@ -335,7 +290,7 @@ subplot(1,2,1);mesh(X);title('X');
 subplot(1,2,2);mesh(Y);title('Y');
 \end{Matlab}
 
-从\emph{CodeBase}定义的新样式X，其设置可以覆盖\emph{CodeBase}中的设置，如下面这段\emph{Python}代码高亮测试中，我们在代码中定义了一句\verb|keywordstyle=\slshape\color[RGB]{0,0,255},|，让\emph{Python}代码中的关键词变为斜体，其他代码环境不受影响。
+从CodeBase定义的新样式X，其设置可以覆盖\emph{CodeBase}中的设置，如下面这段\emph{Python}代码高亮测试中，我们在代码中定义了一句\verb|keywordstyle=\slshape\color[RGB]{0,0,255},|，让Python代码中的关键词变为斜体，其他代码环境不受影响。
 
 \begin{latex}
 \lstdefinestyle{python}{
@@ -347,7 +302,7 @@ subplot(1,2,2);mesh(Y);title('Y');
 \lstnewenvironment{python}[1]{\lstset{style=python}}{}
 \end{latex}
 
-\emph{Python}代码展示。
+Python代码展示。
 
 \begin{python}{}
 def ffmpeg_concat_av(files, output, ext):
@@ -365,7 +320,7 @@ def ffmpeg_concat_av(files, output, ext):
     return subprocess.call(params)
 \end{python}
 
-\emph{listings}宏包识别的代码关键词肯定是有限的，但好在它提供一个参数可以扩充关键词。比如我们为\emph{c++}语言添加更多的关键词，只需要在设置里面写下如下代码。关键词想要多少都行，依据实际情况补充。
+listings宏包识别的代码关键词肯定是有限的，但好在它提供一个参数可以扩充关键词。比如我们为c++语言添加更多的关键词，只需要在设置里面写下如下代码。关键词想要多少都行，依据实际情况补充。
 
 \begin{latex}
 \lstset{
@@ -373,4 +328,13 @@ def ffmpeg_concat_av(files, output, ext):
 },
 \end{latex}
 
+当listings展示环境显示行号时，复制代码时会将行号也复制进去，可以使用如下代码解决。编译的PDF必须使用Acrobat等功能足够完善的PDF阅读器来查看，在SumatraPDF中复制代码仍然会复制到行号。
+
+\begin{latex}
+%复制listings生成的代码时不复制行号
+\usepackage{accsupp}
+\newcommand{\emptyaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
+\lstset{%
+numberstyle=\small\ttfamily\emptyaccsupp,}
+\end{latex}
 
