@@ -4,7 +4,7 @@
 
 \TeX 环境是\href{http://tug.org/texlive/}{TeX~Live~2016}，想要下载速度快可以到清华的镜像站下载。\url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/}
 
-IDE使用的是\href{http://texstudio.sourceforge.net/}{TeXstudio}，但是编译相当慢，所以最近都是用命令行编译的，SumatraPDF查看，但这样不能反向搜索，比较气，有时间再琢磨一下。整个笔记的目录树如下所示，配有详细的注释。
+IDE使用的是\href{http://texstudio.sourceforge.net/}{TeXstudio}，整个笔记的目录树如下所示，配有详细的注释。
 
 \dirtree{%
     .1 Study-LaTeX.
@@ -20,7 +20,7 @@ IDE使用的是\href{http://texstudio.sourceforge.net/}{TeXstudio}，但是编�
     .2 gb7714-2015.cbx\DTcomment{biblatex参考文献样式}.
     }
 
-谈一下编译脚本的事，\lstinline|xelatex.exe main.tex|能直接完成编译，加入\lstinline|--synctex=-1|这个参数可以配置TeXstudio的反向搜索。
+编译使用的是脚本，\lstinline|xelatex.exe main.tex|能直接完成编译，加入\lstinline|--synctex=-1|这个参数可以配置TeXstudio的反向搜索。
 
 \begin{latex}
 :: Copyright (c) 2012-2016 Zousiyu
@@ -62,7 +62,7 @@ del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
         pc & 派卡 & 相当于四号字大小，1pc=12pt=4.218mm\\
         in & 英寸 & inch英寸，1in=72.27pt=25.4mm\\
         bp & 大点 & big point，1in=72bp）\\
-        cm,mm & 都学过 & 1cm=28.453pt，1mm=2.845pt\\
+        cm/mm & 都学过 & 1cm=28.453pt，1mm=2.845pt\\
         em & em & 当前字体中M的宽度\\
         ex & ex & 当前字体中x的高度\\
         \bottomrule
@@ -83,13 +83,51 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
 
 \subsection*{长度命令}
 
+\begin{table}
+    \centering
+    \caption{一些常用的产生水平间距的命令}
+    \begin{tabular}{ll}
+        \toprule
+        命令 & 作用\\
+        \midrule
+        \verb|\quad| & 产生一段宽度为1em 的水平空白\\
+        \verb|\qquad| & \verb|\quad|的两倍\\
+        \verb|\,| & 大约为\verb|\quad|的3/18\\
+        \verb|\hspace{length}| & 产生指定宽度的\textbf{水平空白}\\
+        \verb|\hspace*{length}| & 若要在行首产生一定的空白, 则需使用此命令\\
+        \verb|\hfill| & 产生撑满整行的空白\\
+        \verb|\hphantom{text}| & 幻影命令，产生的空白等于text的宽度\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{一些常用的产生垂直空白的命令}
+\begin{tabular}{ll}
+    \toprule
+    命令 & 作用\\
+    \midrule
+    \verb|\smallskip| & 产生高度为3pt plus 1pt minus 1pt的垂直空白\\
+    \verb|\medskip| & \verb|\smallskip|的两倍\\
+    \verb|\bigskip| & \verb|\smallskip|的四倍\\
+    \verb|\vspace{length}| & 产生指定高度的垂直空白\\
+    \verb|\vspace*{length}| & 在页面顶部产生垂直空白\\
+    \verb|\vfill| & 插入指定高度的垂直空白\\
+    \verb|\vphantom{text}| & 幻影命令，产生的空白等于text的高度，和text的长度无关的\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\section{行、段落、页面}
+
+\begin{description}[labelwidth=4em]
+    \item[换行] \LaTeX{}会自动换行, 若需强制换行, 可使用\lstinline|\\|或\lstinline|\newline|。\lstinline|\\|后面可以带长度，以增加当前行与新行之间的距离，参数可正可负，如：\lstinline|\\[3mm]|，\lstinline|\\[-5pt]|。
+    \item[分段] 两个连续回车（即一个空行）或\lstinline|\par|。
+    \item[分页] \LaTeX{}会自动分页若需强制分页, 可用命令\lstinline|\newpage|或\lstinline|\clearpage|。
+\end{description}
 
 
-\section{间距}
-
-
-
-\section{行距}
 
 \section{页面}
 
@@ -209,8 +247,6 @@ $t_{\text{高温}}$
 英文的单引号并不是两个'符号，双引号也并不是两个''组成的。英文下的引号嵌套需要借助\lstinline{\thinspace}命令分隔。另外，双引号的右半边用"和''的效果是一样的。同样，还可以使用Unicode字符来输入引号，输入方法麻烦，但是更加标准。
 
 \begin{codeshow}
-`single quotation marks'\par
-``double quotation marks"\par
 ``\thinspace`Max' is here.''\par
 Pumas are ``large, cat-like animals'' which are `found in America'.\par
 \textquotedblleft Unicode \textquotedblright \par

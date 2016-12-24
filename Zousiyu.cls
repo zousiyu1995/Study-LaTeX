@@ -83,10 +83,11 @@
 \usepackage{pifont}%产生带圈数字
 
 %参考文献
-\usepackage[
+\usepackage[%
     backend=biber,%处理方式
-    style=gb7714-2015%样式
-    ]{biblatex}
+    style=gb7714-2015,%样式
+    ]{biblatex}%
+%添加bib数据库路径
 \addbibresource{Zousiyu.bib}
 
 \usepackage{tcolorbox}%盒子宏包
@@ -104,12 +105,15 @@
 
 %列表环境定义
 \setlist[description]{%
-    labelindent=\parindent,
     font=\bfseries\color{blue!40!black},
-    labelsep=1em,
-    leftmargin=0pt,
     noitemsep,
-    nosep
+    nosep,
+    align=left,
+    leftmargin=!,
+    labelindent=\parindent,
+    labelwidth=20mm,
+    labelsep=1em,
+    itemindent=0mm,
 }
 
 %======================新定义，使引用变为图1-1，式（3-2）这样的形式==========================
