@@ -25,7 +25,7 @@
 %\usepackage[american]{babel}%单词换行的时候，确保单词的切割是按照音节来而不是随意切割
 %\usepackage{microtype}%调整全篇文章（或局部）的字间距，使得某段落不会出现单独一个单词占一行，或文章末尾单独一行文字占一页的不美观情况
 
-\usepackage[svgnames,table]{xcolor}
+\usepackage[svgnames,table]{xcolor}%颜色宏包
 \usepackage{pdfpages}%插入PDF文件
 %========================宏包和相关设置===============================
 \usepackage{endnotes}%尾注宏包
@@ -61,6 +61,7 @@
 \usepackage{mathtools}%数学宏包
 \usepackage{amsmath,amssymb,amsfonts}%数学宏包
 \usepackage{autobreak}%长公式自动换行
+\usepackage{xfrac}%斜线分式
 \usepackage{latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
 %定义一些amsmath没有定义的函数
 \DeclareMathOperator{\arcsec}{arcsec}
@@ -348,7 +349,7 @@
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}
 {%
-    basicstyle=\small\ttfamily,%\ttfamily等宽字体
+    basicstyle=\ttfamily,%\ttfamily等宽字体
     aboveskip=0pt,%上边距
     belowskip=0pt,%下边距
     lineskip=0pt,
@@ -363,7 +364,7 @@
     breakindent=0pt,%换行后缩进为0
 }
 
-\tcbuselibrary{listings,skins,breakable}
+\tcbuselibrary{listings,skins,breakable,xparse}
 \newtcblisting{codeshow}{%
     breakable,
     boxrule=0.5pt,%去除文本框线
@@ -393,17 +394,22 @@
         style=codeshow,
     }
 }
-
-\newtcbox{\pkg}[1][white]{%
+%摘录功能的代码盒子
+\definecolor{code}{RGB}{240,240,240}
+\DeclareTotalTCBox{\code}{v}{verbatim,
+    tcbox raise base,
     on line,
-    arc=0mm,%内弧
-    outer arc=0mm,%外弧
-    boxrule=1pt,
-        left=0pt,
-        right=0pt,
-        top=0pt,
-        bottom=0pt,
-    }
+    colback=code,
+    arc=0pt,
+    fontupper=\ttfamily,
+    %盒子周围间距
+    boxsep=2pt,
+    top=0pt,
+    bottom=0pt,
+    left=-1pt,
+    right=-1pt,
+    boxrule=0pt,%边框线
+}{#1}
 
 %利用tikz画一组带圈数字
 \newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
@@ -426,7 +432,7 @@
     breaklinks=true,%链接自动换行
     colorlinks=true,%加颜色区分链接
     citecolor=black,%文献序号颜色
-%    linkcolor=\colorlet{blue!40!black},
+    linkcolor=black,
 }
 %定制pdf属性
 \hypersetup{%

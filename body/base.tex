@@ -46,7 +46,7 @@ clear脚本用来清理编译时产生的辅助文件，视情况添加后缀。
 del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
 \end{latex}
 
-\section{长度}
+\section{长度与间距}
 \subsection*{通用长度单位}
 首先介绍一下\TeX 中几个通用的长度单位。其中ex、em是\textbf{相对长度单位}，其数值大小正比于字体尺寸，当字体尺寸改变，绝对长度会随之改变。其他单位是绝对长度单位。
 
@@ -82,8 +82,9 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
 可伸缩的弹性长度是\LaTeX 的重要排版理念之一。
 
 \subsection*{长度命令}
+下面是一些常用的长度命令。
 
-\begin{table}
+\begin{table}[!htb]
     \centering
     \caption{一些常用的产生水平间距的命令}
     \begin{tabular}{ll}
@@ -101,7 +102,7 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \end{tabular}
 \end{table}
 
-\begin{table}
+\begin{table}[!htb]
     \centering
     \caption{一些常用的产生垂直空白的命令}
 \begin{tabular}{ll}
@@ -119,6 +120,32 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
 \end{tabular}
 \end{table}
 
+\subsection{正确处理单词间距}
+英文排版时\TeX{}通常默认句号\code{.}表示一句话的结束，\textbf{因此\TeX{}在处理句号时会留出稍宽一点的水平间距}。但是有些情况下，句号并不代表句子的结尾，比如「i.e. a word」和「e.g. a word」。按照\TeX{}默认规则，排版出的宽度会比正常句中单词之间的间隔稍大一些，因此我们需要使用使用\code{\}（即一个反斜杠+空格）来消除这个过大的间距：\code{i.e.\ a word}以及\code{e.g.\ a word}。仔细观察下面例子的排版效果。
+
+\begin{codeshow}
+i.e. a word\par
+i.e.\ a word
+\end{codeshow}
+
+句号跟在一个大写字母的后面，\textbf{此时\TeX{}会认为这个句号表示人名缩写的间隔符}，因此仍然按照正常间距来排版，比如 「A. Einstein」。然而这个看似贴心的规则在一些情况下会适得其反，比如一句话明明以缩略语结尾，\TeX{}反而认为这并不是一句话的结尾：「... in NBA. He...」。此时，排版出的「He」之前的空格会小于正常的句间间距。这种情况下，需要使用 \code{\@.}（反斜杠+@+句号+空格），来强制告诉\TeX{}这里的的确确是一个句子的结尾。
+
+\begin{codeshow}
+... played in NBA. He was ...\par
+... played in NBA\@. He was ...
+\end{codeshow}
+
+以上规则除句号外，同样适用于感叹号和问号等其他符号。
+
+\subsection{数学符号中的间距}
+
+数学公式中，积分符号$ dx $\footnote{积分符号是直立还是斜体尚有争论}前应该加入一个间距\code{!,}，同时在公式结尾的标定符号与公式之间也应该插入一个间距\code{!,}。此外，积分符号$ \int $与被积分项之间的间距在默认情况下过大，完美的排版需要利用\code{\!}来缩小这个间距。如下$ \int $与$ f(x) $，$ f(x) $与$ dx $，$ \alpha $与$ . $之间的间距都值得注意。
+
+\begin{codeshow}
+\[ \int_a^bf(x)dx = \alpha. \]\par
+\[ \int_a^b\!f(x)\,dx = \alpha\,. \]
+\end{codeshow}
+
 \section{行、段落、页面}
 
 \begin{description}[labelwidth=4em]
@@ -126,7 +153,6 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \item[分段] 两个连续回车（即一个空行）或\lstinline|\par|。
     \item[分页] \LaTeX{}会自动分页若需强制分页, 可用命令\lstinline|\newpage|或\lstinline|\clearpage|。
 \end{description}
-
 
 
 \section{页面}
@@ -262,13 +288,28 @@ Pumas are ``large, cat-like animals'' which are `found in America'.\par
 `right'
 \end{codeshow}
 
-\bz{短横}
+\subsection*{短横}
 
 英文的短横可以产生三种符号：
 
-连字符：输入一个短横，-，效果如daughter-in-law
-数学起止符：输入两个短横，--，效果如page1--2
-英文破折号：输入三个短横：---，效果如Listen---I'm serious
+\begin{description}
+    \item[连字符] \textbf{通常用来连接复合词}，输入一个短横，\code{-}，效果如daughter-in-law
+    \item[数学起止符] \textbf{通常用来表示范围}，输入两个短横，\code{--}，效果如page 1--2，如果真的希望连续输入两个连字符，使用\code{{-}{-}}
+    \item[英文破折号] 是一个正规的标点符号，用来表示转折或者承上启下。破折号与其前后的单词之间不应该存在空格，输入三个短横：\code{---}，效果如Listen---I'm serious
+\end{description}
+
+\note{排版中的减号应该比连字符要长，因此用来表示减号或者负号时，请严格使用数学模式而不要使用文字模式。}
+
+以上符号区别如下，注意前面讲过的数学符号中的间距这个小细节：
+
+\begin{codeshow}
+daughter-in-law\par
+page 1--2\par
+Listen---I'm serious\par
+The temperature is $ -5\,^{\circ}\mathrm{C} $
+\end{codeshow}
+
+\subsection*{省略号}
 
 中文破折号，省略号一般直接用中文输入法输入，英文的省略号一般使用\lstinline|\ldots|或者\lstinline|\dots|来输入。
 
@@ -277,9 +318,11 @@ hello\ldots\par
 Thanks\dots
 \end{codeshow}
 
+\subsection*{摄氏度}
+
 \bz{角度符号,摄氏度符号}
 这两个符号需要借助数学模式\lstinline|$...$|来输入：
 \begin{codeshow}
-$30\,^{\circ}$
+$30\,^{\circ}$\\
 $37\,^{\circ}\mathrm{C}$
 \end{codeshow}

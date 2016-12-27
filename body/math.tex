@@ -60,6 +60,29 @@ $\frac12 \quad \frac2n
 \[ \frac{1}{\dfrac1a+\dfrac1b+c} \]
 \end{codeshow}
 
+\subsection{斜线分式和斜线除号}
+
+对于一些需要用到斜除号的地方，如果斜除号两边的字符比较高，用常规的\code{/}会导致式子很不协调，这个时候可以使用\code{\middle/}来使得斜除号的高度与两侧字符高度相匹配。如下所示：
+
+\begin{codeshow}
+$x=a^\frac{1}{2}/b$\\
+$x=\left.a^\frac{1}{2}\middle/b\right.$
+\end{codeshow}
+
+此外，有时候还需要用到行内斜线分式.通常，我们输入斜线分数都是键入X/Y，但是这个真心有点难看。我们可以用专业的xfrac宏包来处理这些斜线分式，它提供一个命令：
+
+\begin{latex}
+\sfrac{}{}
+\end{latex}
+
+\note{这个命令可以在数学环境外使用，即在文本模式中直接使用}
+
+\begin{codeshow}
+\sfrac{1}{2}\\
+$ \sfrac{7}{20} $\\
+$\sfrac{1}{4}$ cups of sugar
+\end{codeshow}
+
 \subsection{根式}
 开方的次数\footnote{非数学专业，不知道用次数表达是否合理，欢迎指正}用方括号[]括起来。注意，根式的开方次数如果过大，写在左边就很影响美观，这个时候一般都改为指数形式。
 \begin{codeshow}
@@ -194,6 +217,19 @@ $ \sin \quad \ln \quad \arccos $
 N_I=n_1 +n_2 + \cdots +n_T
 \end{gather*}
 \end{codeshow}
+
+\subsection{转置符号}
+转置符号并没有严格的规定，好几种都在普遍被使用。但是有一点是明确的，转置符号不能是斜体。常见的转置符号大概有四种。
+
+\begin{codeshow}
+$\mathbf{A}^\mathrm{T}$\\
+$\mathbf{A}^\top$\\
+$\mathbf{A}^\mathsf{T}$\\
+$\mathbf{A}^\intercal$
+\end{codeshow}
+
+推荐使用第三或者第四个，其中\lstinline|\intercal|符号需要使用\hologo{AmSTeX}宏包。
+
 
 \section{公式环境}
 

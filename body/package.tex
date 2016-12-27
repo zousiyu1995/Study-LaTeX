@@ -503,11 +503,25 @@ mathtools还提供小矩阵环境，做为行内公式时更加协调，例如�
 \begin{Vsmallmatrix*}[position]  \end{Vsmallmatrix*}
 \end{latex}
 
+\subsection{长分式}
+有时候遇到的分式分子特别长，长到爆的那一种。这时候就需要分子能换行书写了。mathtools宏包提供两个命令用来书写分子过长的分式。
 
+\begin{latex}
+\splitfrac
+\splitdfrac
+\end{latex}
 
-
-
-
-
-
-
+\begin{codeshowabove}
+\[
+a=\frac{
+    \splitfrac{xy + xy + xy + xy + xy}
+    {+ xy + xy + xy + xy}
+}
+{z}
+=\frac{
+    \splitdfrac{xy + xy + xy + xy + xy}
+    {+ xy + xy + xy + xy}
+}
+{z}
+\]
+\end{codeshowabove}
