@@ -37,6 +37,7 @@
 \usepackage{array}%表格宏包
 \usepackage{diagbox}%对角线宏包，刘海洋
 \usepackage{colortbl}%彩色表格宏包
+\usepackage{longtable}%长表格，跨页
 \usepackage{booktabs}%三线表
 \usepackage{multirow}%跨行
 \usepackage{multicol}%跨列
@@ -398,6 +399,7 @@
 \definecolor{code}{RGB}{240,240,240}
 \DeclareTotalTCBox{\code}{v}{verbatim,
     tcbox raise base,
+    breakable,
     on line,
     colback=code,
     arc=0pt,

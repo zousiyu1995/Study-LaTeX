@@ -84,10 +84,8 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
 \subsection*{长度命令}
 下面是一些常用的长度命令。
 
-\begin{table}[!htb]
-    \centering
-    \caption{一些常用的产生水平间距的命令}
-    \begin{tabular}{ll}
+\begin{longtable}{ll}
+        \caption{一些常用的产生水平间距的命令}\\
         \toprule
         命令 & 作用\\
         \midrule
@@ -99,13 +97,10 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
         \verb|\hfill| & 产生撑满整行的空白\\
         \verb|\hphantom{text}| & 幻影命令，产生的空白等于text的宽度\\
         \bottomrule
-    \end{tabular}
-\end{table}
+\end{longtable}
 
-\begin{table}[!htb]
-    \centering
-    \caption{一些常用的产生垂直空白的命令}
-\begin{tabular}{ll}
+\begin{longtable}{ll}
+    \caption{一些常用的产生垂直空白的命令}\\
     \toprule
     命令 & 作用\\
     \midrule
@@ -117,8 +112,7 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \verb|\vfill| & 插入指定高度的垂直空白\\
     \verb|\vphantom{text}| & 幻影命令，产生的空白等于text的高度，和text的长度无关的\\
     \bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
 
 \subsection{正确处理单词间距}
 英文排版时\TeX{}通常默认句号\code{.}表示一句话的结束，\textbf{因此\TeX{}在处理句号时会留出稍宽一点的水平间距}。但是有些情况下，句号并不代表句子的结尾，比如「i.e. a word」和「e.g. a word」。按照\TeX{}默认规则，排版出的宽度会比正常句中单词之间的间隔稍大一些，因此我们需要使用使用\code{\}（即一个反斜杠+空格）来消除这个过大的间距：\code{i.e.\ a word}以及\code{e.g.\ a word}。仔细观察下面例子的排版效果。
@@ -148,12 +142,17 @@ i.e.\ a word
 
 \section{行、段落、页面}
 
+\subsection*{避免数字出现在行首}
+使用\code{~}来代替空格可以避免交叉引用或者输入人名时尴尬地被打破成两行，例如\code{...如图~\ref{Fig1}所示...}，或者\code{...A.~Einstein said...}。
+
+\subsection*{中英混排时空格的使用}
+中英文混排时，\XeLaTeX{}能在中文与英文（或数字）之间，没有必要手动敲入一个空格，编译时会自动为中文与英文（或数字）之间添加合适的间距。但是有一个情况比较特殊，就是在交叉引用时，这个空格是需要手动敲入的，否则这个间距会消失。
+
 \begin{description}[labelwidth=4em]
     \item[换行] \LaTeX{}会自动换行, 若需强制换行, 可使用\lstinline|\\|或\lstinline|\newline|。\lstinline|\\|后面可以带长度，以增加当前行与新行之间的距离，参数可正可负，如：\lstinline|\\[3mm]|，\lstinline|\\[-5pt]|。
     \item[分段] 两个连续回车（即一个空行）或\lstinline|\par|。
     \item[分页] \LaTeX{}会自动分页若需强制分页, 可用命令\lstinline|\newpage|或\lstinline|\clearpage|。
 \end{description}
-
 
 \section{页面}
 
