@@ -118,6 +118,12 @@
     itemindent=0mm,
 }
 
+%一些颜色定义
+%表格颜色
+\definecolor{oddrows}{RGB}{243,246,246}%奇数行
+\definecolor{evenrows}{RGB}{228,228,228}%偶数行
+\definecolor{header}{RGB}{0,104,183}%表头
+
 %======================新定义，使引用变为图1-1，式（3-2）这样的形式==========================
 %\usepackage{xr}%文件间的交叉引用
 
@@ -156,10 +162,6 @@
 %\cfoot{--\ \thepage\ --}
 %\headrulewidth{0.5pt} %页眉线
 %\footrulewidth{0pt} %页脚线
-
-%重新定义页眉页脚上的章节样式
-%\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
-%\renewcommand{\chaptermark}[1]{\markboth{第\thechapter 章\ #1}{}}
 
 % 边注和索引，来自重庆大学模版
 \colorlet{Note}{purple}%用于各自标注的颜色
@@ -229,7 +231,7 @@
 \setcounter{tocdepth}{2}%目录深度
 \renewcommand{\contentsname}{目录}
 
-%7个格式调整
+%目录的7个格式调整
 \titlecontents{chapter}%
     [0pt]%左边距
     {\bfseries\heiti}%格式调整
@@ -254,14 +256,6 @@
     aboveskip=1mm,
     belowskip=1mm
 }%空格分隔符，居中，黑体
-
-%自定义各列列宽，使用参数CRL+长度
-\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
-\newcolumntype{C}[1]{>{\PreserveBackslash\centering}m{#1}}
-\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}m{#1}}
-\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}m{#1}}
-
-\usepackage{color}%[usenames,dvipsnames]
 
 %============================代码环境===============================
 %定义一个代码字体
@@ -448,3 +442,4 @@
 }
 
 \urlstyle{rm}%更改链接字体为罗马字体，hyperref宏包调用了url宏包，所以要这样设置
+\usepackage[hypcap=true,hypcapspace=2cm]{caption}%修复交叉引用跳转位置不准的问题
