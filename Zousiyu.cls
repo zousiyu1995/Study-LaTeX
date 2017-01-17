@@ -24,7 +24,7 @@
 %下面两个包是为了提升排版的正式程度和美观程度
 %\usepackage[american]{babel}%单词换行的时候，确保单词的切割是按照音节来而不是随意切割
 %\usepackage{microtype}%调整全篇文章（或局部）的字间距，使得某段落不会出现单独一个单词占一行，或文章末尾单独一行文字占一页的不美观情况
-
+\usepackage{titlesec}
 \usepackage[svgnames,table]{xcolor}%颜色宏包
 \usepackage{pdfpages}%插入PDF文件
 %========================宏包和相关设置===============================
@@ -58,11 +58,12 @@
 %数学，化学，单位
 \usepackage[version=4]{mhchem}%化学式宏包
 \usepackage{chemfig}%化学式宏包
+
+\usepackage{amsmath,amssymb,amsfonts}%数学宏包
 \usepackage{siunitx}%单位宏包
 \usepackage{mathtools}%数学宏包
-\usepackage{amsmath,amssymb,amsfonts}%数学宏包
-\usepackage{autobreak}%长公式自动换行
 \usepackage{xfrac}%斜线分式
+%\usepackage{breqn}%冲突太多
 \usepackage{latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
 %定义一些amsmath没有定义的函数
 \DeclareMathOperator{\arcsec}{arcsec}
@@ -191,41 +192,63 @@
 
 %=========================标题样式设置===============================
 \setcounter{secnumdepth}{3}%设置标题深度
-\colorlet{ZousiyuTitle}{blue!40!black}%标题颜色
+\colorlet{title}{blue!40!black}%标题颜色
 
-\ctexset{%
-    chapter={%
-        number=\chinese{chapter},
-        format=\centering\heiti\zihao{2}\color{ZousiyuTitle},
-        beforeskip = 36bp \@plus 1ex \@minus .2ex,
-        afterskip = 16bp \@plus .2ex,
-        fixskip=true,
-    },
-    section={%
-        format=\heiti\zihao{-3}\raggedright\color{ZousiyuTitle},
-        titleformat+=\heiti,
-        aftername=.~,
-        beforeskip=0pt,
-        afterskip=0pt,
-        fixskip=true,
-    },
-    subsection={%
-        format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
-        titleformat+=\heiti,
-        aftername=.~,
-        beforeskip=0pt,
-        afterskip=0pt,
-        fixskip=true,
-    },
-    subsubsection={%
-        format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
-        titleformat+=\heiti,
-        aftername=.~,
-        beforeskip=0pt,
-        afterskip=0pt,
-        fixskip=true,
-    }
-}
+\titleformat{\chapter}[hang]%
+    {\centering\color{title}\heiti\zihao{1}}%格式
+    {第\, \thechapter 节}%标签
+    {20pt}%标签和标题间距
+    {}%
+    [\vspace{5mm}]%
+\titleformat{\section}[hang]%
+    {\color{title}\heiti\zihao{-4}}%
+    {\thesection.}%
+    {5pt}%
+    {}%
+    []%
+\titleformat{\subsection}[hang]%
+    {\color{title}\heiti\zihao{-4}}%
+    {\thesubsection.}%
+    {5pt}%
+    {}%
+    []%
+\titlespacing{\chapter}{0pt}{0pt}{0pt}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+
+%\ctexset{%
+%    chapter={%
+%        number=\chinese{chapter},
+%        format=\centering\heiti\zihao{2}\color{ZousiyuTitle},
+%        beforeskip = 36bp \@plus 1ex \@minus .2ex,
+%        afterskip = 16bp \@plus .2ex,
+%        fixskip=true,
+%    },
+%    section={%
+%        format=\heiti\zihao{-3}\raggedright\color{ZousiyuTitle},
+%        titleformat+=\heiti,
+%        aftername=.~,
+%        beforeskip=0pt,
+%        afterskip=0pt,
+%        fixskip=true,
+%    },
+%    subsection={%
+%        format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
+%        titleformat+=\heiti,
+%        aftername=.~,
+%        beforeskip=0pt,
+%        afterskip=0pt,
+%        fixskip=true,
+%    },
+%    subsubsection={%
+%        format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
+%        titleformat+=\heiti,
+%        aftername=.~,
+%        beforeskip=0pt,
+%        afterskip=0pt,
+%        fixskip=true,
+%    }
+%}
 
 %=================================目录===============================
 \setcounter{tocdepth}{2}%目录深度
@@ -268,6 +291,7 @@
 %是全局设置，少量定义，给行内代码展示用
 \lstset{%
     breaklines,
+%    basicstyle=\ttfamily\small,
 }
 
 %提供一个代码环境的基本样式
