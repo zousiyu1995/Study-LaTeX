@@ -100,3 +100,16 @@
     heading=true,%启用修改章节标题的接口
 ]{ctex}
 \end{latex}
+
+实际使用中发现\CTeX{}宏包和某个宏包冲突，修改标题间距并不起作用，暂时改用titlesec宏包定制标题样式。
+
+\begin{latex}
+\titleformat{\chapter}[hang]%
+	{\centering\color{title}\heiti\zihao{1}}%格式
+	{第\, \thechapter 节}%标签
+	{20pt}%标签和标题间距
+	{}%
+	[\vspace{5mm}]%
+\end{latex}
+
+

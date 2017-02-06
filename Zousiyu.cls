@@ -104,6 +104,9 @@
 \setmonofont{DejaVu Sans Mono}%英文等宽DejaVu Sans Mono,Inconsolata,Source Code Pro,TeX Gyre Cursor
 \setCJKmonofont{FangSong}%中文等宽，仿宋
 
+\setsansfont{微软雅黑}
+\setCJKsansfont{SimHei}
+
 \newfontfamily{\enheiti}{黑体}%适用于英文的黑体
 
 %列表环境定义
@@ -165,7 +168,7 @@
 %\footrulewidth{0pt} %页脚线
 
 % 边注和索引，来自重庆大学模版
-\colorlet{Note}{purple}%用于各自标注的颜色
+\colorlet{Note}{purple}%
 \renewcommand*{\marginfont}{\color{Note}\sffamily\heiti}
 \DeclareDocumentCommand{\bz}{s o m}{%
     \IfBooleanTF {#1}
@@ -281,8 +284,6 @@
 }%空格分隔符，居中，黑体
 
 %============================代码环境===============================
-%定义一个代码字体
-%\newfontfamily\daima{Consolas}
 
 %复制listings生成的代码时不复制行号
 %\usepackage{accsupp}
@@ -291,7 +292,7 @@
 %是全局设置，少量定义，给行内代码展示用
 \lstset{%
     breaklines,
-%    basicstyle=\ttfamily\small,
+    basicstyle=\sffamily\small,
 }
 
 %提供一个代码环境的基本样式
@@ -315,7 +316,6 @@
     xrightmargin=0pt,
     breaklines=true,%自动换行
     breakindent=0pt,%换行后缩进为0
-    extendedchars=false,%解决代码跨页时，章节标题，页眉等汉字不显示的问题
     framesep=3pt,
     rulesep=2pt,
     framerule=1pt,
@@ -360,10 +360,6 @@
 %命令环境，\cmd{}直接输出命令加反斜杠，避免麻烦
 \DeclareRobustCommand*\cmd[1]{\textrm{~\char`\\#1}}
 \def\crcmd{\cmd{\char`\\}}
-
-%行内代码环境
-%\newcommand{\code}[1]{\rmfamily\lstinline|#1|}
-
 
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}
@@ -441,6 +437,11 @@
 \newcommand{\dcircled}[1]{\circled[00]{#1}}
 
 %====================最后放置链接宏包，避免冲突===============================
+\usepackage{nameref}
+% 同时引用标签和标题
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1} \nameref*{#1}}}
+\usepackage{lastpage}% 页引用
+
 \usepackage{hyperref}
 \hypersetup{%
     bookmarksopen=true,%展开书签
@@ -452,7 +453,7 @@
     breaklinks=true,%链接自动换行
     colorlinks=true,%加颜色区分链接
     citecolor=black,%文献序号颜色
-    linkcolor=black,
+%    linkcolor=red,
 }
 %定制pdf属性
 \hypersetup{%
