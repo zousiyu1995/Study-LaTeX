@@ -58,12 +58,12 @@ del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
         \toprule
         单位 & 名称 & 说明\\
         \midrule
-        pt & 点 & 欧美传统排版的长度单位，1pt=0.351mm\\
+        pt & 点，磅 & 欧美传统排版的长度单位，1pt=0.351mm\\
         pc & 派卡 & 相当于四号字大小，1pc=12pt=4.218mm\\
         in & 英寸 & inch英寸，1in=72.27pt=25.4mm\\
-        bp & 大点 & big point，1in=72bp）\\
-        cm/mm & 都学过 & 1cm=28.453pt，1mm=2.845pt\\
-        em & em & 当前字体中M的宽度\\
+        bp & 大点 & big point，1in=72bp\\
+        cm,mm & 都学过 & 1cm=28.453pt，1mm=2.845pt\\
+        em & em & 当前字体中M的宽度，一个\lstinline|\quad|的长度\\
         ex & ex & 当前字体中x的高度\\
         \bottomrule
     \end{tabular}
@@ -93,11 +93,16 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
         \verb|\qquad| & \verb|\quad|的两倍\\
         \verb|\,| & 大约为\verb|\quad|的3/18\\
         \verb|\hspace{length}| & 产生指定宽度的\textbf{水平空白}\\
-        \verb|\hspace*{length}| & 若要在行首产生一定的空白, 则需使用此命令\\
+        \verb|\hspace*{length}| & 产生不可被忽略的空白\\
         \verb|\hfill| & 产生撑满整行的空白\\
         \verb|\hphantom{text}| & 幻影命令，产生的空白等于text的宽度\\
+        \verb|\thinspace| & 不可换行，$ \sfrac{1}{6} $ em\\
+        \verb|\enskip| & 不可换行\\
+        \verb|\enspace| & 不可换行\\
         \bottomrule
 \end{longtable}
+
+\note{和水平间距的情况不同，垂直间距需要加换行才会有效果。}
 
 \begin{longtable}{ll}
     \caption{一些常用的产生垂直空白的命令}\\
@@ -115,14 +120,14 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
 \end{longtable}
 
 \subsection{正确处理单词间距}
-英文排版时\TeX{}通常默认句号\code{.}表示一句话的结束，\textbf{因此\TeX{}在处理句号时会留出稍宽一点的水平间距}。但是有些情况下，句号并不代表句子的结尾，比如「i.e. a word」和「e.g. a word」。按照\TeX{}默认规则，排版出的宽度会比正常句中单词之间的间隔稍大一些，因此我们需要使用使用\code{\}（即一个反斜杠+空格）来消除这个过大的间距：\code{i.e.\ a word}以及\code{e.g.\ a word}。仔细观察下面例子的排版效果。
+英文排版时\TeX{}通常默认句号\code{.}表示一句话的结束，\textbf{因此\TeX{}在处理句号时会留出稍宽一点的水平间距}。但是有些情况下，句号并不代表句子的结尾，比如「i.e. a word」和「e.g. a word」。按照\TeX{}默认规则，排版出的宽度会比正常句中单词之间的间隔稍大一些，因此我们需要使用使用\code{\}，即一个反斜杠+空格，来消除这个过大的间距：\code{i.e.\ a word}以及\code{e.g.\ a word}。仔细观察下面例子的排版效果。
 
 \begin{codeshow}
 i.e. a word\par
 i.e.\ a word
 \end{codeshow}
 
-句号跟在一个大写字母的后面，\textbf{此时\TeX{}会认为这个句号表示人名缩写的间隔符}，因此仍然按照正常间距来排版，比如 「A. Einstein」。然而这个看似贴心的规则在一些情况下会适得其反，比如一句话明明以缩略语结尾，\TeX{}反而认为这并不是一句话的结尾：「... in NBA. He...」。此时，排版出的「He」之前的空格会小于正常的句间间距。这种情况下，需要使用 \code{\@.}（反斜杠+@+句号+空格），来强制告诉\TeX{}这里的的确确是一个句子的结尾。
+句号跟在一个大写字母的后面，\textbf{此时\TeX{}会认为这个句号表示人名缩写的间隔符}，因此仍然按照正常间距来排版，比如 「A. Einstein」。然而这个看似贴心的规则在一些情况下会适得其反，比如一句话明明以缩略语结尾，\TeX{}反而认为这并不是一句话的结尾：「... in NBA. He...」。此时，排版出的「He」之前的空格会小于正常的句间间距。这种情况下，需要使用 \code{\@.}，反斜杠+@+句号+空格，来强制告诉\TeX{}这里的的确确是一个句子的结尾。
 
 \begin{codeshow}
 ... played in NBA. He was ...\par

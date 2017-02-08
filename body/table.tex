@@ -50,7 +50,7 @@
 
 \section{booktabs宏包}
 
-这个宏包是用来专门排版三线表的。其形式简洁、功能分明、阅读方便，广泛用在科技论文写作中排版实验测量和计算数据。booktabs宏包就是一个非常适合用来排版三线表的宏包。用法非常简单，代码如下，\autoref{SHB}是一个三线表示例。
+这个宏包是用来专门排版三线表的。其形式简洁、功能分明、阅读方便，广泛用在科技论文写作中排版实验测量和计算数据。\pkg{booktabs}宏包就是一个非常适合用来排版三线表的宏包。用法非常简单，代码如下，\autoref{SHB}是一个三线表示例。
 
 \begin{latex}
 \begin{tabular}{lll}
@@ -176,23 +176,20 @@
 
 \subsection{跨行和跨列表格}
 
-既跨行又跨列时，必须把\emph{multirow}命令放在\emph{multicolumn}内部，始终记住跨列享受最高的优先级。
+\cmdindex{multirow}
+\cmdindex{multicolumn}
+
+既跨行又跨列时，必须把\lstinline|\multirow{number of rows}{width}{text}|命令放在\lstinline|\multicolumn{code}{pos}{text}|内部，始终记住\textbf{跨列享受最高的优先级}。
 
 \begin{codeshow}
 \centering
-\begin{center}
-    \begin{tabular}{|c|c|c|}
-        \hline
-        \multirow{2}{2cm}{A Text!}
-        & ABC & DEF \\
-        \cline{2-3} & abc & def \\
-        \hline
-        \multicolumn{2}{|c|}
-        {\multirow{2}*{Nothing}} & XYZ \\
-        \multicolumn{2}{|c|}{} & xyz \\
-        \hline
-    \end{tabular}
-\end{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    \multirow{2}{*}{跨行} & \multicolumn{2}{c|}{跨列} \\ \cline{2-3}
+     & abc & 123 \\ \hline
+    \multicolumn{2}{|c|}{\multirow{2}{*}{跨行跨列}} & XYZ \\ \cline{3-3}
+    \multicolumn{2}{|c|}{} & xyz \\ \hline
+\end{tabular}
 \end{codeshow}
 
 \begin{codeshow}
@@ -200,16 +197,14 @@
 \begin{tabular}{|ccc|}
     \hline
     2 & 9 & 4 \\
-    7 & \multicolumn{2}{c|}
-        {\multirow{2}*{{?}}}\\
-    6& & \\
-    \hline
+    7 & \multicolumn{2}{c|}{\multirow{2}{*}{?}}\\
+    6& & \\ \hline
 \end{tabular}
 \end{codeshow}
 
 \subsection{彩色表格}
 
-利用xcolor宏包的颜色功能，colortbl宏包上给表格上色。提前定义好所需要的颜色。
+利用\pkg{xcolor}宏包的颜色功能，\pkg{colortbl}宏包上给表格上色。提前定义好所需要的颜色。
 
 \begin{latex}
 %表格颜色
@@ -237,7 +232,7 @@
 
 \subsection{斜线表头}
 
-虽然斜线表头是不符合国标的，但在非正式场合用得还挺多的。制作斜线表头需要\emph{diagbox}宏包，刘海洋写的，中文说明。
+虽然斜线表头是不符合国标的，但在非正式场合用得还挺多的。制作斜线表头需要\pkg{diagbox}宏包，刘海洋写的，中文说明。
 
 \begin{codeshow}
 \centering

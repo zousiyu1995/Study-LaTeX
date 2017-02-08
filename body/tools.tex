@@ -13,7 +13,7 @@
 
 例如，为本文作者\footnote{邹思宇，男，\LaTeX 爱好者}添加脚注。
 
-如果要在脚注中输入带反斜杠的字符串，可使用等宽字体命令加字符串命令输入\footnote{\texttt{脚注命令\string\footnote}}。代码如下。如果需要更多的设置，可以调用脚注宏包\emph{footmisc}，对脚注命令\verb|\footnote|进行扩展功能。
+如果要在脚注中输入带反斜杠的字符串，可使用等宽字体命令加字符串命令输入\footnote{\texttt{脚注命令\string\footnote}}。代码如下。如果需要更多的设置，可以调用脚注宏包\pkg{footmisc}，对脚注命令\lstinline|\footnote|进行扩展功能。
 
 \begin{latex}
 \footnote{\texttt{\string\footnote}}
@@ -29,7 +29,7 @@
 
 边注测试\marginpar[这是一个边注]{这是边注啊}。
 
-调用\emph{marginnote}宏包，新定义一个边注。使用\verb|\bz|调用，将会在与段落平齐的地方生成一个边注。例如：
+调用\pkg{marginnote}宏包，新定义一个边注。使用\verb|\bz|调用，将会在与段落平齐的地方生成一个边注。例如：
 
 \bz{从这一行开始是用于重新定义边注的代码}
 
@@ -196,7 +196,7 @@ enumitem提供的参数很多，想每一项都弄明白得花点时间，我不
 
 \subsection{带圈数字列表}
 
-在许多文章中，特别是中文文章中，我们会见到带有圆圈的数字。它们有点是单独出现的，有点作为列表的计数出现。这里给出一个利用TikZ绘制的方法，\textbf{既能在正文中调用，也能在列表中调用}。基本的思路是定义一个新命令，接受一个数字参数，用 TikZ 在它周围画圈。同时要考虑基线和对齐的问题。代码实现如下\footnote{此法来源于\href{http://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers}{tikz pgf - Good way to make \cmd{textcircled} numbers? - TeX - LaTeX Stack Exchange}}：
+在许多文章中，特别是中文文章中，我们会见到带有圆圈的数字。它们有点是单独出现的，有点作为列表的计数出现。这里给出一个利用TikZ绘制的方法，\textbf{既能在正文中调用，也能在列表中调用}。基本的思路是定义一个新命令，接受一个数字参数，用 TikZ 在它周围画圈。同时要考虑基线和对齐的问题。代码实现如下\footnote{此法来源于\href{http://tex.stackexchange.com/questions/7032/good-way-to-make-textcircled-numbers}{tikz pgf - Good way to make textcircled numbers? - TeX - LaTeX Stack Exchange}}：
 
 \begin{latex}
 \usepackage{tikz}
@@ -208,13 +208,13 @@ enumitem提供的参数很多，想每一项都弄明白得花点时间，我不
 \robustify{\circled}
 \end{latex}
 
-这个新定义的命令可以按照\cmd{textcircled}方法在正文中使用。
+这个新定义的命令可以按照\lstinline|\circled|方法在正文中使用。
 
 \begin{codeshow}
 Numbers aligned with the text:  \circled{1} \circled{2} \circled{3} end.
 \end{codeshow}
 
-如果需要用在列表中，则因为「脆弱命令」的问题，需要处理一下。这里我们选择使用etoolbox宏包提供的\cmd{robustify}来处理一下，同时结合 enumitem 宏包，给出示例用法如下：
+如果需要用在列表中，则因为「脆弱命令」的问题，需要处理一下。这里我们选择使用etoolbox宏包提供的\lstinline|\robustify|命令来处理一下，同时结合 enumitem 宏包，给出示例用法如下：
 
 \begin{codeshow}
 \begin{enumerate}[label=\dcircled{\arabic*}, noitemsep]

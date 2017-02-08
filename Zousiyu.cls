@@ -104,10 +104,11 @@
 \setmonofont{DejaVu Sans Mono}%英文等宽DejaVu Sans Mono,Inconsolata,Source Code Pro,TeX Gyre Cursor
 \setCJKmonofont{FangSong}%中文等宽，仿宋
 
-\setsansfont{微软雅黑}
+\setsansfont{微软雅黑}%无衬线字体
 \setCJKsansfont{SimHei}
 
 \newfontfamily{\enheiti}{黑体}%适用于英文的黑体
+\newcommand{\pkg}[1]{\textsf{\bfseries #1}}
 
 %列表环境定义
 \setlist[description]{%
@@ -357,10 +358,6 @@
 \newcommand{\note}[1]{{%
     {\bfseries 注意：}\textit{#1}}}
 
-%命令环境，\cmd{}直接输出命令加反斜杠，避免麻烦
-\DeclareRobustCommand*\cmd[1]{\textrm{~\char`\\#1}}
-\def\crcmd{\cmd{\char`\\}}
-
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}
 {%
@@ -417,7 +414,7 @@
     on line,
     colback=code,
     arc=0pt,
-    fontupper=\ttfamily,
+    fontupper=\sffamily,
     %盒子周围间距
     boxsep=2pt,
     top=0pt,
@@ -435,6 +432,13 @@
 \robustify{\circled}
 %在列表内，产生一组自动编号的带圈数字，需要同时指定列表标签为\dcircled{\arabic*}
 \newcommand{\dcircled}[1]{\circled[00]{#1}}
+
+% 索引
+\usepackage{imakeidx}
+\makeindex
+
+\newcommand{\cmdindex}[1]{\index{\char`\\ #1}}
+
 
 %====================最后放置链接宏包，避免冲突===============================
 \usepackage{nameref}
