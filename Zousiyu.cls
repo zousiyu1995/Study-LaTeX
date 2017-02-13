@@ -83,7 +83,6 @@
 \usepackage{enumitem}%对列表环境进行全面设置，可定制性很强
 \usepackage{tikz}%绘图
 \usepackage[perpage]{footmisc}%脚注宏包
-\usepackage{pifont}%产生带圈数字
 
 %参考文献
 \usepackage[%
@@ -184,15 +183,22 @@
 \let\scan@allowedfalse\relax
 \let\pfill\dotfill
 
-% 带圈数字，不能超过10个
-\def\@circlenum#1{%
-    \ding{\the\numexpr\value{#1}+171\relax}%
-}
-% 脚注使用带圈数字，注意命令的执行时机
-\AtBeginDocument{%
-    \renewcommand{\thefootnote}{\@circlenum{footnote}}
-    \renewcommand{\thempfootnote}{\@circlenum{mpfootnote}}
-}
+%% 带圈数字，不能超过10个
+%\usepackage{pifont}%产生带圈数字
+%\def\@circlenum#1{%
+%    \ding{\the\numexpr\value{#1}+171\relax}%
+%}
+%% 脚注使用带圈数字，注意命令的执行时机
+%\AtBeginDocument{%
+%    \renewcommand{\thefootnote}{\@circlenum{footnote}}
+%    \renewcommand{\thempfootnote}{\@circlenum{mpfootnote}}
+%}
+
+%脚注，带圈数字，刘海洋，可以超过10
+\usepackage{xunicode-addon}
+\newfontfamily\fnmarkfont{ipag.ttf} % 带圈 0 到 20 被认做西文符号
+\newCJKfontfamily\fnCJKmarkfont{ipag.ttf} % 带圈数字超过 20 是 CJK 符号
+\renewcommand\thefootnote{{\fnmarkfont\fnCJKmarkfont\textcircled{\arabic{footnote}}}}
 
 %=========================标题样式设置===============================
 \setcounter{secnumdepth}{3}%设置标题深度
@@ -333,7 +339,7 @@
     style=CodeBase,
     language=[LaTeX]TeX,
     texcsstyle=*\color{blue!50!black}\bfseries,%反斜杠高亮
-    morekeywords={addplot, begin, end, color, text},
+    morekeywords={addplot, begin, end, color, text, draw},
     }
 %定义latex代码专用环境
 \lstnewenvironment{latex}{\lstset{style=LaTeX}}{}
@@ -355,8 +361,7 @@
 \lstnewenvironment{python}[1]{\lstset{style=python}}{}
 
 %注意环境
-\newcommand{\note}[1]{{%
-    {\bfseries 注意：}\textit{#1}}}
+\newcommand{\note}[2][注意]{\textbf{#1：}\textit{#2}}
 
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}

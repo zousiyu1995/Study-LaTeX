@@ -1,0 +1,41 @@
+\documentclass{ctexart}
+\usepackage{xunicode-addon}
+\usepackage{geometry}
+\geometry{margin=0.5cm,
+    papersize={10cm,7cm},
+}
+
+\usepackage{fancyhdr}
+\pagestyle{empty}%清空页眉页脚
+\usepackage[marginal,para]{footmisc}%脚注宏包
+
+\newfontfamily\fnmarkfont{ipag.ttf} % 带圈 0 到 20 被认做西文符号
+\newCJKfontfamily\fnCJKmarkfont{ipag.ttf} % 带圈数字超过 20 是 CJK 符号
+\renewcommand\thefootnote{{\fnmarkfont\fnCJKmarkfont\textcircled{\arabic{footnote}}}}
+
+%\setlength{\skip\footins}{5mm}
+\begin{document}
+
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+你好\footnote{aa} 你好\footnote{bb}
+
+\end{document}
