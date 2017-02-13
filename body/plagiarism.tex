@@ -63,7 +63,32 @@ frame code={%
     \label{fig:plagiarism-footnote}
 \end{figure}
 
+\subsection{自用的旧的titlesec设置}
 
+\begin{latex}
+\titleformat{\chapter}[hang]%
+    {\centering\color{title}\heiti\zihao{1}}%格式
+    {}
+%    {第\, \thechapter 节}%标签
+    {20pt}%标签和标题间距
+    {}%
+    [\vspace{5mm}]%
+\titleformat{\section}[hang]%
+    {\color{title}\heiti\zihao{-4}}%
+    {\thesection.}%
+    {5pt}%
+    {}%
+    []%
+\titleformat{\subsection}[hang]%
+    {\color{title}\heiti\zihao{-4}}%
+    {\thesubsection.}%
+    {5pt}%
+    {}%
+    []%
+\titlespacing{\chapter}{0pt}{0pt}{0pt}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\end{latex}
 
 
 

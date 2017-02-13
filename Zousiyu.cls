@@ -1,70 +1,44 @@
 % !Mode:: "TeX:UTF-8"
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{Zousiyu}
-%中英文之间空格，chapter任意页码开始，book文档类型，可加oneside参数去掉编译出来的空白页，fntef调用下画线宏包
-\LoadClass[
-    a4paper,
-    openany,%每一章从左页或右页均可开始
-    oneside,%单页排版，每页左边空、页眉页脚相同
-    ]{book}
+\LoadClass[openany]{book}
+\usepackage[heading=true]{ctex}
+\usepackage{fontspec}
 
-\usepackage[
-    UTF8,
-    zihao=5,%默认字号为5号
-    heading=true,%启用修改章节标题的接口
-    linespread=1.3,%行距
-    autoindent=true,%在字体大小发生变化后，自动调整首行缩进的大小
-    ]{ctex}
-    
-\ctexset{%
-    punct=quanjiao,%标点处理方式
-    today=big,%全汉字日期格式
+\usepackage{geometry}
+\geometry{paper=a4paper,
+    hmargin=3cm,
+    vmargin=2cm,
+    marginparwidth=2.5cm,
 }
 
-%下面两个包是为了提升排版的正式程度和美观程度
-%\usepackage[american]{babel}%单词换行的时候，确保单词的切割是按照音节来而不是随意切割
-%\usepackage{microtype}%调整全篇文章（或局部）的字间距，使得某段落不会出现单独一个单词占一行，或文章末尾单独一行文字占一页的不美观情况
-\usepackage{titlesec}
 \usepackage[svgnames,table]{xcolor}%颜色宏包
 \usepackage{pdfpages}%插入PDF文件
-%========================宏包和相关设置===============================
-\usepackage{endnotes}%尾注宏包
-\usepackage{fontspec}%字体选择宏包
-\usepackage{etoolbox}%编程宏包，用于更改chapter定义
+\usepackage{etoolbox}
+\usepackage{endnotes}%尾注
 \usepackage{marginnote}%边注
-
+\usepackage[perpage]{footmisc}%脚注
+\usepackage{enumitem}%列表
 %========================表格宏包================================
 \usepackage{array}%表格宏包
 \usepackage{diagbox}%对角线宏包，刘海洋
 \usepackage{colortbl}%彩色表格宏包
 \usepackage{longtable}%长表格，跨页
+\usepackage{tabu}
 \usepackage{booktabs}%三线表
 \usepackage{multirow}%跨行
 \usepackage{multicol}%跨列
-
 \usepackage{dirtree}%目录树
 \renewcommand*\DTstyle{\rmfamily}
 \renewcommand*\DTstylecomment{\heiti\color{blue!40!black}}
 
-\usepackage[
-    top=2.7truecm,
-    bottom=2.2truecm,
-    left=3truecm,
-    right=3truecm,
-    includefoot,
-    xetex,
-]{geometry}
-
-%数学，化学，单位
-\usepackage[version=4]{mhchem}%化学式宏包
+%数学，化学，单位，符号
+\usepackage{mhchem}%化学式宏包
 \usepackage{chemfig}%化学式宏包
-
 \usepackage{amsmath,amssymb,amsfonts}%数学宏包
 \usepackage{siunitx}%单位宏包
 \usepackage{mathtools}%数学宏包
 \usepackage{xfrac}%斜线分式
-%\usepackage{breqn}%冲突太多
-\usepackage{latexsym,textcomp,mathrsfs,euscript,yhmath}%与默认字体不冲突的一些符号包
 %定义一些amsmath没有定义的函数
 \DeclareMathOperator{\arcsec}{arcsec}
 \DeclareMathOperator{\arccot}{arccot}
@@ -75,39 +49,31 @@
 \usepackage{hologo}%更好的TeX家族标识符宏包，不过命令敲起来不方便，与上面的包共存吧
 
 \usepackage{titletoc}%目录样式宏包
-\usepackage{titlesec}%标题样式宏包
-\usepackage{caption}%图表标题宏包
-
+\usepackage[hypcap=true,hypcapspace=2cm]{caption}%修复交叉引用跳转位置不准的问题
 \usepackage{listings}%代码展示宏包
 \usepackage{pgfplots}%数学绘图宏包
-\usepackage{enumitem}%对列表环境进行全面设置，可定制性很强
 \usepackage{tikz}%绘图
-\usepackage[perpage]{footmisc}%脚注宏包
-
+\graphicspath{{fig/}}
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg,.bmp}
 %参考文献
 \usepackage[%
     backend=biber,%处理方式
     style=gb7714-2015,%样式
     ]{biblatex}%
-%添加bib数据库路径
 \addbibresource{Zousiyu.bib}
-
-\usepackage{tcolorbox}%盒子宏包
-\usepackage{fancyhdr}%页眉页脚宏包
-%======================设置区域======================%
 
 %===========================字体设置=================================
 \setmainfont{TeX Gyre Pagella}%西文主字体,Times New Roman
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}%中文主字体
-
-\setmonofont{DejaVu Sans Mono}%英文等宽DejaVu Sans Mono,Inconsolata,Source Code Pro,TeX Gyre Cursor
+\setmonofont{DejaVu Sans Mono}%英文等宽Source Code Pro
 \setCJKmonofont{FangSong}%中文等宽，仿宋
-
 \setsansfont{微软雅黑}%无衬线字体
 \setCJKsansfont{SimHei}
-
 \newfontfamily{\enheiti}{黑体}%适用于英文的黑体
-\newcommand{\pkg}[1]{\textsf{\bfseries #1}}
+
+%新命令
+\newcommand{\pkg}[1]{\textsf{\itshape #1}}
+\newcommand{\note}[2][注意]{\textbf{#1：}\textit{#2}}
 
 %列表环境定义
 \setlist[description]{%
@@ -121,16 +87,13 @@
     labelsep=1em,
     itemindent=0mm,
 }
-
-%一些颜色定义
+%颜色定义
 %表格颜色
 \definecolor{oddrows}{RGB}{243,246,246}%奇数行
 \definecolor{evenrows}{RGB}{228,228,228}%偶数行
 \definecolor{header}{RGB}{0,104,183}%表头
 
-%======================新定义，使引用变为图1-1，式（3-2）这样的形式==========================
-%\usepackage{xr}%文件间的交叉引用
-
+%自动引用
 \AtBeginDocument{%
     \def\figureautorefname{图}%
     \def\tableautorefname{表}%
@@ -149,39 +112,19 @@
     \def\pageautorefname{页}%
 }%
 
-%===========================图片设置=================================
-\graphicspath{{fig/}}%图片路径
-%% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
-\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg,.bmp}
-
 %===========================页眉页脚=================================
-%\pagestyle{fancy}
-%%上面两行必备
-%\fancyhf{}%清空当前设置
-%%\fancyhead[R]{邹思宇的 \LaTeX 学习笔记}
-%%\fancyfoot[C]{\thepage}
-%\lhead{\heiti\leftmark}
-%\rhead{\heiti\rightmark}
-%\chead{\heiti 邹思宇的 \LaTeX 学习笔记}
-%\cfoot{--\ \thepage\ --}
-%\headrulewidth{0.5pt} %页眉线
-%\footrulewidth{0pt} %页脚线
+\usepackage{fancyhdr}%页眉页脚宏包
+\pagestyle{fancy}
+    \fancyhead{}
+        \fancyhead[LO,RE]{\bfseries\itshape\thepage}
+        \fancyhead[EC]{\slshape\leftmark}
+        \fancyhead[OC]{\slshape\rightmark}
+    \fancyfoot{}
 
-% 边注和索引，来自重庆大学模版
-\colorlet{Note}{purple}%
-\renewcommand*{\marginfont}{\color{Note}\sffamily\heiti}
-\DeclareDocumentCommand{\bz}{s o m}{%
-    \IfBooleanTF {#1}
-    {%ture
-        \IfNoValueTF{#2}{\marginnote[#3]{#3}}{\marginnote[#2]{#3}}
-    }{%false
-    \IfNoValueTF{#2}{\marginnote[#3]{#3}}{\marginnote[#2]{#3}}
-    \index{#3}
-    }%
-}
-% 解决索引ind文件依赖问题
-\let\scan@allowedfalse\relax
-\let\pfill\dotfill
+% 边注
+\colorlet{marginpar}{purple}%
+\renewcommand*{\marginfont}{\color{marginpar}\heiti\zihao{6}}
+\newcommand*{\bz}[1]{\marginnote{#1}}
 
 %% 带圈数字，不能超过10个
 %\usepackage{pifont}%产生带圈数字
@@ -201,70 +144,36 @@
 \renewcommand\thefootnote{{\fnmarkfont\fnCJKmarkfont\textcircled{\arabic{footnote}}}}
 
 %=========================标题样式设置===============================
-\setcounter{secnumdepth}{3}%设置标题深度
-\colorlet{title}{blue!40!black}%标题颜色
-
-\titleformat{\chapter}[hang]%
-    {\centering\color{title}\heiti\zihao{1}}%格式
-    {第\, \thechapter 节}%标签
-    {20pt}%标签和标题间距
-    {}%
-    [\vspace{5mm}]%
-\titleformat{\section}[hang]%
-    {\color{title}\heiti\zihao{-4}}%
-    {\thesection.}%
-    {5pt}%
-    {}%
-    []%
-\titleformat{\subsection}[hang]%
-    {\color{title}\heiti\zihao{-4}}%
-    {\thesubsection.}%
-    {5pt}%
-    {}%
-    []%
-\titlespacing{\chapter}{0pt}{0pt}{0pt}
-\titlespacing{\section}{0pt}{0pt}{0pt}
-\titlespacing{\subsection}{0pt}{0pt}{0pt}
-
-%\ctexset{%
-%    chapter={%
-%        number=\chinese{chapter},
-%        format=\centering\heiti\zihao{2}\color{ZousiyuTitle},
-%        beforeskip = 36bp \@plus 1ex \@minus .2ex,
-%        afterskip = 16bp \@plus .2ex,
-%        fixskip=true,
-%    },
-%    section={%
-%        format=\heiti\zihao{-3}\raggedright\color{ZousiyuTitle},
-%        titleformat+=\heiti,
-%        aftername=.~,
-%        beforeskip=0pt,
-%        afterskip=0pt,
-%        fixskip=true,
-%    },
-%    subsection={%
-%        format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
-%        titleformat+=\heiti,
-%        aftername=.~,
-%        beforeskip=0pt,
-%        afterskip=0pt,
-%        fixskip=true,
-%    },
-%    subsubsection={%
-%        format=\heiti\zihao{-4}\raggedright\color{ZousiyuTitle},
-%        titleformat+=\heiti,
-%        aftername=.~,
-%        beforeskip=0pt,
-%        afterskip=0pt,
-%        fixskip=true,
-%    }
-%}
+\setcounter{secnumdepth}{2}%设置标题计数器深度
+\colorlet{title}{blue!40!black}
+\ctexset{%
+    chapter={%
+        format+=\zihao{2}\color{title},
+        beforeskip=20pt plus 2pt minus 2pt,
+        afterskip=20pt plus 2pt minus 2pt,
+        %fixskip=true,
+    },
+    section={%
+        format=\heiti\zihao{-3}\color{title},
+        aftername=\quad,
+        beforeskip=5pt plus 1pt minus 1pt,
+        afterskip=5pt plus 1pt minus 1pt,
+    },
+    subsection={%
+        format=\heiti\zihao{-4}\color{title},
+        aftername=\quad,
+        beforeskip=5pt plus 1pt minus 1pt,
+        afterskip=5pt plus 1pt minus 1pt,
+    },
+    subsubsection={%
+        format=\heiti\zihao{-4}\color{title},
+        beforeskip=5pt plus 1pt minus 1pt,
+        afterskip=5pt plus 1pt minus 1pt,
+    }
+}
 
 %=================================目录===============================
 \setcounter{tocdepth}{2}%目录深度
-\renewcommand{\contentsname}{目录}
-
-%目录的7个格式调整
 \titlecontents{chapter}%
     [0pt]%左边距
     {\bfseries\heiti}%格式调整
@@ -360,9 +269,6 @@
     }
 \lstnewenvironment{python}[1]{\lstset{style=python}}{}
 
-%注意环境
-\newcommand{\note}[2][注意]{\textbf{#1：}\textit{#2}}
-
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}
 {%
@@ -381,6 +287,8 @@
     breakindent=0pt,%换行后缩进为0
 }
 
+%===============一些盒子===========================
+\usepackage{tcolorbox}%盒子宏包
 \tcbuselibrary{listings,skins,breakable,xparse}
 \newtcblisting{codeshow}{%
     breakable,
@@ -428,6 +336,7 @@
     right=-1pt,
     boxrule=0pt,%边框线
 }{#1}
+%===========================================
 
 %利用tikz画一组带圈数字
 \newcommand{\circled}[2][]{\tikz[baseline=(char.base)]
@@ -449,7 +358,7 @@
 \usepackage{nameref}
 % 同时引用标签和标题
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1} \nameref*{#1}}}
-\usepackage{lastpage}% 页引用
+\usepackage{lastpage}% 页引用，提供最后一页的页码
 
 \usepackage{hyperref}
 \hypersetup{%
@@ -476,4 +385,3 @@
 }
 
 \urlstyle{rm}%更改链接字体为罗马字体，hyperref宏包调用了url宏包，所以要这样设置
-\usepackage[hypcap=true,hypcapspace=2cm]{caption}%修复交叉引用跳转位置不准的问题

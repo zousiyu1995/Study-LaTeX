@@ -84,8 +84,10 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
 \subsection*{长度命令}
 下面是一些常用的长度命令。
 
-\begin{longtable}{ll}
-        \caption{一些常用的产生水平间距的命令}\\
+\begin{table}[!htbp]
+    \centering
+    \caption{一些常用的产生水平间距的命令}
+    \begin{tabular}{ll}
         \toprule
         命令 & 作用\\
         \midrule
@@ -100,12 +102,15 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
         \verb|\enskip| & 不可换行\\
         \verb|\enspace| & 不可换行\\
         \bottomrule
-\end{longtable}
+    \end{tabular}
+\end{table}
 
 \note{和水平间距的情况不同，垂直间距需要加换行才会有效果。}
 
-\begin{longtable}{ll}
-    \caption{一些常用的产生垂直空白的命令}\\
+\begin{table}[!htbp]
+    \centering
+    \caption{一些常用的产生垂直空白的命令}
+    \begin{tabular}{ll}
     \toprule
     命令 & 作用\\
     \midrule
@@ -117,9 +122,11 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \verb|\vfill| & 插入指定高度的垂直空白\\
     \verb|\vphantom{text}| & 幻影命令，产生的空白等于text的高度，和text的长度无关的\\
     \bottomrule
-\end{longtable}
+    \end{tabular}
+\end{table}
 
 \subsection{正确处理单词间距}
+
 英文排版时\TeX{}通常默认句号\code{.}表示一句话的结束，\textbf{因此\TeX{}在处理句号时会留出稍宽一点的水平间距}。但是有些情况下，句号并不代表句子的结尾，比如「i.e. a word」和「e.g. a word」。按照\TeX{}默认规则，排版出的宽度会比正常句中单词之间的间隔稍大一些，因此我们需要使用使用\code{\}，即一个反斜杠+空格，来消除这个过大的间距：\code{i.e.\ a word}以及\code{e.g.\ a word}。仔细观察下面例子的排版效果。
 
 \begin{codeshow}
@@ -272,7 +279,7 @@ $t_{\text{高温}}$
 \#，\$，\%，\&，\{，\}，\_，\^{}，\~{}，\textless，\textgreater，\textbar，\textbackslash
 \end{codeshow}
 
-\bz{英文引号的标准输入法}
+\bz{英文引号}
 
 英文的单引号并不是两个'符号，双引号也并不是两个''组成的。英文下的引号嵌套需要借助\lstinline{\thinspace}命令分隔。另外，双引号的右半边用"和''的效果是一样的。同样，还可以使用Unicode字符来输入引号，输入方法麻烦，但是更加标准。
 

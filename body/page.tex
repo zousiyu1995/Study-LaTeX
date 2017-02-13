@@ -26,24 +26,77 @@
 \section{标题}
 
 \section{页眉页脚}
-一般来说，设置页眉页脚需要调用使用比较广泛的\emph{fancyhdr}宏包。我习惯使用如下代码先清空默认定义，然后自己重新定义。页眉页脚线的粗细也可以重新定义。
+\subsection{版式}
+\LaTeX{}系统包含如下几种常用的页面样式：
+
+\begin{description}
+    \item[empty] 无页眉页脚。
+    \item[plain] 无页眉，页脚有居中的页码，report和article文类默认版式。
+    \item[headings] 偶数页页眉左端是页码，右端是章标题；奇数页页眉左端是节标题，右端是页码；章标题页的板式为plain，book文类默认版式。
+    \item[myheadings] 自定义的页眉页脚样式，\textbf{不推荐，我们还是用宏包比较方便}。
+\end{description}
+
+一般使用系统命令\lstinline|\pagestyle{code}|设置板式。写在导言区会设置全局版式，写在正文区会设置当前页及后续页面的版式，\textbf{推荐写在导言区}。在正文中设置当前页版式一般用\lstinline|\thispagestyle{code}|，该命令不影响后续页面版式。例如，通常使用\lstinline|\thispagestyle{empty}|清空封面页眉页脚。
+
+系统默认的页码计数形式有\lstinline|alph,Alph,arabic,roman,Roman|，使用\lstinline|\pagenumbering{numstyle}|设置页码样式，都能顾名思义。一般而言，论文封面之后——摘要、目录等页码用大写罗马数字，正文及参考文献使用阿拉伯数字。如果需要在某一页重置页码计数器，可在该页源文件处使用命令\lstinline|\setcounter{page}{num}|重置计数器，page是系统定义的页码计数器，num按意愿填写。
+
+另外，book文类提供三条分区命令，\textbf{分区命令之后的区域}分别为序、文、跋。
+
+\begin{latex}
+\frontmatter
+% 序
+\mainmatter
+% 文
+\backmatter
+% 跋
+\end{latex}
+
+\subsection{fancyhdr宏包}
+一般来说，设置页眉页脚比较广泛的宏包是\pkg{fancyhdr}。该宏包定义了一个额外的版式——fancy。对单页文档来说，其将页眉页脚分为了左中右三个部分，分布用\lstinline|\[lcr]head|和\lstinline|\[lcr]foot|控制。修改版式之前一般习惯性清空原有版式，\textbf{清空版式只需要将命令的参数空置即可}。
 
 \begin{latex}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{}%清空当前设置
-    %单页文档
-    \lhead{}%l，r，c，左中右
-    \cfoot{}
-    %双页文档
-    \fancyhead[RO,LE]{}%E，O，左、右页
-    \fancyfoot[LE,RO]{\thepage}
-\renewcommand{\headrulewidth}{0.4 pt}
-\renewcommand{\footrulewidth}{0.4 pt}
+\fancyhf{}%清空页眉页脚
+    \lhead{}
+    \chead{}
+    \rhead{\bfseries zousiyu}
+    \lfoot{Leftfoot}
+    \cfoot{\thepage}
+    \rfoot{Rightfoot}
 \end{latex}
 
+对双页文档来说，使用奇数页、偶数页、页眉、页脚、左、中、右组合将页面分为12个区域进行细致的控制，一般采用\lstinline|\fancy[head,foot,hf]|三条命令进行设置，例如：
 
-我们可以将章节标题和序号插入到页眉或者页脚中去，其格式与正文中章节标题的定义一样。如果需要更改，要重新定义。例如，可以使用如下代码重新定义页眉内的章标题样式，用在在本书中，这将会使页眉的“第X章 版式”更改为“X 版式”。 
+\begin{latex}
+\fancyhead[LE,RO]{\slshape\rightmark}
+\fancyhead[LO,RE]{\slshape\leftmark}
+\fancyfoot[C]{\thepage}
+\end{latex}
+
+\pkg{fancyhdr}宏包常用命令如\autoref{fancyhdr}~所示：
+
+\begin{table}
+    \caption{fancyhdr宏包常用命令}
+    \label{fancyhdr}
+\begin{tabular}{ll}
+    \toprule
+    命令 & 作用\\
+    \midrule
+    \lstinline|\fancyhead[position]{header}| & 设置页眉版式\\
+    \lstinline|\fancyfoot[position]{footer}| & 设置页脚版式\\
+    \lstinline|\fancyhf[position]{header/footer}| & 可同时设置页眉页脚，使用H、F指定页眉还是页脚\\
+    E & 偶数页，左页\\
+    O & 奇数页，右页\\
+    L、C、R & 顾名思义，左、中、右\\
+    H、F & 页眉、页脚\\
+    \lstinline|\rightmark| & 较低级别的标题，section，即\rightmark \\
+    \lstinline|\leftmark| & 较高级别的信息，chapter，即\leftmark \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+我们可以将章节标题和序号插入到页眉或者页脚中去，其格式与正文中章节标题的定义一样。如果需要更改，要重新定义。例如，可以使用如下代码重新定义页眉内的章标题样式，用在在本书中，这将会使页眉的“第X章 版式”更改为“X 版式”。
 
 具体更改页眉页脚区域章节显示样式的代码如下。
 
