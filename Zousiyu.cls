@@ -116,10 +116,16 @@
 \usepackage{fancyhdr}%页眉页脚宏包
 \pagestyle{fancy}
     \fancyhead{}
-        \fancyhead[LO,RE]{\bfseries\itshape\thepage}
+        \fancyhead[LO,RE]{\bfseries\itshape\thepage/\pageref{LastPage}}
         \fancyhead[EC]{\slshape\leftmark}
         \fancyhead[OC]{\slshape\rightmark}
     \fancyfoot{}
+% 章标题所在页专用版式
+\fancypagestyle{chapterpage}{%
+    \chead{\color{title}\slshape\leftmark}
+    \lhead{\color{title}\bfseries\itshape\thepage/\pageref{LastPage}}
+    \rhead{\color{title}\sffamily\LaTeXe{}学习笔记}
+}
 
 % 边注
 \colorlet{marginpar}{purple}%
@@ -149,9 +155,9 @@
 \ctexset{%
     chapter={%
         format+=\zihao{2}\color{title},
-        beforeskip=20pt plus 2pt minus 2pt,
-        afterskip=20pt plus 2pt minus 2pt,
-        %fixskip=true,
+        beforeskip=2pt plus 1pt minus 1pt,
+        afterskip=10pt plus 2pt minus 2pt,
+        fixskip=true,
     },
     section={%
         format=\heiti\zihao{-3}\color{title},

@@ -1,4 +1,5 @@
-{\let\clearpage\relax \chapter{\LaTeX 基础}}
+\chapter{\LaTeX 基础}
+\thispagestyle{chapterpage}
 
 \section{\LaTeX 书写环境}
 
@@ -45,6 +46,39 @@ clear脚本用来清理编译时产生的辅助文件，视情况添加后缀。
 @echo off
 del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
 \end{latex}
+
+\section{命令}
+\subsection{自定义/修改命令}
+命令使用\lstinline|\cmd{参数1}{参数2}|来调用。
+
+\begin{description}
+    \item[cmd] 不能重名，必须复合命名规则。
+    \item[args] 参数数量，$ 0\sim9 $，默认为$ 0 $。
+    \item[default] 设定第一个参数的默认值，同时表示该参数是\textit{可选参数}，新命令中最多只能有一个可选参数。
+    \item[def] 定义，涉及到参数时使用\lstinline|#n|表示第n个参数。
+\end{description}
+
+带星号的命令称为\textit{短命令}，其中参数不能有换段或空行，否则编译报错，但是短命令有利于排错。
+
+\begin{latex}
+% 定义新命令
+\newcommand{cmd}[args][default]{def}
+\newcommand*{cmd}[args][default]{def}
+% 修改已有命令
+\renewcommand{cmd}[args][default]{def}
+\renewcommand*{cmd}[args][default]{def}
+\end{latex}
+
+\subsection{命令的嵌套}
+可以在新命令的定义中写入已有命令来完成排版要求，在定义中使用\lstinline|#n|来指定参数的传递。同样，定义命令也可以嵌套，外层参数用\lstinline|#n|，内层参数用\lstinline|##n|，依次类推，例如：
+
+\begin{latex}
+\newcommand{\A}{\renewcommand{\B}{def}}
+\end{latex}
+
+\subsection{数学命令的处理}
+在命令中如果包含数学命令，那么这条命令只能用于文本模式，不能用于数学模式（因为在数学模式中会被多加了一层\lstinline|$ $|导致报错）。所以，在定义数学命令时，使用\lstinline|\ensuremath{code}|来定义，这样的命令在数学模式中时\lstinline|code|本身，在文本模式中时\lstinline|$ code $|。
+
 
 \section{长度与间距}
 \subsection*{通用长度单位}

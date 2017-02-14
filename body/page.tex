@@ -1,4 +1,6 @@
-{\let\clearpage\relax \chapter{版面和格式}}
+\newpage
+\chapter{版面和格式}
+\thispagestyle{chapterpage}
 
 \section{文本格式}
 
@@ -28,7 +30,7 @@
 \section{页眉页脚}
 \subsection{版式}
 \LaTeX{}系统包含如下几种常用的页面样式：
-
+\label{plain}
 \begin{description}
     \item[empty] 无页眉页脚。
     \item[plain] 无页眉，页脚有居中的页码，report和article文类默认版式。
@@ -74,11 +76,11 @@
 \fancyfoot[C]{\thepage}
 \end{latex}
 
-\pkg{fancyhdr}宏包常用命令如\autoref{fancyhdr}~所示：
+\pkg{fancyhdr}宏包常用命令如\autoref{fancyhdr-tabular}~所示：
 
 \begin{table}
     \caption{fancyhdr宏包常用命令}
-    \label{fancyhdr}
+    \label{fancyhdr-tabular}
 \begin{tabular}{ll}
     \toprule
     命令 & 作用\\
@@ -90,8 +92,8 @@
     O & 奇数页，右页\\
     L、C、R & 顾名思义，左、中、右\\
     H、F & 页眉、页脚\\
-    \lstinline|\rightmark| & 较低级别的标题，section，即\rightmark \\
-    \lstinline|\leftmark| & 较高级别的信息，chapter，即\leftmark \\
+    \lstinline|\rightmark| & 较低级别的标题，section\\
+    \lstinline|\leftmark| & 较高级别的信息，chapter\\
     \bottomrule
 \end{tabular}
 \end{table}
@@ -112,6 +114,17 @@
 \begin{latex}
 \lhead{\leftmark}%左页眉显示章
 \rhead{\rightmark}%右页眉显示节
+\end{latex}
+
+另外，还可以使用\lstinline|\fancypagestyle{code}{style}|更改系统自带的4种版式或者自定义自己的版式。例如，我们专门给\textbf{章标题}所在页定义一个版式\footnote{章标题所在页默认版式为plain，见\autopageref{plain}}，然后在各章标题页手动指定该页版式为\lstinline|chapterpage|，使之与其他页面版式相似。效果见各章章标题所在页。
+
+\begin{latex}
+% 章标题所在页专用版式
+\fancypagestyle{chapterpage}{%
+    \chead{\color{title}\slshape\leftmark}
+    \lhead{\color{title}\bfseries\itshape\thepage/\pageref{LastPage}}
+    \rhead{\color{title}\sffamily\LaTeXe{}学习笔记}
+}
 \end{latex}
 
 \section{颜色}

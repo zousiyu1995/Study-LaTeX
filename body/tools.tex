@@ -1,5 +1,6 @@
 \newpage
-{\let\clearpage\relax \chapter{正文工具}}
+\chapter{正文工具}
+\thispagestyle{chapterpage}
 
 \section{目录}
 
@@ -230,7 +231,7 @@ Numbers aligned with the text:  \circled{1} \circled{2} \circled{3} end.
 
 \section{代码环境}
 
-首先载入\emph{listings}宏包，定义基础代码环境，我取名为\emph{CodeBase}，这个基础代码环境定义的样式能被后续的代码环境调用，免去重复设置。也正是因为基础代码环境的通用性，所以这里只适合定义在所有代码环境中都适用的样式，如字体、各种边距、换行和标识等。
+首先载入\pkg{listings}宏包，定义基础代码环境，我取名为CodeBase，这个基础代码环境定义的样式能被后续的代码环境调用，免去重复设置。也正是因为基础代码环境的通用性，所以这里只适合定义在所有代码环境中都适用的样式，如字体、各种边距、换行和标识等。
 
 \begin{latex}
 \lstdefinestyle{CodeBase}
@@ -265,7 +266,7 @@ Numbers aligned with the text:  \circled{1} \circled{2} \circled{3} end.
 }
 \end{latex}
 
-接下来，我们就可以用这个基本样式来定义一个专用于\LaTeX 代码书写的样式和相应的环境。
+接下来，我们就可以用这个基本样式来定义一个专用于\LaTeX{}代码书写的样式和相应的环境。
 
 \begin{latex}
 %LaTeX代码环境用
@@ -281,9 +282,9 @@ Numbers aligned with the text:  \circled{1} \circled{2} \circled{3} end.
 \lstnewenvironment{latex}[1]{\lstset{style=LaTeX}}{}
 \end{latex}
 
-最后，直接在正文中使用新定义的环境\emph{latex}框住所需要展示的代码即可。
+最后，直接在正文中使用新定义的环境latex框住所需要展示的代码即可。
 
-上面定义了一个\LaTeX 专用的代码环境，实际使用肯定不只\LaTeX 代码需要展示，还有诸如\emph{Python}，\emph{MATLAB}等大量其他代码需要展示。这里我们在定义一个用于展示\emph{MATLAB}代码的环境，同样也是从基础样式\emph{CodeBase}进行衍生，只需要几条简单的命令即可。
+上面定义了一个\LaTeX{}专用的代码环境，实际使用肯定不只\LaTeX{}代码需要展示，还有诸如Python，MATLAB等大量其他代码需要展示。这里我们在定义一个用于展示MATLAB代码的环境，同样也是从基础样式CodeBase进行衍生，只需要几条简单的命令即可。
 
 \begin{latex}
 %matlab代码展示
@@ -305,7 +306,7 @@ subplot(1,2,1);mesh(X);title('X');
 subplot(1,2,2);mesh(Y);title('Y');
 \end{Matlab}
 
-从CodeBase定义的新样式X，其设置可以覆盖\emph{CodeBase}中的设置，如下面这段\emph{Python}代码高亮测试中，我们在代码中定义了一句\verb|keywordstyle=\slshape\color[RGB]{0,0,255},|，让Python代码中的关键词变为斜体，其他代码环境不受影响。
+从CodeBase定义的新样式X，其设置可以覆盖CodeBase中的设置，如下面这段Python代码高亮测试中，我们在代码中定义了一句\lstinline|keywordstyle=\slshape\color[RGB]{0,0,255}|，让Python代码中的关键词变为斜体，其他代码环境不受影响。
 
 \begin{latex}
 \lstdefinestyle{python}{
