@@ -79,6 +79,30 @@ del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
 \subsection{数学命令的处理}
 在命令中如果包含数学命令，那么这条命令只能用于文本模式，不能用于数学模式（因为在数学模式中会被多加了一层\lstinline|$ $|导致报错）。所以，在定义数学命令时，使用\lstinline|\ensuremath{code}|来定义，这样的命令在数学模式中时\lstinline|code|本身，在文本模式中时\lstinline|$ code $|。
 
+\autoref{base-basecommand}~所示的是一些\LaTeX{}定义的基本命令。
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+        \toprule
+        命令 & 作用\\
+        \midrule
+        \verb|\the| & 用于显示\textbf{数据命令}的值\\
+        \bottomrule
+    \end{tabular}
+    \caption{一些\LaTeX{}的基本命令}
+    \label{base-basecommand}
+\end{table}
+
+\section{符号}
+
+\LaTeX{}中的大多数符号的输入方法可以参见该文档——\href{https://www.ctan.org/pkg/comprehensive}{The Comprehensive \LaTeX Symbol List – Symbols accessible from \LaTeX}。
+
+\begin{itemize}[nosep,leftmargin=2em]
+    \item 单位符号，\href{https://www.ctan.org/pkg/siunitx}{siunitx}
+    \item 化学符号，\href{https://www.ctan.org/pkg/mhchem}{mhchem}、\href{https://www.ctan.org/pkg/chemfig}{chemfig}、\href{https://www.ctan.org/author/niederberger}{Clemens Niederbergerz}
+    \item \TeX{}家族符号，\href{https://www.ctan.org/pkg/hologo}{hologo}
+\end{itemize}
 
 \section{长度与间距}
 \subsection*{通用长度单位}
@@ -157,6 +181,44 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \verb|\vphantom{text}| & 幻影命令，产生的空白等于text的高度，和text的长度无关的\\
     \bottomrule
     \end{tabular}
+\end{table}
+
+\begin{table}[h]
+    \newcommand\rlArrow[1]{\ensuremath{\color{red}{abc \rightarrow} #1 \color{blue}{\leftarrow abc}}}
+    \centering
+    \begin{tabular}{lll}
+        \toprule[2pt]
+        名称 & 命令 & 例子\\
+        \midrule
+        default space & & \rlArrow{}\\
+        thin space & \verb|\,| & \rlArrow{\,}\\
+        thin neg. space & \verb|\!| & \rlArrow{\!}\\
+        medium space & \verb|\:| & \rlArrow{\:}\\
+        large space & \verb|\;| & \rlArrow{\;}\\
+        0.5em space & \verb|\enspace| & \rlArrow{\enspace}\\
+        1em space & \verb|\quad| & \rlArrow{\quad}\\
+        2em space & \verb|\qquad| & \rlArrow{\qquad}\\
+        custom space & \verb|\hspace{3em}| & \rlArrow{\hspace{3em}}\\
+        fill empty space & \verb|\hfill| & $\color{red}{abc \rightarrow} \color{black}\cdots$\\
+        \bottomrule
+    \end{tabular}
+    \caption{数学模式下常用的空白间距\protect\footnotemark}
+\end{table}
+\footnotetext{来源：\url{http://texblog.org/2014/04/09/whitespace-in-math-mode/}}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+        \toprule
+        全称 & 简写 \\
+        \midrule
+        \verb|\thinspace| & \verb|\,| \\
+        \verb|\negthinspace| & \verb|\!| \\
+        \verb|\medspace| & \verb|\:|  \\
+        \verb|\thickspace| & \verb|\;|\\
+        \bottomrule
+    \end{tabular}
+    \caption{部分水平空白间距全称和简写对照}
 \end{table}
 
 \subsection{正确处理单词间距}

@@ -87,7 +87,7 @@
     labelsep=1em,
     itemindent=0mm,
 }
-%颜色定义
+
 %表格颜色
 \definecolor{oddrows}{RGB}{243,246,246}%奇数行
 \definecolor{evenrows}{RGB}{228,228,228}%偶数行
@@ -189,21 +189,24 @@
     %[]%目录之后的格式
 
 %===========================图表标题样式============================
-\DeclareCaptionFont{heiti}{\heiti}
 \captionsetup[figure]{%
-    labelsep=space,
+    labelsep=quad,
     justification=centering,
-    font=heiti,
-    aboveskip=1mm,
-    belowskip=1mm
-}%空格分隔符，居中，黑体
+    labelfont=it,
+    textfont={bf,color=title},
+}%
 \captionsetup[table]{%
-    labelsep=space,
+    labelsep=quad,
     justification=centering,
-    font=heiti,
-    aboveskip=1mm,
-    belowskip=1mm
-}%空格分隔符，居中，黑体
+    labelfont=it,
+    textfont={bf,color=title},
+}%
+%图标浮动体的一些间距
+%\setlength{\abovecaptionskip}{0pt}%标题与浮动体之间的距离
+%\setlength{\belowcaptionskip}{0pt}
+%\setlength{\textfloatsep}{0pt}
+%\setlength{\intextsep}{0pt}
+%\setlength{\floatsep}{5pt}
 
 %============================代码环境===============================
 
@@ -278,7 +281,7 @@
 %===============构建一个左边显示代码，右边显示编译结果的代码展示环境====================
 \lstdefinestyle{codeshow}
 {%
-    basicstyle=\ttfamily,%\ttfamily等宽字体
+    basicstyle=\ttfamily\footnotesize,%\ttfamily等宽字体
     aboveskip=0pt,%上边距
     belowskip=0pt,%下边距
     lineskip=0pt,
