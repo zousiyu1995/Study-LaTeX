@@ -10,5 +10,8 @@ biber main
 ::pause
 xelatex.exe --synctex=-1 main.tex
 
+::pause
+xelatex.exe --synctex=-1 main.tex
+
 :: clear aux files
 call clear

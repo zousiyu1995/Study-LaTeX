@@ -6,7 +6,7 @@
 
 \section{\LaTeX{}实现类似中括号的方框}
 
-\note[来源]{\href{https://www.zhihu.com/question/55702781}{\LaTeX{}如何实现类似于中括号的方框？-知乎}}
+\note[方案1]{\href{https://www.zhihu.com/question/55702781}{\LaTeX{}如何实现类似于中括号的方框？-知乎}}
 
 \begin{latex}
 \documentclass{article}
@@ -41,13 +41,70 @@ frame code={%
 \end{document}
 \end{latex}
 
-效果如\autoref{fig:plagiarism-braketbox}~所示：
+效果如\autoref{fig:plagiarism-braketbox1}~所示：
 
 \begin{figure}[tbph!]
     \centering
-    \includegraphics[width=0.8\linewidth]{plagiarism-braketbox}
+    \includegraphics[width=0.8\linewidth]{plagiarism-braketbox1}
     \caption{\LaTeX{}实现类似中括号的方框}
-    \label{fig:plagiarism-braketbox}
+    \label{fig:plagiarism-braketbox1}
+\end{figure}
+
+\note[方案2]{\href{http://www.latexstudio.net/archives/9522}{如何实现类似于中括号的方框提示框-\LaTeX{}工作室}}
+
+\begin{latex}
+\documentclass[UTF8, openany,twoside]{ctexbook}
+
+\usepackage[tikz]{bclogo,rotating}
+\usepackage{tikz}
+\usepackage{mdframed}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usetikzlibrary{calc}
+\DeclareGraphicsRule{.mps}{eps}{.mps}{}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\newenvironment{attention}[1]
+{\par\medskip\noindent
+    \begin{tikzpicture}
+    \node[inner sep = 0pt] (box) \bgroup%
+    \begin{minipage}[t]{.99\textwidth}%
+    \begin{minipage}{.3\textwidth}
+    \centering
+    \tikz[scale = 5]\node[scale = 3, rotate = 30]{\bclampe};
+    \end{minipage}%
+    \begin{minipage}{.65\textwidth}
+    \textbf{#1}\par\smallskip
+    \surroundwithmdframed
+    [topline=false, bottomline=false, leftline=false, rightline=false,
+    backgroundcolor=lbcolor]
+    {minted}}% former part
+{%
+    \end{minipage}\hfill
+    \end{minipage}%
+    \egroup;
+    \draw[black,line width=3pt]
+    ( $ (box.north east) + (-5pt,3pt) $ ) -- ( $ (box.north east) + (0,3pt) $ ) -- ( $ (box.south east) + (0,-3pt) $ ) -- + (-5pt,0);
+    \draw[black,line width=3pt]
+    ( $ (box.north west) + (5pt,3pt) $ ) -- ( $ (box.north west) + (0,3pt) $ ) -- ( $ (box.south west) + (0,-3pt) $ ) -- + (5pt,0);
+    \end{tikzpicture}
+    \par\medskip}
+
+\begin{document}
+    \begin{attention}{Attention}
+        如何用 LaTeX 实现这种方框, 要求方框的高度能够随着中间内容的多少自动调整.
+    \end{attention}
+\end{document}
+\end{latex}
+
+效果如\autoref{fig:plagiarism-braketbox2}~所示：
+
+\begin{figure}[tbph!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{plagiarism-braketbox2}
+    \caption{\LaTeX{}实现类似中括号的方框}
+    \label{fig:plagiarism-braketbox2}
 \end{figure}
 
 \section{脚注的带圈数字解决方案}

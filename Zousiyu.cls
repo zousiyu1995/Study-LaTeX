@@ -73,7 +73,7 @@
 
 %新命令
 \newcommand{\pkg}[1]{\textsf{\itshape #1}}
-\newcommand{\note}[2][注意]{\textbf{#1：}\textit{#2}}
+\newcommand{\note}[2][注意]{\noindent\textbf{#1：}\textit{#2}}
 
 %列表环境定义
 \setlist[description]{%
