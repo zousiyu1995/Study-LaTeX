@@ -36,6 +36,7 @@
 \usepackage{mhchem}%化学式宏包
 \usepackage{chemfig}%化学式宏包
 \usepackage{amsmath,amssymb,amsfonts}%数学宏包
+\usepackage{unicode-math}
 \usepackage{siunitx}%单位宏包
 \usepackage{mathtools}%数学宏包
 \usepackage{xfrac}%斜线分式
@@ -64,11 +65,14 @@
 
 %===========================字体设置=================================
 \setmainfont{TeX Gyre Pagella}%西文主字体,Times New Roman
+\setmathfont[math-style=ISO,bold-style=ISO,vargreek-shape=TeX]{TeX Gyre Pagella Math}
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}%中文主字体
 \setmonofont{DejaVu Sans Mono}%英文等宽Source Code Pro
 \setCJKmonofont{FangSong}%中文等宽，仿宋
-\setsansfont{微软雅黑}%无衬线字体
+\usepackage{biolinum}%西文无衬线
+%\setsansfont{微软雅黑}%无衬线字体
 \setCJKsansfont{SimHei}
+
 \newfontfamily{\enheiti}{黑体}%适用于英文的黑体
 
 %新命令
@@ -86,6 +90,14 @@
     labelwidth=20mm,
     labelsep=1em,
     itemindent=0mm,
+}
+\setlist[enumerate]{%
+    noitemsep,
+    nosep,
+    leftmargin=0pt,
+    itemindent=*,
+    labelindent=\parindent,
+    listparindent=\parindent,
 }
 
 %表格颜色
@@ -217,7 +229,7 @@
 %是全局设置，少量定义，给行内代码展示用
 \lstset{%
     breaklines,
-    basicstyle=\sffamily\small,
+    basicstyle=\sffamily,
 }
 
 %提供一个代码环境的基本样式

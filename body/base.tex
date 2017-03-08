@@ -106,7 +106,7 @@ del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
 
 \section{长度与间距}
 \subsection*{通用长度单位}
-首先介绍一下\TeX 中几个通用的长度单位。其中ex、em是\textbf{相对长度单位}，其数值大小正比于字体尺寸，当字体尺寸改变，绝对长度会随之改变。其他单位是绝对长度单位。
+首先介绍一下\TeX{}中几个通用的长度单位。其中ex、em是\textbf{相对长度单位}，其数值大小正比于字体尺寸，当字体尺寸改变，绝对长度会随之改变。其他单位是绝对长度单位。
 
 \begin{table}[!htb]
     \centering
@@ -137,21 +137,28 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \item[弹性长度] 可根据排版长度有一定程度伸缩的长度，如：2mm plus 0.2mm minus 0.3mm，相当于工程标注：$ 2^{+0.2}_{-0.3}mm $。
 \end{description}
 
-可伸缩的弹性长度是\LaTeX 的重要排版理念之一。
+可伸缩的弹性长度是\LaTeX{}的重要排版理念之一，但是，弹性长度不能与数字相乘，否则弹性消失变为刚性长度0pt。
 
 \subsection*{长度命令}
-下面是一些常用的长度命令。
+\LaTeX{}的长度命令分为三种。
+
+\begin{enumerate}[label=(\arabic*)]
+    \item 长度数据命令，仅仅代表某一长度，可以赋值或作为其他命令中的长度\label{length-data}
+    \item 长度赋值命令，给\autoref{length-data}~的长度数据命令赋值。
+    \item 长度设置命令，生成一定高度或宽度的空白。
+\end{enumerate}
+
+常用的三类长度命令见《  \LaTeXe{}完全学习手册》\cite{胡伟}。
 
 \begin{table}[!htbp]
     \centering
-    \caption{一些常用的产生水平间距的命令}
+    \caption{长度设置命令——一些常用的产生水平间距的命令}
     \begin{tabular}{ll}
         \toprule
         命令 & 作用\\
         \midrule
         \verb|\quad| & 产生一段宽度为1em 的水平空白\\
         \verb|\qquad| & \verb|\quad|的两倍\\
-        \verb|\,| & 大约为\verb|\quad|的3/18\\
         \verb|\hspace{length}| & 产生指定宽度的\textbf{水平空白}\\
         \verb|\hspace*{length}| & 产生不可被忽略的空白\\
         \verb|\hfill| & 产生撑满整行的空白\\
@@ -167,7 +174,7 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
 
 \begin{table}[!htbp]
     \centering
-    \caption{一些常用的产生垂直空白的命令}
+    \caption{长度设置命令——一些常用的产生垂直空白的命令}
     \begin{tabular}{ll}
     \toprule
     命令 & 作用\\
@@ -183,9 +190,10 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[!h]
     \newcommand\rlArrow[1]{\ensuremath{\color{red}{abc \rightarrow} #1 \color{blue}{\leftarrow abc}}}
     \centering
+    \caption{数学模式下常用的空白间距\protect\footnotemark}
     \begin{tabular}{lll}
         \toprule[2pt]
         名称 & 命令 & 例子\\
@@ -202,7 +210,6 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
         fill empty space & \verb|\hfill| & $\color{red}{abc \rightarrow} \color{black}\cdots$\\
         \bottomrule
     \end{tabular}
-    \caption{数学模式下常用的空白间距\protect\footnotemark}
 \end{table}
 \footnotetext{来源：\url{http://texblog.org/2014/04/09/whitespace-in-math-mode/}}
 
@@ -220,6 +227,9 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \end{tabular}
     \caption{部分水平空白间距全称和简写对照}
 \end{table}
+
+\bz{stretch的应用}
+
 
 \subsection{正确处理单词间距}
 
