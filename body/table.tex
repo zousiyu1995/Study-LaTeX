@@ -262,6 +262,21 @@
 \end{tabular}
 \end{codeshow}
 
+\subsection{双线表格}
+该功能由\pkg{hhline}宏包提供，代码由汤勺\href{http://wenda.latexstudio.net/article/1012}{\LaTeX{}做双线表格-\LaTeX{}问答网}提供。
+
+\begin{codeshow}
+\begin{tabular}{r|r||r|r||r|r||r|r}\hline
+    $n$&$I_n$&$n$&$I_n$&$n$&$I_n$&$n$&$I_n$\\\hhline{--||--||--||--}
+    19&0.008\ 3&14&0.011\ 2&9&0.016\ 9&4&0.034\ 3\\
+    18&0.008\ 9&13&0.012\ 0&8&0.018\ 8&3&0.043\ 1\\
+    17&0.009\ 3&12&0.013\ 0&7&0.021\ 2&2&0.058\ 0\\
+    16&0.009\ 9&11&0.014\ 1&6&0.024\ 3&1&0.088\ 4\\
+    15&0.010\ 5&10&0.015\ 4&5&0.028\ 5&0&0.182\ 3\\\hline
+\end{tabular}
+\end{codeshow}
+
+
 \subsection{表格标题}
 
 表格标题命令默认只能在浮动体内使用，在导言中添加如下命令，便可以在浮动体外使用\verb|\figcaption|和\verb|\tabcaption|命令来为图标添加标题。为了防止标题和图表不在一页，我们也可以用\verb|minipage|环境把它们包起来。

@@ -22,31 +22,14 @@
 
 \section{边注}
 
-\LaTeX 本身提供边注命令：
+\LaTeX{}本身提供边注命令。
 
 \begin{latex}
 \marginpar[左边注]{右边注}
 \end{latex}
 
-边注测试\marginpar[这是一个边注]{这是边注啊}。
-
-调用\pkg{marginnote}宏包，新定义一个边注。使用\verb|\bz|调用，将会在与段落平齐的地方生成一个边注。例如：
-
-\bz{从这一行开始是用于重新定义边注的代码}
-
-\begin{latex}
-% 边注和索引，来自重庆大学LaTeX团队
-\renewcommand*{\marginfont}{\color{Note}\sffamily\heiti}
-\DeclareDocumentCommand{\bz}{s o m}{%
-    \IfBooleanTF {#1}
-    {%ture
-        \IfNoValueTF{#2}{\marginnote[#3]{#3}}{\marginnote[#2]{#3}}
-    }{%false
-    \IfNoValueTF{#2}{\marginnote[#3]{#3}}{\marginnote[#2]{#3}}
-    \index{#3}
-}%
-}
-\end{latex}
+\bz{marginnote宏包}
+调用\pkg{marginnote}宏包，以更好的控制边注格式。
 
 \section{参考文献}
 
@@ -117,6 +100,12 @@ bib参考文献数据格式如下所示，为分字段显示。各字段可以�
 \begin{latex}
 \ref{tools-equation}
 \ref{tools-tabular}
+\end{latex}
+
+但是我们发现，\pkg{hyperref}提供的自动引用的页引用格式不符合中文表达习惯，中文往往表达成「第20页」，而现在是「页20」。我们可以定义一条新命令\footnote{pageref这个命令只能用来获取页码，格式如20}，然后使用该命令引用标签直接得到符合中文表达习惯的交叉页引用，如\refpage{tools-ref}。
+
+\begin{latex}
+\newcommand*{\refpage}[1]{第~\pageref{#1}~页}
 \end{latex}
 
 如果想要引用标题，可以使用nameref宏包提供的\lstinline|\nameref{label}|命令。如~\nameref{tools-tabular}。
@@ -229,41 +218,39 @@ Numbers aligned with the text:  \circled{1} \circled{2} \circled{3} end.
 
 \section{附录}
 
-\section{代码环境}
+\section{listings}
+
+代码展示一般会选用\pkg{listings}或者\pkg{minted}宏包，这里我介绍前者的使用方法。\pkg{listings}提供三种代码摘录形式，行内代码、行间代码、读取文件。
+
+\begin{itemize}
+    \item 行内代码，\verb|\lstinline|
+    \item 行间代码，\verb|\begin{lstlisting}|
+    \item 读取文件，\verb|\lstinputlisting[]{listings.sty}|
+\end{itemize}
+
+宏包提供了几类定制选项。
+
+\begin{table}[h]
+    \begin{tabular}{ll}
+        \toprule
+        
+        \midrule
+        
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+    定制新的代码输出样式。
+
+    定制新的代码语言
+
+    定制新的代码输出环境
+
 
 首先载入\pkg{listings}宏包，定义基础代码环境，我取名为CodeBase，这个基础代码环境定义的样式能被后续的代码环境调用，免去重复设置。也正是因为基础代码环境的通用性，所以这里只适合定义在所有代码环境中都适用的样式，如字体、各种边距、换行和标识等。
 
 \begin{latex}
-\lstdefinestyle{CodeBase}
-{
-    basicstyle=\small\ttfamily,
-    frame=l,
-    aboveskip=0pt,%上边距
-    belowskip=0pt,%下边距
-    lineskip=0pt,
-    tabsize=4,%设置tab空格数
-    showtabs=false,%Tab
-    showspaces=false,%空格标识
-    showstringspaces=false,
-    numbers=left,
-    numbersep=5pt,%行号与代码距离
-    numberstyle=\small\ttfamily,
-    rulecolor=\color{cyan},
-    boxpos=c,
-    xleftmargin=1em,%左边距
-    xrightmargin=0pt,
-    breaklines=true,%自动换行
-    breakindent=0pt,%换行后缩进为0
-    extendedchars=false,%解决代码跨页时，章节标题，页眉等汉字不显示的问题
-    framesep=3pt,
-    rulesep=2pt,
-    framerule=1pt,
-    %代码颜色设置
-    backgroundcolor=\color{gray!5},
-    stringstyle=\color{green!40!black!100},
-    keywordstyle=\bfseries\color[RGB]{0,0,255},
-    commentstyle=\slshape\color{black!60},
-}
+
 \end{latex}
 
 接下来，我们就可以用这个基本样式来定义一个专用于\LaTeX{}代码书写的样式和相应的环境。
@@ -299,12 +286,12 @@ Numbers aligned with the text:  \circled{1} \circled{2} \circled{3} end.
 
 MATLAB代码高亮测试。
 
-\begin{Matlab}{}
+\begin{matlab}
 t=0:pi/10:2*pi;
 [X,Y,Z]=cylinder(4*cos(t));
 subplot(1,2,1);mesh(X);title('X');
 subplot(1,2,2);mesh(Y);title('Y');
-\end{Matlab}
+\end{matlab}
 
 从CodeBase定义的新样式X，其设置可以覆盖CodeBase中的设置，如下面这段Python代码高亮测试中，我们在代码中定义了一句\lstinline|keywordstyle=\slshape\color[RGB]{0,0,255}|，让Python代码中的关键词变为斜体，其他代码环境不受影响。
 

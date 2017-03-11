@@ -83,6 +83,8 @@ del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
 
 \begin{table}[h]
     \centering
+    \caption{一些\LaTeX{}的基本命令}
+    \label{base-basecommand}
     \begin{tabular}{ll}
         \toprule
         命令 & 作用\\
@@ -90,8 +92,6 @@ del /q *.aux *.bbl *.bcf *.blg *.listing *.log *.out *.xml *.toc
         \verb|\the| & 用于显示\textbf{数据命令}的值\\
         \bottomrule
     \end{tabular}
-    \caption{一些\LaTeX{}的基本命令}
-    \label{base-basecommand}
 \end{table}
 
 \section{符号}
@@ -190,7 +190,7 @@ fil、fill、filll这三个长度单位均表示任意长，伸展能力依次�
     \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[h]
     \newcommand\rlArrow[1]{\ensuremath{\color{red}{abc \rightarrow} #1 \color{blue}{\leftarrow abc}}}
     \centering
     \caption{数学模式下常用的空白间距\protect\footnotemark}
