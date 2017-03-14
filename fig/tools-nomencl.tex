@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{fontspec}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+\setmainfont{TeX Gyre Pagella}
+\setmathfont{TeX Gyre Pagella Math}
+\usepackage{geometry}
+    \geometry{%
+    margin=0.5cm,
+    papersize={10cm,8cm},
+}
+\usepackage{nomencl}
+    \makenomenclature
+\begin{document}
+
+\section*{Mass transfer}
+\begin{equation}
+\frac{\partial c_i}{\partial t} + \nabla \cdot \left( -D_i \nabla c_i \right) + \bm{\mathrm{u}} \cdot \nabla c_i = R_i
+\end{equation}
+
+\nomenclature{$c_i$}{is the concentration of the species}%
+\nomenclature{$D_i$}{denotes the diffusion coefficient}%
+\nomenclature{$R_i$}{is a reaction rate expression for the species}%
+\nomenclature{$\bm{\mathrm{u}}$}{is the velocity vector}%
+\printnomenclature
+
+\end{document}

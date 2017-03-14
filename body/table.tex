@@ -24,6 +24,43 @@
 
 !表示忽略内部参数（比如内部参数对一页中浮动体数量的限制）；h当前位置(here)，t顶部(top)，b底部(bottom)，p单独成页(p)。\LaTeX{}的默认参数是tbp。另外需要注意的是label命令写在caption命令下方，否则交叉引用会出现问题。
 
+希望浮动体「乖乖待在插入的位置」这种想法是不好的，因为禁止浮动效果，可能导致页面出现大片的空白。当然，在一些极端的情况，也会出现\LaTeX{}无法很好地处理浮动体放置位置的情况。这时候需要我们做一些辅助工作，帮助和限制\LaTeX{}的浮动算法。
+
+如果希望避免浮动体跨过 \lstinline|\section|等章节标题，可以使用\pkg{placeins}宏包。它能在章节标题前，强制输出上一章节中尚未输出的浮动体\footnote{\href{http://liam0205.me/2017/03/11/floats-in-LaTeX-basic/}{\LaTeX{}中的浮动体：基础篇|始终}}。
+
+\begin{latex}
+\usepackage[section]{placeins}
+\end{latex}
+
+如果这仍然不能让你满意，你一定要彻底禁止某个浮动体的浮动效果，可以使用\pkg{float}宏包提供的H位置选项。
+
+\begin{latex}
+\usepackage{float}
+% ...
+\begin{figure}[H]
+    % ...
+\begin{table}[H]
+    % ...
+\end{latex}
+
+\LaTeX{}浮动体与周围文本的默认间距总是让人不爽，这里罗列几个重要的间距，我们可以使用\lstinline|\setlength{code}{len}|语句重新定义这些间距。当你调用\pkg{caption}宏包后，还能使用相应命令修改标题与浮动体的间距。
+
+\begin{table}
+    \centering
+    \caption{\LaTeX{}浮动体与正文的间距}
+    \begin{tabular}{ll}
+    \toprule
+    命令 & 含义\\
+    \midrule
+    \verb|\textfloatsep| & tb模式与上下文之间的距离\\
+    \verb|\intextsep| & h模式与上下文之间的距离\\
+    \verb|\floatsep| & 两个相邻浮动体之间的距离\\
+    \verb|\abovecaptionskip| & 标题与浮动体之间的距离\\
+    \verb|\belowcaptionskip| & 标题与浮动体之间的距离\\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
 \section{array宏包}
 
 数组宏包\emph{array}改进和扩展了\LaTeX 的\emph{tabular、tabular*、array}环境的功能，增强了\emph{列格式}的功能和一些其他表格参数的调整功能。
@@ -292,7 +329,7 @@
 
 \end{latex}
 
-\begin{table}[!ht]
+\begin{table}[h]
 \centering
 \caption{一张课表}
 \begin{tabular}{|c|c|c|}
@@ -306,9 +343,9 @@
 \end{tabular}
 \end{table}
 
-\begin{figure}[!ht]
+\begin{figure}[h]
     \begin{center}
-        \includegraphics[width=15cm]{tabular-caption}
+        \includegraphics[width=8cm]{tabular-caption}
         \caption{一副图像}
     \end{center}
 \end{figure}

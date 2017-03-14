@@ -44,6 +44,7 @@
     \renewcommand{\marginfont}{\sffamily\color{purple}\zihao{5}}
     \newcommand{\bz}[1]{\marginnote{#1}\index{#1}}
 \usepackage[perpage]{footmisc}%脚注
+\usepackage{glossaries}%术语表
 \usepackage{enumitem}%列表
     \setlist[description]{%
         font=\bfseries\color{blue!40!black},
@@ -106,7 +107,7 @@
     \addbibresource{Zousiyu.bib}
 %===========================字体设置=================================
 \setmainfont{TeX Gyre Pagella}%西文主字体,Times New Roman
-\setmathfont[math-style=ISO,bold-style=ISO,vargreek-shape=TeX]{TeX Gyre Pagella Math}
+\setmathfont[math-style=ISO,bold-style=ISO,vargreek-shape=TeX]{TeX Gyre Pagella Math}%需要unicode-math包
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}%中文主字体
 \setmonofont{DejaVu Sans Mono}%英文等宽Source Code Pro
 \setCJKmonofont{FangSong}%中文等宽，仿宋
@@ -114,11 +115,17 @@
 %\setsansfont{微软雅黑}%无衬线字体
 \setCJKsansfont{SimHei}
 
-\newfontfamily{\enheiti}{黑体}%适用于英文的黑体
+\setCJKfamilyfont{楷书}{KaiTi}
+\setCJKfamilyfont{黑体}{SimHei}
+\newfontfamily\urlfont{PT Sans Narrow}
 
 %新命令
 \newcommand{\pkg}[1]{\textsf{\itshape #1}}
-\newcommand{\note}[2][注意]{\noindent\textbf{#1：}\textit{#2}}
+\newcommand{\cmd}[1]{~\char`\\ #1}
+\newcommand{\note}[2][注意]{%
+    \noindent
+        {\CJKfamily{黑体} #1：}{\sf\CJKfamily{楷书} #2}
+}%\verb不能在其他命令里面用，\lstinline会丢失第一个反斜杠
 
 %表格颜色
 \definecolor{oddrows}{RGB}{243,246,246}%奇数行
@@ -180,13 +187,13 @@
         labelfont=it,
         textfont={bf,color=title},
     }%
+\usepackage[section]{placeins}
 %图标浮动体的一些间距
-\setlength{\textfloatsep}{0.5\baselineskip}%tp模式与上下文之间的距离
-\setlength{\intextsep}{0.5\baselineskip}%h模式与上下文之间的距离
-\setlength{\floatsep}{0.5\baselineskip}%两个相邻浮动体之间的距离
-\setlength{\abovecaptionskip}{0.5\baselineskip}%标题与浮动体之间的距离
-\setlength{\belowcaptionskip}{0.5\baselineskip}
-
+\setlength{\textfloatsep}{5pt}%tp模式与上下文之间的距离
+\setlength{\intextsep}{5pt}%h模式与上下文之间的距离
+\setlength{\floatsep}{5pt}%两个相邻浮动体之间的距离
+\setlength{\abovecaptionskip}{0pt}%标题与浮动体之间的距离
+\setlength{\belowcaptionskip}{0pt}
 %============================代码环境===============================
 \lstset{%
     breaklines,
@@ -205,8 +212,11 @@
     rulecolor=\color{blue!50!black},
     framerule=1pt,
     xleftmargin=5pt,
+    aboveskip=0pt,
+    belowskip=0pt,
 }
 %LaTeX代码环境用
+\lstnewenvironment{basiccode}{\lstset{style=basicstyle,rulecolor=\color{red}}}{}
 \definecolor{math}{RGB}{0,128,0}
 \lstdefinestyle{LaTeX}
 {%
@@ -316,7 +326,6 @@
 \usepackage{lastpage}% 页引用，提供最后一页的页码
 
 \usepackage{hyperref}
-    \urlstyle{rm}
     \hypersetup{%
         bookmarksopen=true,%展开书签
         bookmarksnumbered=true,%显示书签编号
@@ -338,7 +347,10 @@
     %    pdfsubject={},
     %    pdfproducer={},
     %    pdfcreator={}
-    }
+    }%
+\newfontfamily\myurlfont{PT Sans Narrow}
+\def\UrlFont{\myurlfont}
+\urlstyle{myurlfont}
 %自动引用
 \AtBeginDocument{%
     \def\figureautorefname{图}%
