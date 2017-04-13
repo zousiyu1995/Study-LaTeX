@@ -108,23 +108,23 @@
 %===========================字体设置=================================
 \setmainfont{TeX Gyre Pagella}%西文主字体,Times New Roman
 \setmathfont[math-style=ISO,bold-style=ISO,vargreek-shape=TeX]{TeX Gyre Pagella Math}%需要unicode-math包
-\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}%中文主字体
+\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{Source Han Serif SC}%中文主字体
 \setmonofont{DejaVu Sans Mono}%英文等宽Source Code Pro
 \setCJKmonofont{FangSong}%中文等宽，仿宋
-\usepackage{biolinum}%西文无衬线
-%\setsansfont{微软雅黑}%无衬线字体
-\setCJKsansfont{SimHei}
+%\usepackage{biolinum}%西文无衬线
+\setsansfont{Source Han Sans HW SC}%无衬线字体
+\setCJKsansfont{Source Han Sans HW SC}
 
 \setCJKfamilyfont{楷书}{KaiTi}
 \setCJKfamilyfont{黑体}{SimHei}
 \newfontfamily\urlfont{PT Sans Narrow}
 
 %新命令
-\newcommand{\pkg}[1]{\textsf{\itshape #1}}
+\newcommand{\pkg}[1]{\textsf{#1}}
 \newcommand{\cmd}[1]{~\char`\\ #1}
 \newcommand{\note}[2][注意]{%
     \noindent
-        {\CJKfamily{黑体} #1：}{\sf\CJKfamily{楷书} #2}
+        {\CJKfamily{黑体} #1：}{\sffamily\CJKfamily{楷书} #2}
 }%\verb不能在其他命令里面用，\lstinline会丢失第一个反斜杠
 
 %表格颜色
@@ -136,10 +136,16 @@
 \usepackage{fancyhdr}%页眉页脚宏包
 \pagestyle{fancy}
     \fancyhead{}
-        \fancyhead[LO,RE]{\bfseries\itshape\thepage/\pageref{LastPage}}
-        \fancyhead[EC]{\slshape\leftmark}
-        \fancyhead[OC]{\slshape\rightmark}
+        \lhead{\CJKfamily{楷书}\nouppercase{\leftmark}}
+        \rhead{\thepage/\pageref{LastPage}}
     \fancyfoot{}
+%twoside
+%\pagestyle{fancy}
+%    \fancyhead{}
+%        \fancyhead[LO,RE]{\bfseries\itshape\thepage/\pageref{LastPage}}
+%        \fancyhead[EC]{\slshape\leftmark}
+%        \fancyhead[OC]{\slshape\rightmark}
+%    \fancyfoot{}
 % 章标题所在页专用版式
 \fancypagestyle{chapterpage}{%
     \chead{\color{title}\slshape\leftmark}
@@ -332,7 +338,6 @@
         bookmarksopenlevel=1,
         unicode=true,%使书签支持unicode字符
         %链接、颜色
-        pagebackref=true,
         breaklinks=true,%链接自动换行
         colorlinks=true,%加颜色区分链接
         citecolor=black,%文献序号颜色
